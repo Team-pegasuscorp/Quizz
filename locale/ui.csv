@@ -1,0 +1,29 @@
+keys,en,fr
+UI_APP_TITLE,Quizz,Quizz
+UI_APP_SUBTITLE,Fast trivia. Beat your best score.,Quiz rapide. Battez votre meilleur score.
+UI_PLAY,Play,Jouer
+UI_SETTINGS,Settings,Paramètres
+UI_BACK,Back,Retour
+UI_CHOOSE_CATEGORY,Choose a category,Choisissez une catégorie
+UI_NO_CATEGORIES,No categories available.,Aucune catégorie disponible.
+UI_QUESTION,Question,Question
+UI_SCORE,Score,Score
+UI_COMBO,Combo,Combo
+UI_CORRECT,Correct!,Bonne réponse !
+UI_WRONG,Wrong!,Mauvaise réponse !
+UI_TIME_UP,Time's up!,Temps écoulé !
+UI_RESULTS,Results,Résultats
+UI_FINAL_SCORE,Final score,Score final
+UI_CORRECT_COUNT,Correct answers,Bonnes réponses
+UI_BEST_COMBO,Best combo,Meilleur combo
+UI_AVG_TIME,Average time,Temps moyen
+UI_PLAY_AGAIN,Play again,Rejouer
+UI_MAIN_MENU,Main menu,Menu principal
+UI_LANGUAGE,Language,Langue
+UI_PLAYER_LEVEL,Level {level},Niveau {level}
+UI_SECONDS,{value}s,{value}s
+UI_CATEGORY_SPORT,Sports,Sport
+UI_CATEGORY_CINEMA,Cinema,Cinéma
+UI_CATEGORY_HISTORY,History,Histoire
+UI_LOADING,Loading...,Chargement...
+UI_EMPTY_QUESTIONS,Not enough questions in this category for your language.,Pas assez de questions dans cette catégorie pour votre langue.

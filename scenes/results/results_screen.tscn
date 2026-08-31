@@ -1,0 +1,142 @@
+[gd_scene load_steps=3 format=3 uid="uid://results_screen_scene"]
+
+[ext_resource type="Script" path="res://scripts/ui/results_screen.gd" id="1_results"]
+[ext_resource type="Material" path="res://themes/fableris_bg_material.tres" id="2_bg_mat"]
+
+[node name="ResultsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_results")
+
+[node name="Background" type="ColorRect" parent="."]
+material = ExtResource("2_bg_mat")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 56
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 40
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 36
+text = "Results"
+horizontal_alignment = 1
+
+[node name="StatsPanel" type="PanelContainer" parent="MarginContainer/VBox"]
+layout_mode = 2
+
+[node name="StatsMargin" type="MarginContainer" parent="MarginContainer/VBox/StatsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 22
+
+[node name="StatsGrid" type="GridContainer" parent="MarginContainer/VBox/StatsPanel/StatsMargin"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 14
+columns = 2
+
+[node name="ScoreCaption" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MonoLabel"
+theme_override_font_sizes/font_size = 14
+text = "Final score"
+
+[node name="ScoreValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"GoldMonoLabel"
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 2
+
+[node name="CorrectCaption" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MonoLabel"
+theme_override_font_sizes/font_size = 14
+text = "Correct answers"
+
+[node name="CorrectValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9098, 0.8784, 0.8157, 1)
+theme_override_font_sizes/font_size = 20
+text = "0 / 7"
+horizontal_alignment = 2
+
+[node name="ComboCaption" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MonoLabel"
+theme_override_font_sizes/font_size = 14
+text = "Best combo"
+
+[node name="ComboValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9098, 0.8314, 0.6275, 1)
+theme_override_font_sizes/font_size = 20
+text = "x0"
+horizontal_alignment = 2
+
+[node name="AverageCaption" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MonoLabel"
+theme_override_font_sizes/font_size = 14
+text = "Average time"
+
+[node name="AverageValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9098, 0.8784, 0.8157, 1)
+theme_override_font_sizes/font_size = 20
+text = "0.0s"
+horizontal_alignment = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayAgainButton" type="Button" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_type_variation = &"PrimaryButton"
+theme_override_font_sizes/font_size = 18
+text = "Play again"
+
+[node name="MenuButton" type="Button" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Main menu"

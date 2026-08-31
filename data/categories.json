@@ -1,0 +1,41 @@
+{
+  "sport": {
+    "locales": ["fr", "en"],
+    "translations": {
+      "en": {
+        "name": "Sports",
+        "description": "Athletes, rules, and records."
+      },
+      "fr": {
+        "name": "Sport",
+        "description": "Athlètes, règles et records."
+      }
+    }
+  },
+  "cinema": {
+    "locales": ["fr", "en"],
+    "translations": {
+      "en": {
+        "name": "Cinema",
+        "description": "Movies, actors, and directors."
+      },
+      "fr": {
+        "name": "Cinéma",
+        "description": "Films, acteurs et réalisateurs."
+      }
+    }
+  },
+  "history": {
+    "locales": ["fr", "en"],
+    "translations": {
+      "en": {
+        "name": "History",
+        "description": "Events and figures that shaped the world."
+      },
+      "fr": {
+        "name": "Histoire",
+        "description": "Événements et personnages qui ont marqué le monde."
+      }
+    }
+  }
+}

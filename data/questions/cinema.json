@@ -1,0 +1,138 @@
+{
+  "category": "cinema",
+  "questions": [
+    {
+      "id": "cinema_001",
+      "category": "cinema",
+      "difficulty": 1,
+      "correct_index": 2,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "Who directed the movie 'Inception'?",
+          "choices": ["Steven Spielberg", "Quentin Tarantino", "Christopher Nolan", "Ridley Scott"],
+          "explanation": "Christopher Nolan wrote and directed Inception (2010)."
+        },
+        "fr": {
+          "text": "Qui a réalisé le film « Inception » ?",
+          "choices": ["Steven Spielberg", "Quentin Tarantino", "Christopher Nolan", "Ridley Scott"],
+          "explanation": "Christopher Nolan a écrit et réalisé Inception (2010)."
+        }
+      }
+    },
+    {
+      "id": "cinema_002",
+      "category": "cinema",
+      "difficulty": 1,
+      "correct_index": 1,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "Which film won the Academy Award for Best Picture in 1998?",
+          "choices": ["Saving Private Ryan", "Titanic", "Good Will Hunting", "L.A. Confidential"],
+          "explanation": "Titanic won Best Picture at the 1998 Oscars ceremony."
+        },
+        "fr": {
+          "text": "Quel film a remporté l'Oscar du meilleur film en 1998 ?",
+          "choices": ["Il faut sauver le soldat Ryan", "Titanic", "Will Hunting", "L.A. Confidential"],
+          "explanation": "Titanic a remporté l'Oscar du meilleur film lors de la cérémonie de 1998."
+        }
+      }
+    },
+    {
+      "id": "cinema_003",
+      "category": "cinema",
+      "difficulty": 2,
+      "correct_index": 0,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "What is the highest-grossing film of all time (unadjusted)?",
+          "choices": ["Avatar", "Avengers: Endgame", "Titanic", "Star Wars: The Force Awakens"],
+          "explanation": "Avatar remains the highest-grossing film globally before inflation adjustment."
+        },
+        "fr": {
+          "text": "Quel est le film le plus rentable de l'histoire (sans ajustement inflation) ?",
+          "choices": ["Avatar", "Avengers: Endgame", "Titanic", "Star Wars : Le Réveil de la Force"],
+          "explanation": "Avatar reste le film le plus rentable mondialement hors inflation."
+        }
+      }
+    },
+    {
+      "id": "cinema_004",
+      "category": "cinema",
+      "difficulty": 2,
+      "correct_index": 3,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "Which actor played Jack in 'Titanic'?",
+          "choices": ["Brad Pitt", "Matt Damon", "Johnny Depp", "Leonardo DiCaprio"],
+          "explanation": "Leonardo DiCaprio starred as Jack Dawson in Titanic."
+        },
+        "fr": {
+          "text": "Quel acteur a joué Jack dans « Titanic » ?",
+          "choices": ["Brad Pitt", "Matt Damon", "Johnny Depp", "Leonardo DiCaprio"],
+          "explanation": "Leonardo DiCaprio a incarné Jack Dawson dans Titanic."
+        }
+      }
+    },
+    {
+      "id": "cinema_005",
+      "category": "cinema",
+      "difficulty": 1,
+      "correct_index": 2,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "Which studio created the Minions?",
+          "choices": ["Pixar", "DreamWorks", "Illumination", "Blue Sky"],
+          "explanation": "The Minions franchise comes from Illumination."
+        },
+        "fr": {
+          "text": "Quel studio a créé les Minions ?",
+          "choices": ["Pixar", "DreamWorks", "Illumination", "Blue Sky"],
+          "explanation": "La franchise Minions vient du studio Illumination."
+        }
+      }
+    },
+    {
+      "id": "cinema_006",
+      "category": "cinema",
+      "difficulty": 3,
+      "correct_index": 1,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "Which film features the quote 'May the Force be with you'?",
+          "choices": ["Star Trek", "Star Wars", "Guardians of the Galaxy", "The Matrix"],
+          "explanation": "The line is one of the most famous quotes from Star Wars."
+        },
+        "fr": {
+          "text": "Dans quel film entend-on « Que la Force soit avec toi » ?",
+          "choices": ["Star Trek", "Star Wars", "Les Gardiens de la Galaxie", "Matrix"],
+          "explanation": "Cette réplique est l'une des plus célèbres de Star Wars."
+        }
+      }
+    },
+    {
+      "id": "cinema_007",
+      "category": "cinema",
+      "difficulty": 2,
+      "correct_index": 0,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "What is the name of the kingdom in 'Black Panther'?",
+          "choices": ["Wakanda", "Genosha", "Latveria", "Zamunda"],
+          "explanation": "Black Panther is set in the fictional African nation of Wakanda."
+        },
+        "fr": {
+          "text": "Quel est le nom du royaume dans « Black Panther » ?",
+          "choices": ["Wakanda", "Genosha", "Latveria", "Zamunda"],
+          "explanation": "Black Panther se déroule dans la nation fictive africaine de Wakanda."
+        }
+      }
+    }
+  ]
+}
