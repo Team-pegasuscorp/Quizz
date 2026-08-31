@@ -1,0 +1,138 @@
+{
+  "category": "history",
+  "questions": [
+    {
+      "id": "history_001",
+      "category": "history",
+      "difficulty": 1,
+      "correct_index": 2,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "In which year did World War II end?",
+          "choices": ["1943", "1944", "1945", "1946"],
+          "explanation": "World War II ended in 1945."
+        },
+        "fr": {
+          "text": "En quelle année la Seconde Guerre mondiale s'est-elle terminée ?",
+          "choices": ["1943", "1944", "1945", "1946"],
+          "explanation": "La Seconde Guerre mondiale s'est terminée en 1945."
+        }
+      }
+    },
+    {
+      "id": "history_002",
+      "category": "history",
+      "difficulty": 1,
+      "correct_index": 1,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "Who was the first President of the United States?",
+          "choices": ["Thomas Jefferson", "George Washington", "Abraham Lincoln", "John Adams"],
+          "explanation": "George Washington served as the first U.S. president from 1789 to 1797."
+        },
+        "fr": {
+          "text": "Qui fut le premier président des États-Unis ?",
+          "choices": ["Thomas Jefferson", "George Washington", "Abraham Lincoln", "John Adams"],
+          "explanation": "George Washington fut le premier président américain de 1789 à 1797."
+        }
+      }
+    },
+    {
+      "id": "history_003",
+      "category": "history",
+      "difficulty": 2,
+      "correct_index": 0,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "The French Revolution began in which year?",
+          "choices": ["1789", "1799", "1815", "1776"],
+          "explanation": "The French Revolution began in 1789 with the storming of the Bastille."
+        },
+        "fr": {
+          "text": "La Révolution française a commencé en quelle année ?",
+          "choices": ["1789", "1799", "1815", "1776"],
+          "explanation": "La Révolution française débuta en 1789 avec la prise de la Bastille."
+        }
+      }
+    },
+    {
+      "id": "history_004",
+      "category": "history",
+      "difficulty": 2,
+      "correct_index": 3,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "Which ancient wonder was located in Alexandria?",
+          "choices": ["Colossus of Rhodes", "Hanging Gardens", "Statue of Zeus", "Lighthouse"],
+          "explanation": "The Lighthouse of Alexandria was one of the Seven Wonders of the Ancient World."
+        },
+        "fr": {
+          "text": "Quelle merveille antique se trouvait à Alexandrie ?",
+          "choices": ["Colosse de Rhodes", "Jardins suspendus", "Statue de Zeus", "Phare"],
+          "explanation": "Le phare d'Alexandrie faisait partie des sept merveilles du monde antique."
+        }
+      }
+    },
+    {
+      "id": "history_005",
+      "category": "history",
+      "difficulty": 1,
+      "correct_index": 2,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "Who painted the Mona Lisa?",
+          "choices": ["Michelangelo", "Raphael", "Leonardo da Vinci", "Donatello"],
+          "explanation": "Leonardo da Vinci painted the Mona Lisa in the early 16th century."
+        },
+        "fr": {
+          "text": "Qui a peint la Joconde ?",
+          "choices": ["Michel-Ange", "Raphaël", "Léonard de Vinci", "Donatello"],
+          "explanation": "Léonard de Vinci a peint la Joconde au début du XVIe siècle."
+        }
+      }
+    },
+    {
+      "id": "history_006",
+      "category": "history",
+      "difficulty": 3,
+      "correct_index": 1,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "The Berlin Wall fell in which year?",
+          "choices": ["1987", "1989", "1991", "1985"],
+          "explanation": "The Berlin Wall fell on 9 November 1989."
+        },
+        "fr": {
+          "text": "En quelle année le mur de Berlin est-il tombé ?",
+          "choices": ["1987", "1989", "1991", "1985"],
+          "explanation": "Le mur de Berlin est tombé le 9 novembre 1989."
+        }
+      }
+    },
+    {
+      "id": "history_007",
+      "category": "history",
+      "difficulty": 2,
+      "correct_index": 0,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "Which empire built Machu Picchu?",
+          "choices": ["Inca", "Aztec", "Maya", "Ottoman"],
+          "explanation": "Machu Picchu was built by the Inca civilization in the 15th century."
+        },
+        "fr": {
+          "text": "Quel empire a construit Machu Picchu ?",
+          "choices": ["Inca", "Aztèque", "Maya", "Ottoman"],
+          "explanation": "Machu Picchu a été construit par la civilisation inca au XVe siècle."
+        }
+      }
+    }
+  ]
+}

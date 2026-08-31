@@ -1,0 +1,138 @@
+{
+  "category": "sport",
+  "questions": [
+    {
+      "id": "sport_001",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 2,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "How many players are on a football team on the field?",
+          "choices": ["9", "10", "11", "12"],
+          "explanation": "A team fields 11 players, including the goalkeeper."
+        },
+        "fr": {
+          "text": "Combien de joueurs composent une équipe de football sur le terrain ?",
+          "choices": ["9", "10", "11", "12"],
+          "explanation": "Une équipe aligne 11 joueurs, gardien inclus."
+        }
+      }
+    },
+    {
+      "id": "sport_002",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 1,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "Which country hosted the 2016 Summer Olympics?",
+          "choices": ["China", "Brazil", "United Kingdom", "Russia"],
+          "explanation": "The 2016 Summer Olympics were held in Rio de Janeiro, Brazil."
+        },
+        "fr": {
+          "text": "Quel pays a accueilli les Jeux olympiques d'été de 2016 ?",
+          "choices": ["Chine", "Brésil", "Royaume-Uni", "Russie"],
+          "explanation": "Les Jeux de 2016 se sont tenus à Rio de Janeiro, au Brésil."
+        }
+      }
+    },
+    {
+      "id": "sport_003",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 0,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "In tennis, what does the term 'love' mean?",
+          "choices": ["Zero points", "A perfect serve", "Match point", "Deuce"],
+          "explanation": "In tennis scoring, 'love' means zero."
+        },
+        "fr": {
+          "text": "Au tennis, que signifie le terme « love » ?",
+          "choices": ["Zéro point", "Un service parfait", "Balle de match", "Égalité"],
+          "explanation": "Dans le score de tennis, « love » signifie zéro."
+        }
+      }
+    },
+    {
+      "id": "sport_004",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 3,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "How long is an Olympic swimming pool?",
+          "choices": ["25 meters", "33 meters", "40 meters", "50 meters"],
+          "explanation": "Olympic pools are 50 meters long."
+        },
+        "fr": {
+          "text": "Quelle est la longueur d'un bassin olympique de natation ?",
+          "choices": ["25 mètres", "33 mètres", "40 mètres", "50 mètres"],
+          "explanation": "Un bassin olympique mesure 50 mètres."
+        }
+      }
+    },
+    {
+      "id": "sport_005",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 2,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "Which sport uses the terms 'birdie' and 'eagle'?",
+          "choices": ["Cricket", "Baseball", "Golf", "Rugby"],
+          "explanation": "Birdie and eagle are scoring terms in golf."
+        },
+        "fr": {
+          "text": "Quel sport utilise les termes « birdie » et « eagle » ?",
+          "choices": ["Cricket", "Baseball", "Golf", "Rugby"],
+          "explanation": "Birdie et eagle sont des termes de score au golf."
+        }
+      }
+    },
+    {
+      "id": "sport_006",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 1,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "How many Grand Slam tennis tournaments are there each year?",
+          "choices": ["3", "4", "5", "6"],
+          "explanation": "The four Grand Slams are Australian Open, Roland-Garros, Wimbledon, and US Open."
+        },
+        "fr": {
+          "text": "Combien y a-t-il de tournois du Grand Chelem en tennis chaque année ?",
+          "choices": ["3", "4", "5", "6"],
+          "explanation": "Les quatre Grand Chelem sont l'Open d'Australie, Roland-Garros, Wimbledon et l'US Open."
+        }
+      }
+    },
+    {
+      "id": "sport_007",
+      "category": "sport",
+      "difficulty": 3,
+      "correct_index": 0,
+      "locales": ["fr", "en"],
+      "translations": {
+        "en": {
+          "text": "Which athlete has won the most Olympic gold medals?",
+          "choices": ["Michael Phelps", "Usain Bolt", "Simone Biles", "Carl Lewis"],
+          "explanation": "Michael Phelps won 23 Olympic gold medals in swimming."
+        },
+        "fr": {
+          "text": "Quel athlète a remporté le plus de médailles d'or olympiques ?",
+          "choices": ["Michael Phelps", "Usain Bolt", "Simone Biles", "Carl Lewis"],
+          "explanation": "Michael Phelps a remporté 23 médailles d'or olympiques en natation."
+        }
+      }
+    }
+  ]
+}
