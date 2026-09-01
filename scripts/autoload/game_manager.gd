@@ -1,10 +1,11 @@
 extends Node
 
+const GameRules = preload("res://scripts/config/game_rules.gd")
 const QuestionLoaderScript = preload("res://scripts/quiz/question_loader.gd")
 const ScoringSystemScript = preload("res://scripts/quiz/scoring_system.gd")
 
-const QUESTIONS_PER_ROUND: int = 7
-const QUESTION_TIME_SECONDS: float = 10.0
+const QUESTIONS_PER_ROUND: int = GameRules.QUESTIONS_PER_ROUND
+const QUESTION_TIME_SECONDS: float = GameRules.QUESTION_TIME_SECONDS
 
 var category_id: String = ""
 var questions: Array[Dictionary] = []

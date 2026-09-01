@@ -1,6 +1,8 @@
 extends RefCounted
 
-const SCALE := 0.97
+const UiTokens = preload("res://scripts/config/ui_tokens.gd")
+
+const SCALE := UiTokens.BUTTON_PRESS_SCALE
 
 
 static func wire(button: Button, host: Node) -> void:

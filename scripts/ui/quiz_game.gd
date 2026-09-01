@@ -1,13 +1,7 @@
 extends Control
 
-const COLOR_TIMEOUT := Color(0.9098, 0.8314, 0.6275) # gold2
-const COLOR_CORRECT := Color(0.4275, 0.9804, 0.7373) # #6dfabc
-const COLOR_WRONG := Color(0.9804, 0.4275, 0.5608) # #fa6d8f
-const COLOR_NEUTRAL := Color(1, 1, 1, 1)
-const ANSWER_TILE_MAX := 200.0
-const ANSWER_TILE_MIN := 140.0
-const BLINK_COUNT := 3
-const BLINK_HALF := 0.14
+const UiTokens = preload("res://scripts/config/ui_tokens.gd")
+const ScenePaths = preload("res://scripts/config/scene_paths.gd")
 const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
 
 @onready var progress_label: Label = %ProgressLabel
@@ -32,7 +26,7 @@ var _blink_tweens: Array[Tween] = []
 
 func _ready() -> void:
 	if not GameManager.has_questions():
-		get_tree().change_scene_to_file("res://scenes/category_select.tscn")
+		get_tree().change_scene_to_file(ScenePaths.CATEGORY_SELECT)
 		return
 
 	for index in range(answer_buttons.size()):
@@ -52,9 +46,9 @@ func _update_answer_tile_sizes() -> void:
 	var separation: float = float(answers_grid.get_theme_constant("h_separation"))
 	var available_width: float = answers_grid.size.x
 	if available_width <= 1.0:
-		available_width = size.x - 56.0
+		available_width = size.x - UiTokens.ANSWER_GRID_MARGIN
 	var side: float = floorf((available_width - separation) * 0.5)
-	side = clampf(side, ANSWER_TILE_MIN, ANSWER_TILE_MAX)
+	side = clampf(side, UiTokens.ANSWER_TILE_MIN, UiTokens.ANSWER_TILE_MAX)
 	var tile_size := Vector2(side, side)
 	for button in answer_buttons:
 		button.custom_minimum_size = tile_size
@@ -84,12 +78,12 @@ func _show_current_question() -> void:
 	combo_label.text = "%s: x%d" % [tr("UI_COMBO"), max(GameManager.combo, 1)]
 	question_label.text = question.get("text", "")
 	feedback_label.text = ""
-	feedback_label.modulate = COLOR_NEUTRAL
+	feedback_label.modulate = UiTokens.NEUTRAL
 
 	var choices: Array = question.get("choices", [])
 	for index in range(answer_buttons.size()):
 		var button: Button = answer_buttons[index]
-		button.modulate = COLOR_NEUTRAL
+		button.modulate = UiTokens.NEUTRAL
 		if index < choices.size():
 			button.text = str(choices[index])
 			button.visible = true
@@ -134,34 +128,34 @@ func _submit_answer(selected_index: int) -> void:
 func _show_feedback(result: Dictionary, selected_index: int, correct_index: int) -> void:
 	if result.get("is_timeout", false):
 		feedback_label.text = tr("UI_TIME_UP")
-		feedback_label.modulate = COLOR_TIMEOUT
+		feedback_label.modulate = UiTokens.FEEDBACK_TIMEOUT
 	elif result.get("is_correct", false):
 		feedback_label.text = "%s +%d" % [tr("UI_CORRECT"), result.get("points", 0)]
-		feedback_label.modulate = COLOR_CORRECT
+		feedback_label.modulate = UiTokens.FEEDBACK_CORRECT
 	else:
 		feedback_label.text = tr("UI_WRONG")
-		feedback_label.modulate = COLOR_WRONG
+		feedback_label.modulate = UiTokens.FEEDBACK_WRONG
 
 	score_label.text = "%s: %d" % [tr("UI_SCORE"), GameManager.score]
 	combo_label.text = "%s: x%d" % [tr("UI_COMBO"), max(GameManager.combo, 1)]
 
 	if correct_index >= 0 and correct_index < answer_buttons.size():
-		_blink_answer(answer_buttons[correct_index], COLOR_CORRECT)
+		_blink_answer(answer_buttons[correct_index], UiTokens.FEEDBACK_CORRECT)
 
 	if (
 		selected_index >= 0
 		and selected_index < answer_buttons.size()
 		and selected_index != correct_index
 	):
-		_blink_answer(answer_buttons[selected_index], COLOR_WRONG)
+		_blink_answer(answer_buttons[selected_index], UiTokens.FEEDBACK_WRONG)
 
 
 func _blink_answer(button: Button, color: Color) -> void:
 	var tween := create_tween()
 	_blink_tweens.append(tween)
-	tween.set_loops(BLINK_COUNT)
-	tween.tween_property(button, "modulate", color, BLINK_HALF)
-	tween.tween_property(button, "modulate", COLOR_NEUTRAL, BLINK_HALF)
+	tween.set_loops(UiTokens.ANSWER_BLINK_COUNT)
+	tween.tween_property(button, "modulate", color, UiTokens.ANSWER_BLINK_HALF)
+	tween.tween_property(button, "modulate", UiTokens.NEUTRAL, UiTokens.ANSWER_BLINK_HALF)
 	tween.finished.connect(func() -> void:
 		if is_instance_valid(button):
 			button.modulate = color
@@ -175,10 +169,10 @@ func _stop_answer_blinks() -> void:
 	_blink_tweens.clear()
 	for button in answer_buttons:
 		if is_instance_valid(button):
-			button.modulate = COLOR_NEUTRAL
+			button.modulate = UiTokens.NEUTRAL
 
 
 func _finish_quiz() -> void:
 	_stop_answer_blinks()
 	GameManager.finish_round()
-	get_tree().change_scene_to_file("res://scenes/results/results_screen.tscn")
+	get_tree().change_scene_to_file(ScenePaths.RESULTS)

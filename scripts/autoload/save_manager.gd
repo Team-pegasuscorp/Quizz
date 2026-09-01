@@ -1,10 +1,13 @@
 extends Node
 
+const GameRules = preload("res://scripts/config/game_rules.gd")
+const UiTokens = preload("res://scripts/config/ui_tokens.gd")
+
 const SAVE_PATH: String = "user://save.json"
 const PROFILE_AVATAR_PATH: String = "user://profile_avatar.png"
 const DEFAULT_AVATAR_PATH: String = "res://assets/ui/default_avatar.svg"
 
-var player_name: String = "Player"
+var player_name: String = UiTokens.DEFAULT_PLAYER_NAME
 var preferred_locale: String = ""
 var level: int = 1
 var xp: int = 0
@@ -68,7 +71,7 @@ func set_preferred_locale(locale: String) -> void:
 
 func set_player_name(name: String) -> void:
 	var trimmed := name.strip_edges()
-	player_name = trimmed if not trimmed.is_empty() else "Player"
+	player_name = trimmed if not trimmed.is_empty() else UiTokens.DEFAULT_PLAYER_NAME
 	save_data()
 
 
@@ -110,7 +113,7 @@ func set_profile_avatar_from_file(source_path: String) -> bool:
 	var image := Image.new()
 	if image.load(source_path) != OK:
 		return false
-	image.resize(256, 256, Image.INTERPOLATE_LANCZOS)
+	image.resize(UiTokens.PROFILE_AVATAR_SIZE, UiTokens.PROFILE_AVATAR_SIZE, Image.INTERPOLATE_LANCZOS)
 	if image.save_png(PROFILE_AVATAR_PATH) != OK:
 		return false
 	save_data()
@@ -125,12 +128,7 @@ func clear_profile_avatar() -> void:
 
 func record_match_result(category_id: String, score: int, correct_count: int, total_count: int) -> void:
 	if not category_stats.has(category_id):
-		category_stats[category_id] = {
-			"games_played": 0,
-			"best_score": 0,
-			"total_correct": 0,
-			"total_questions": 0,
-		}
+		category_stats[category_id] = _empty_category_stats()
 
 	var stats: Dictionary = category_stats[category_id]
 	stats["games_played"] = int(stats.get("games_played", 0)) + 1
@@ -139,31 +137,30 @@ func record_match_result(category_id: String, score: int, correct_count: int, to
 	stats["total_questions"] = int(stats.get("total_questions", 0)) + total_count
 	category_stats[category_id] = stats
 
-	if correct_count * 2 > total_count:
+	if GameRules.is_match_win(correct_count, total_count):
 		wins += 1
 	else:
 		losses += 1
 
-	var gained_xp: int = correct_count * 10 + score / 10
-	add_xp(gained_xp)
+	add_xp(GameRules.xp_for_match(correct_count, score))
 	save_data()
 
 
 func add_xp(amount: int) -> void:
 	xp += amount
-	while xp >= _xp_for_next_level():
-		xp -= _xp_for_next_level()
+	while xp >= GameRules.xp_for_next_level(level):
+		xp -= GameRules.xp_for_next_level(level)
 		level += 1
 
 
 func get_category_stats(category_id: String) -> Dictionary:
-	return category_stats.get(category_id, {
+	return category_stats.get(category_id, _empty_category_stats())
+
+
+func _empty_category_stats() -> Dictionary:
+	return {
 		"games_played": 0,
 		"best_score": 0,
 		"total_correct": 0,
 		"total_questions": 0,
-	})
-
-
-func _xp_for_next_level() -> int:
-	return 100 + (level - 1) * 25
+	}

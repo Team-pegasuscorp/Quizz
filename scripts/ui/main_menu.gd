@@ -1,5 +1,8 @@
 extends Control
 
+const ProfileSnapshot = preload("res://scripts/profile/profile_snapshot.gd")
+const UiTokens = preload("res://scripts/config/ui_tokens.gd")
+const ScenePaths = preload("res://scripts/config/scene_paths.gd")
 const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
 
 @onready var title_label: Label = %TitleLabel
@@ -44,9 +47,10 @@ func _apply_translations() -> void:
 
 
 func _refresh_profile_card() -> void:
-	menu_player_name_label.text = SaveManager.player_name
-	menu_avatar_texture.texture = SaveManager.get_profile_avatar_texture()
-	level_label.text = tr("UI_PLAYER_LEVEL").format({"level": SaveManager.level})
+	var profile: Dictionary = ProfileSnapshot.build(LocaleManager.get_content_locale())
+	menu_player_name_label.text = profile.get("player_name", UiTokens.DEFAULT_PLAYER_NAME)
+	menu_avatar_texture.texture = profile.get("avatar_texture")
+	level_label.text = tr("UI_PLAYER_LEVEL").format({"level": profile.get("level", 1)})
 
 
 func _setup_language_option() -> void:
@@ -61,11 +65,11 @@ func _setup_language_option() -> void:
 
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/category_select.tscn")
+	get_tree().change_scene_to_file(ScenePaths.CATEGORY_SELECT)
 
 
 func _on_profile_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/profile/player_profile.tscn")
+	get_tree().change_scene_to_file(ScenePaths.PROFILE)
 
 
 func _on_settings_pressed() -> void:

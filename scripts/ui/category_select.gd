@@ -1,6 +1,7 @@
 extends Control
 
 const QuestionLoaderScript = preload("res://scripts/quiz/question_loader.gd")
+const ScenePaths = preload("res://scripts/config/scene_paths.gd")
 const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
 
 @onready var title_label: Label = %TitleLabel
@@ -66,11 +67,11 @@ func _on_start_pressed() -> void:
 		description_label.text = tr("UI_EMPTY_QUESTIONS")
 		return
 
-	get_tree().change_scene_to_file("res://scenes/game/quiz_game.tscn")
+	get_tree().change_scene_to_file(ScenePaths.QUIZ_GAME)
 
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file(ScenePaths.MAIN_MENU)
 
 
 func _on_locale_changed(_locale: String) -> void:

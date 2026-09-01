@@ -1,6 +1,8 @@
 extends Control
 
-const QuestionLoaderScript = preload("res://scripts/quiz/question_loader.gd")
+const ProfileSnapshot = preload("res://scripts/profile/profile_snapshot.gd")
+const UiTokens = preload("res://scripts/config/ui_tokens.gd")
+const ScenePaths = preload("res://scripts/config/scene_paths.gd")
 const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
 
 @onready var title_label: Label = %TitleLabel
@@ -27,6 +29,7 @@ const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
 
 
 func _ready() -> void:
+	pseudo_input.max_length = UiTokens.MAX_PLAYER_NAME_LENGTH
 	_apply_translations()
 	_refresh_profile()
 	back_button.pressed.connect(_on_back_pressed)
@@ -58,28 +61,22 @@ func _apply_translations() -> void:
 
 
 func _refresh_profile() -> void:
-	pseudo_input.text = SaveManager.player_name
-	level_label.text = tr("UI_PLAYER_LEVEL").format({"level": SaveManager.level})
-	avatar_texture.texture = SaveManager.get_profile_avatar_texture()
-	remove_photo_button.visible = SaveManager.has_custom_avatar()
+	var profile: Dictionary = ProfileSnapshot.build(LocaleManager.get_content_locale())
+	pseudo_input.text = profile.get("player_name", UiTokens.DEFAULT_PLAYER_NAME)
+	level_label.text = tr("UI_PLAYER_LEVEL").format({"level": profile.get("level", 1)})
+	avatar_texture.texture = profile.get("avatar_texture")
+	remove_photo_button.visible = profile.get("has_custom_avatar", false)
 
-	games_value_label.text = str(SaveManager.get_games_played())
-	wins_value_label.text = str(SaveManager.wins)
-	losses_value_label.text = str(SaveManager.losses)
-	win_rate_value_label.text = "%.0f%%" % SaveManager.get_win_rate_percent()
+	games_value_label.text = str(profile.get("games_played", 0))
+	wins_value_label.text = str(profile.get("wins", 0))
+	losses_value_label.text = str(profile.get("losses", 0))
+	win_rate_value_label.text = "%.0f%%" % profile.get("win_rate_percent", 0.0)
 
-	var favorite_id: String = SaveManager.get_favorite_category_id()
-	if favorite_id.is_empty():
+	var favorite_name: String = profile.get("favorite_category_name", "")
+	if favorite_name.is_empty():
 		favorite_value_label.text = tr("UI_PROFILE_NO_FAVORITE")
 	else:
-		favorite_value_label.text = _get_category_name(favorite_id)
-
-
-func _get_category_name(category_id: String) -> String:
-	for category in QuestionLoaderScript.get_categories(LocaleManager.get_content_locale()):
-		if category.get("id", "") == category_id:
-			return str(category.get("name", category_id))
-	return category_id
+		favorite_value_label.text = favorite_name
 
 
 func _on_change_photo_pressed() -> void:
@@ -109,7 +106,7 @@ func _on_save_pressed() -> void:
 
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file(ScenePaths.MAIN_MENU)
 
 
 func _on_locale_changed(_locale: String) -> void:
