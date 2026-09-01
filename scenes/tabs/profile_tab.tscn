@@ -1,0 +1,298 @@
+[gd_scene load_steps=3 format=3 uid="uid://profile_tab_scene"]
+
+[ext_resource type="Script" path="res://scripts/ui/profile_tab.gd" id="1_profile_tab"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hero"]
+bg_color = Color(1, 1, 1, 0.1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.18)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0, 0.7373, 0.8314, 0.15)
+shadow_size = 10
+
+[node name="ProfileTab" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_profile_tab")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="ContentVBox" type="VBoxContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="OuterMargin" type="MarginContainer" parent="ScrollContainer/ContentVBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="InnerVBox" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HeroPanel" type="PanelContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hero")
+
+[node name="HeroMargin" type="MarginContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="HeroVBox" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="AvatarCenter" type="CenterContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
+layout_mode = 2
+
+[node name="AvatarFrame" type="PanelContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox/AvatarCenter"]
+custom_minimum_size = Vector2(112, 112)
+layout_mode = 2
+
+[node name="AvatarTexture" type="TextureRect" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox/AvatarCenter/AvatarFrame"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(104, 104)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PseudoInput" type="LineEdit" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Enter your name..."
+horizontal_alignment = 1
+max_length = 24
+
+[node name="RankLabel" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"GoldMonoLabel"
+theme_override_font_sizes/font_size = 14
+text = "Rookie"
+horizontal_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Level 1"
+horizontal_alignment = 1
+
+[node name="XpBar" type="ProgressBar" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+max_value = 100.0
+value = 35.0
+show_percentage = false
+
+[node name="XpCaptionLabel" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MonoLabel"
+theme_override_font_sizes/font_size = 12
+text = "65 / 175 XP"
+horizontal_alignment = 1
+
+[node name="PhotoButtonsHBox" type="HBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ChangePhotoButton" type="Button" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox/PhotoButtonsHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Change photo"
+
+[node name="RemovePhotoButton" type="Button" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox/PhotoButtonsHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Remove photo"
+
+[node name="DemoHintLabel" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MonoLabel"
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ProfileStatusLabel" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"GoldMonoLabel"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="StatsSection" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="StatsTitle" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/StatsSection"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 20
+text = "Statistics"
+
+[node name="StatsGrid" type="GridContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/StatsSection"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="CategoriesSection" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CategoriesTitle" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/CategoriesSection"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 20
+text = "Categories"
+
+[node name="CategoriesList" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/CategoriesSection"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BadgesSection" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BadgesTitle" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/BadgesSection"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 20
+text = "Achievements"
+
+[node name="BadgesGrid" type="GridContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/BadgesSection"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 4
+
+[node name="HistorySection" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HistoryTitle" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HistorySection"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 20
+text = "Recent history"
+
+[node name="HistoryList" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HistorySection"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PhotoDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a File"
+size = Vector2i(640, 360)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png, *.jpg, *.jpeg, *.webp ; Images")
+
+[node name="BadgeBackdrop" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+color = Color(0, 0, 0, 0.55)
+
+[node name="BadgeDetailPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BadgeDetailMargin" type="MarginContainer" parent="BadgeDetailPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="BadgeDetailVBox" type="VBoxContainer" parent="BadgeDetailPanel/BadgeDetailMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BadgeDetailIcon" type="Label" parent="BadgeDetailPanel/BadgeDetailMargin/BadgeDetailVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "🏆"
+horizontal_alignment = 1
+
+[node name="BadgeDetailTitle" type="Label" parent="BadgeDetailPanel/BadgeDetailMargin/BadgeDetailVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 18
+text = "Achievement"
+horizontal_alignment = 1
+
+[node name="BadgeDetailDesc" type="Label" parent="BadgeDetailPanel/BadgeDetailMargin/BadgeDetailVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"SubtitleLabel"
+theme_override_font_sizes/font_size = 14
+text = "Description"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BadgeDetailClose" type="Button" parent="BadgeDetailPanel/BadgeDetailMargin/BadgeDetailVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"

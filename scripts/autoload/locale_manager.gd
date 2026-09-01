@@ -1,7 +1,7 @@
 extends Node
 
 const SUPPORTED_LOCALES: Array[String] = ["fr", "en"]
-const DEFAULT_LOCALE: String = "en"
+const DEFAULT_LOCALE: String = "fr"
 const TRANSLATIONS_PATH: String = "res://locale/ui.csv"
 
 var current_locale: String = DEFAULT_LOCALE

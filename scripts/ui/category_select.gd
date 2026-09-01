@@ -1,9 +1,14 @@
 extends Control
 
+signal back_requested
+
 const QuestionLoaderScript = preload("res://scripts/quiz/question_loader.gd")
 const ScenePaths = preload("res://scripts/config/scene_paths.gd")
 const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
 
+@export var embedded_mode: bool = false
+
+@onready var background: ColorRect = $Background
 @onready var title_label: Label = %TitleLabel
 @onready var category_list: ItemList = %CategoryList
 @onready var back_button: Button = %BackButton
@@ -14,6 +19,7 @@ var categories: Array[Dictionary] = []
 
 
 func _ready() -> void:
+	_apply_embedded_layout()
 	_apply_translations()
 	_load_categories()
 	back_button.pressed.connect(_on_back_pressed)
@@ -21,7 +27,15 @@ func _ready() -> void:
 	category_list.item_selected.connect(_on_category_selected)
 	LocaleManager.locale_changed.connect(_on_locale_changed)
 	PressScaleUtil.wire(start_button, self)
-	PressScaleUtil.wire(back_button, self)
+	if not embedded_mode:
+		PressScaleUtil.wire(back_button, self)
+
+
+func _apply_embedded_layout() -> void:
+	if not embedded_mode:
+		return
+	background.visible = false
+	back_button.visible = false
 
 
 func _apply_translations() -> void:
@@ -71,7 +85,10 @@ func _on_start_pressed() -> void:
 
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file(ScenePaths.MAIN_MENU)
+	if embedded_mode:
+		back_requested.emit()
+	else:
+		ScenePaths.go_to_shell(get_tree(), ScenePaths.Tab.HOME)
 
 
 func _on_locale_changed(_locale: String) -> void:

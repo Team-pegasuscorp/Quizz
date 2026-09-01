@@ -14,7 +14,7 @@ static func get_categories(locale: String) -> Array[Dictionary]:
 	for category_id in parsed.keys():
 		var entry: Dictionary = parsed[category_id]
 		var translations: Dictionary = entry.get("translations", {})
-		var locale_block: Dictionary = translations.get(locale, translations.get("en", {}))
+		var locale_block: Dictionary = translations.get(locale, translations.get("fr", {}))
 		result.append({
 			"id": category_id,
 			"name": locale_block.get("name", category_id),
@@ -64,7 +64,7 @@ static func _localize_question(raw: Dictionary, locale: String) -> Dictionary:
 	var translations: Dictionary = raw.get("translations", {})
 	var locale_block: Dictionary = translations.get(locale, {})
 	if locale_block.is_empty():
-		for fallback in ["en", "fr"]:
+		for fallback in ["fr", "en"]:
 			if translations.has(fallback):
 				locale_block = translations[fallback]
 				break

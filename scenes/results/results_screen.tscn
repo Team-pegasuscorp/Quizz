@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://results_screen_scene"]
 
 [ext_resource type="Script" path="res://scripts/ui/results_screen.gd" id="1_results"]
-[ext_resource type="Material" path="res://themes/fableris_bg_material.tres" id="2_bg_mat"]
+[ext_resource type="Material" path="res://themes/quizup_bg_material.tres" id="2_bg_mat"]
 
 [node name="ResultsScreen" type="Control"]
 layout_mode = 3
@@ -87,7 +87,7 @@ text = "Correct answers"
 [node name="CorrectValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.9098, 0.8784, 0.8157, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
 text = "0 / 7"
 horizontal_alignment = 2
@@ -102,7 +102,7 @@ text = "Best combo"
 [node name="ComboValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.9098, 0.8314, 0.6275, 1)
+theme_override_colors/font_color = Color(0, 0.898, 1, 1)
 theme_override_font_sizes/font_size = 20
 text = "x0"
 horizontal_alignment = 2
@@ -117,7 +117,7 @@ text = "Average time"
 [node name="AverageValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.9098, 0.8784, 0.8157, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
 text = "0.0s"
 horizontal_alignment = 2

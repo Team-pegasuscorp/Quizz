@@ -1,11 +1,10 @@
 extends Node
 
-const GameRules = preload("res://scripts/config/game_rules.gd")
 const QuestionLoaderScript = preload("res://scripts/quiz/question_loader.gd")
 const ScoringSystemScript = preload("res://scripts/quiz/scoring_system.gd")
 
-const QUESTIONS_PER_ROUND: int = GameRules.QUESTIONS_PER_ROUND
-const QUESTION_TIME_SECONDS: float = GameRules.QUESTION_TIME_SECONDS
+const QUESTIONS_PER_ROUND: int = 7
+const QUESTION_TIME_SECONDS: float = 10.0
 
 var category_id: String = ""
 var questions: Array[Dictionary] = []
@@ -16,6 +15,7 @@ var combo: int = 0
 var max_combo: int = 0
 var answer_times: Array[float] = []
 var last_summary: Dictionary = {}
+var shell_tab_index: int = 0
 
 
 func start_round(selected_category_id: String) -> void:

@@ -1,6 +1,5 @@
 extends Node
 
-const GameRules = preload("res://scripts/config/game_rules.gd")
 const UiTokens = preload("res://scripts/config/ui_tokens.gd")
 
 const SAVE_PATH: String = "user://save.json"
@@ -12,8 +11,6 @@ var preferred_locale: String = ""
 var level: int = 1
 var xp: int = 0
 var category_stats: Dictionary = {}
-var wins: int = 0
-var losses: int = 0
 
 
 func _ready() -> void:
@@ -38,8 +35,6 @@ func load_data() -> void:
 	level = int(parsed.get("level", level))
 	xp = int(parsed.get("xp", xp))
 	category_stats = parsed.get("category_stats", category_stats)
-	wins = int(parsed.get("wins", wins))
-	losses = int(parsed.get("losses", losses))
 
 
 func save_data() -> void:
@@ -49,8 +44,6 @@ func save_data() -> void:
 		"level": level,
 		"xp": xp,
 		"category_stats": category_stats,
-		"wins": wins,
-		"losses": losses,
 	}
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file == null:
@@ -75,26 +68,15 @@ func set_player_name(name: String) -> void:
 	save_data()
 
 
-func get_games_played() -> int:
-	return wins + losses
+func get_xp_for_next_level() -> int:
+	return _xp_for_next_level()
 
 
-func get_win_rate_percent() -> float:
-	var total := get_games_played()
-	if total <= 0:
+func get_xp_progress_ratio() -> float:
+	var needed := _xp_for_next_level()
+	if needed <= 0:
 		return 0.0
-	return float(wins) / float(total) * 100.0
-
-
-func get_favorite_category_id() -> String:
-	var favorite_id := ""
-	var favorite_count := 0
-	for category_id in category_stats.keys():
-		var played: int = int(category_stats[category_id].get("games_played", 0))
-		if played > favorite_count:
-			favorite_count = played
-			favorite_id = str(category_id)
-	return favorite_id
+	return clampf(float(xp) / float(needed), 0.0, 1.0)
 
 
 func has_custom_avatar() -> bool:
@@ -106,7 +88,9 @@ func get_profile_avatar_texture() -> Texture2D:
 		var image := Image.load_from_file(PROFILE_AVATAR_PATH)
 		if image != null:
 			return ImageTexture.create_from_image(image)
-	return load(DEFAULT_AVATAR_PATH) as Texture2D
+	if ResourceLoader.exists(DEFAULT_AVATAR_PATH):
+		return load(DEFAULT_AVATAR_PATH) as Texture2D
+	return null
 
 
 func set_profile_avatar_from_file(source_path: String) -> bool:
@@ -128,7 +112,12 @@ func clear_profile_avatar() -> void:
 
 func record_match_result(category_id: String, score: int, correct_count: int, total_count: int) -> void:
 	if not category_stats.has(category_id):
-		category_stats[category_id] = _empty_category_stats()
+		category_stats[category_id] = {
+			"games_played": 0,
+			"best_score": 0,
+			"total_correct": 0,
+			"total_questions": 0,
+		}
 
 	var stats: Dictionary = category_stats[category_id]
 	stats["games_played"] = int(stats.get("games_played", 0)) + 1
@@ -137,30 +126,26 @@ func record_match_result(category_id: String, score: int, correct_count: int, to
 	stats["total_questions"] = int(stats.get("total_questions", 0)) + total_count
 	category_stats[category_id] = stats
 
-	if GameRules.is_match_win(correct_count, total_count):
-		wins += 1
-	else:
-		losses += 1
-
-	add_xp(GameRules.xp_for_match(correct_count, score))
+	var gained_xp: int = correct_count * 10 + score / 10
+	add_xp(gained_xp)
 	save_data()
 
 
 func add_xp(amount: int) -> void:
 	xp += amount
-	while xp >= GameRules.xp_for_next_level(level):
-		xp -= GameRules.xp_for_next_level(level)
+	while xp >= _xp_for_next_level():
+		xp -= _xp_for_next_level()
 		level += 1
 
 
 func get_category_stats(category_id: String) -> Dictionary:
-	return category_stats.get(category_id, _empty_category_stats())
-
-
-func _empty_category_stats() -> Dictionary:
-	return {
+	return category_stats.get(category_id, {
 		"games_played": 0,
 		"best_score": 0,
 		"total_correct": 0,
 		"total_questions": 0,
-	}
+	})
+
+
+func _xp_for_next_level() -> int:
+	return 100 + (level - 1) * 25

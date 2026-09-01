@@ -1,7 +1,7 @@
 extends Control
 
-const ScenePaths = preload("res://scripts/config/scene_paths.gd")
 const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
+const ScenePaths = preload("res://scripts/config/scene_paths.gd")
 
 @onready var score_caption_label: Label = %ScoreCaption
 @onready var correct_caption_label: Label = %CorrectCaption
@@ -52,11 +52,11 @@ func _on_play_again_pressed() -> void:
 	if GameManager.has_questions():
 		get_tree().change_scene_to_file(ScenePaths.QUIZ_GAME)
 	else:
-		get_tree().change_scene_to_file(ScenePaths.CATEGORY_SELECT)
+		ScenePaths.go_to_shell(get_tree(), ScenePaths.Tab.QUIZ)
 
 
 func _on_menu_pressed() -> void:
-	get_tree().change_scene_to_file(ScenePaths.MAIN_MENU)
+	ScenePaths.go_to_shell(get_tree(), ScenePaths.Tab.HOME)
 
 
 func _on_locale_changed(_locale: String) -> void:

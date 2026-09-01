@@ -1,0 +1,158 @@
+extends Control
+class_name TabSwipeContainer
+
+## Horizontal pager with touch swipe and animated tab transitions.
+
+signal tab_changed(index: int)
+
+@export var swipe_threshold: float = 80.0
+@export var animation_duration: float = 0.28
+@export var drag_lock_threshold: float = 14.0
+
+@onready var pages_row: HBoxContainer = %PagesRow
+
+var tab_count: int = 0
+var current_tab: int = 0
+
+var _page_width: float = 0.0
+var _dragging: bool = false
+var _drag_locked: bool = false
+var _drag_cancelled: bool = false
+var _drag_start: Vector2 = Vector2.ZERO
+var _drag_base_x: float = 0.0
+var _tween: Tween
+var _animating: bool = false
+var _input_enabled: bool = true
+
+
+func _ready() -> void:
+	clip_contents = true
+	resized.connect(_on_resized)
+	call_deferred("_on_resized")
+
+
+func set_input_enabled(enabled: bool) -> void:
+	_input_enabled = enabled
+
+
+func set_tab(index: int, animate: bool = true) -> void:
+	if tab_count == 0:
+		current_tab = index
+		return
+	var next_tab := clampi(index, 0, tab_count - 1)
+	if next_tab == current_tab and not _dragging and not _animating:
+		return
+	current_tab = next_tab
+	_snap_to_tab(current_tab, animate)
+	tab_changed.emit(current_tab)
+
+
+func get_tab() -> int:
+	return current_tab
+
+
+func _on_resized() -> void:
+	_page_width = size.x
+	tab_count = pages_row.get_child_count()
+	for child in pages_row.get_children():
+		if child is Control:
+			var page := child as Control
+			page.custom_minimum_size = Vector2(_page_width, size.y)
+			page.size_flags_horizontal = Control.SIZE_FILL
+			page.size_flags_vertical = Control.SIZE_FILL
+	pages_row.size = Vector2(_page_width * tab_count, size.y)
+	pages_row.position.y = 0.0
+	_snap_to_tab(current_tab, false)
+
+
+func _snap_to_tab(index: int, animate: bool) -> void:
+	if _page_width <= 0.0:
+		return
+	var target_x := -index * _page_width
+	if not animate:
+		if _tween:
+			_tween.kill()
+		_animating = false
+		pages_row.position.x = target_x
+		return
+	if _tween:
+		_tween.kill()
+	_animating = true
+	_tween = create_tween()
+	_tween.set_trans(Tween.TRANS_CUBIC)
+	_tween.set_ease(Tween.EASE_OUT)
+	_tween.tween_property(pages_row, "position:x", target_x, animation_duration)
+	_tween.finished.connect(_on_tween_finished)
+
+
+func _on_tween_finished() -> void:
+	_animating = false
+
+
+func _gui_input(event: InputEvent) -> void:
+	if not _input_enabled or _animating or tab_count <= 1:
+		return
+
+	if event is InputEventScreenTouch:
+		_handle_press(event.position, event.pressed)
+	elif event is InputEventScreenDrag:
+		_handle_drag(event.position)
+	elif event is InputEventMouseButton:
+		var mouse_event := event as InputEventMouseButton
+		if mouse_event.button_index == MOUSE_BUTTON_LEFT:
+			_handle_press(mouse_event.position, mouse_event.pressed)
+	elif event is InputEventMouseMotion:
+		var motion_event := event as InputEventMouseMotion
+		if motion_event.button_mask & MOUSE_BUTTON_MASK_LEFT:
+			_handle_drag(motion_event.position)
+
+
+func _handle_press(position: Vector2, pressed: bool) -> void:
+	if pressed:
+		_dragging = true
+		_drag_locked = false
+		_drag_cancelled = false
+		_drag_start = position
+		_drag_base_x = pages_row.position.x
+		if _tween:
+			_tween.kill()
+		_animating = false
+	else:
+		if not _dragging:
+			return
+		_dragging = false
+		if _drag_cancelled or not _drag_locked:
+			_snap_to_tab(current_tab, true)
+			return
+		var delta_x := position.x - _drag_start.x
+		if absf(delta_x) >= swipe_threshold:
+			if delta_x < 0.0:
+				set_tab(current_tab + 1, true)
+			else:
+				set_tab(current_tab - 1, true)
+		else:
+			_snap_to_tab(current_tab, true)
+
+
+func _handle_drag(position: Vector2) -> void:
+	if not _dragging or _page_width <= 0.0:
+		return
+
+	var delta := position - _drag_start
+	if not _drag_locked and not _drag_cancelled:
+		if absf(delta.x) < drag_lock_threshold and absf(delta.y) < drag_lock_threshold:
+			return
+		if absf(delta.y) > absf(delta.x):
+			_drag_cancelled = true
+			_dragging = false
+			_snap_to_tab(current_tab, true)
+			return
+		_drag_locked = true
+
+	if not _drag_locked:
+		return
+
+	var min_x := -(tab_count - 1) * _page_width
+	var max_x := 0.0
+	var next_x := clampf(_drag_base_x + delta.x, min_x, max_x)
+	pages_row.position.x = next_x
