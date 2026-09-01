@@ -15,6 +15,8 @@ const ANSWER_BLINK_COUNT: int = 3
 const ANSWER_BLINK_HALF: float = 0.14
 const BUTTON_PRESS_SCALE: float = 0.97
 
+const SETTINGS_TILE_SIZE: float = 48.0
+const SETTINGS_ICON_SIZE: int = 24
 const PROFILE_AVATAR_SIZE: int = 256
 const DEFAULT_PLAYER_NAME: String = "Player"
 const MAX_PLAYER_NAME_LENGTH: int = 24

@@ -20,6 +20,7 @@ const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
 
 
 func _ready() -> void:
+	_configure_settings_button()
 	_apply_translations()
 	_refresh_profile_card()
 	_setup_language_option()
@@ -35,12 +36,21 @@ func _ready() -> void:
 	PressScaleUtil.wire(close_settings_button, self)
 
 
+func _configure_settings_button() -> void:
+	var tile_size := Vector2.ONE * UiTokens.SETTINGS_TILE_SIZE
+	settings_button.custom_minimum_size = tile_size
+	settings_button.size = tile_size
+	settings_button.text = ""
+	settings_button.add_theme_constant_override("icon_max_width", UiTokens.SETTINGS_ICON_SIZE)
+	settings_button.add_theme_constant_override("icon_max_height", UiTokens.SETTINGS_ICON_SIZE)
+
+
 func _apply_translations() -> void:
 	title_label.text = tr("UI_APP_TITLE")
 	subtitle_label.text = tr("UI_APP_SUBTITLE")
 	play_button.text = tr("UI_PLAY")
 	profile_button.text = tr("UI_PROFILE")
-	settings_button.text = tr("UI_SETTINGS")
+	settings_button.tooltip_text = tr("UI_SETTINGS")
 	language_label.text = tr("UI_LANGUAGE")
 	close_settings_button.text = tr("UI_BACK")
 	level_label.text = tr("UI_PLAYER_LEVEL").format({"level": SaveManager.level})
