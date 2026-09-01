@@ -39,7 +39,6 @@ func _ready() -> void:
 func _configure_settings_button() -> void:
 	var tile_size := Vector2.ONE * UiTokens.SETTINGS_TILE_SIZE
 	settings_button.custom_minimum_size = tile_size
-	settings_button.size = tile_size
 	settings_button.text = ""
 	settings_button.add_theme_constant_override("icon_max_width", UiTokens.SETTINGS_ICON_SIZE)
 	settings_button.add_theme_constant_override("icon_max_height", UiTokens.SETTINGS_ICON_SIZE)

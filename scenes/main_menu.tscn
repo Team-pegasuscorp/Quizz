@@ -23,26 +23,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 1)
 
-[node name="SettingsButton" type="Button" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -80.0
-offset_top = 48.0
-offset_right = -32.0
-offset_bottom = 96.0
-grow_horizontal = 0
-grow_vertical = 0
-custom_minimum_size = Vector2(48, 48)
-tooltip_text = "Settings"
-theme_override_constants/icon_max_width = 24
-theme_override_constants/icon_max_height = 24
-icon = ExtResource("3_settings_icon")
-expand_icon = true
-text = ""
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -140,6 +120,26 @@ layout_mode = 2
 theme_type_variation = &"PrimaryButton"
 theme_override_font_sizes/font_size = 18
 text = "Play"
+
+[node name="SettingsButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 48.0
+offset_right = -32.0
+offset_bottom = 96.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_minimum_size = Vector2(48, 48)
+tooltip_text = "Settings"
+theme_override_constants/icon_max_width = 24
+theme_override_constants/icon_max_height = 24
+icon = ExtResource("3_settings_icon")
+expand_icon = true
+text = ""
 
 [node name="SettingsPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
