@@ -3,6 +3,7 @@ UI_APP_TITLE,Quizz,Quizz
 UI_APP_SUBTITLE,Fast trivia. Beat your best score.,Quiz rapide. Battez votre meilleur score.
 UI_PLAY,Play,Jouer
 UI_SETTINGS,Settings,Paramètres
+UI_PROFILE,Profile,Profil
 UI_BACK,Back,Retour
 UI_CHOOSE_CATEGORY,Choose a category,Choisissez une catégorie
 UI_NO_CATEGORIES,No categories available.,Aucune catégorie disponible.
@@ -27,3 +28,17 @@ UI_CATEGORY_CINEMA,Cinema,Cinéma
 UI_CATEGORY_HISTORY,History,Histoire
 UI_LOADING,Loading...,Chargement...
 UI_EMPTY_QUESTIONS,Not enough questions in this category for your language.,Pas assez de questions dans cette catégorie pour votre langue.
+UI_PROFILE_TITLE,Player profile,Profil joueur
+UI_PROFILE_PSEUDO,Pseudonym,Pseudo
+UI_PROFILE_PSEUDO_PLACEHOLDER,Enter your name...,Entrez votre pseudo...
+UI_PROFILE_PHOTO,Profile photo,Photo de profil
+UI_PROFILE_CHANGE_PHOTO,Change photo,Changer la photo
+UI_PROFILE_REMOVE_PHOTO,Remove photo,Retirer la photo
+UI_PROFILE_SAVE,Save profile,Enregistrer le profil
+UI_PROFILE_GAMES_PLAYED,Quizzes played,Quiz joués
+UI_PROFILE_WINS,Wins,Victoires
+UI_PROFILE_LOSSES,Losses,Défaites
+UI_PROFILE_WIN_RATE,Win rate,Taux de victoire
+UI_PROFILE_FAVORITE_THEME,Favorite theme,Thème favori
+UI_PROFILE_NO_FAVORITE,No favorite yet,Aucun thème favori
+UI_PROFILE_SAVED,Profile saved,Profil enregistré

@@ -38,6 +38,58 @@ theme_override_constants/margin_bottom = 40
 layout_mode = 2
 theme_override_constants/separation = 18
 
+[node name="ProfileCard" type="PanelContainer" parent="MarginContainer/VBox"]
+layout_mode = 2
+
+[node name="ProfileCardMargin" type="MarginContainer" parent="MarginContainer/VBox/ProfileCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="ProfileCardHBox" type="HBoxContainer" parent="MarginContainer/VBox/ProfileCard/ProfileCardMargin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="MenuAvatarPanel" type="PanelContainer" parent="MarginContainer/VBox/ProfileCard/ProfileCardMargin/ProfileCardHBox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="MenuAvatarTexture" type="TextureRect" parent="MarginContainer/VBox/ProfileCard/ProfileCardMargin/ProfileCardHBox/MenuAvatarPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ProfileCardInfoVBox" type="VBoxContainer" parent="MarginContainer/VBox/ProfileCard/ProfileCardMargin/ProfileCardHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="MenuPlayerNameLabel" type="Label" parent="MarginContainer/VBox/ProfileCard/ProfileCardMargin/ProfileCardHBox/ProfileCardInfoVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 22
+text = "Player"
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/VBox/ProfileCard/ProfileCardMargin/ProfileCardHBox/ProfileCardInfoVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"GoldMonoLabel"
+theme_override_font_sizes/font_size = 13
+text = "Level 1"
+
+[node name="ProfileButton" type="Button" parent="MarginContainer/VBox/ProfileCard/ProfileCardMargin/ProfileCardHBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+theme_type_variation = &"PrimaryButton"
+theme_override_font_sizes/font_size = 14
+text = "Profile"
+
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -55,16 +107,8 @@ text = "Fast trivia"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="LevelLabel" type="Label" parent="MarginContainer/VBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_type_variation = &"GoldMonoLabel"
-theme_override_font_sizes/font_size = 14
-text = "Level 1"
-horizontal_alignment = 1
-
 [node name="Spacer" type="Control" parent="MarginContainer/VBox"]
-custom_minimum_size = Vector2(0, 96)
+custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 size_flags_vertical = 3
 
