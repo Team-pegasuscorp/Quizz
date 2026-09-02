@@ -17,3 +17,7 @@ export/
 *.aab
 *.pck
 *.zip
+
+# Python import tools
+tools/.venv/
+tools/__pycache__/

@@ -46,6 +46,14 @@ UI_TAB_HOME,Home,Accueil
 UI_TAB_QUIZ,Quiz,Quiz
 UI_TAB_SOCIAL,Social,Social
 UI_TAB_LEADERBOARD,Leaderboard,Classement
+UI_LEADERBOARD_FILTER_ALL,All,Toutes
+UI_LEADERBOARD_PODIUM,Top 3,Top 3
+UI_LEADERBOARD_YOUR_RANK,Your rank: #{rank},Votre rang : #{rank}
+UI_LEADERBOARD_NO_RANK,Play a quiz to enter the leaderboard.,Jouez à un quiz pour entrer au classement.
+UI_LEADERBOARD_YOU,You,Vous
+UI_LEADERBOARD_ROW_META,{rank_title} · Lv.{level},{rank_title} · Niv.{level}
+UI_LEADERBOARD_EMPTY,No scores yet for this category.,Aucun score pour cette catégorie.
+UI_LEADERBOARD_DEMO_HINT,Sample leaderboard shown for preview.,Classement d'exemple affiché en aperçu.
 UI_TAB_PROFILE,Profile,Profil
 UI_HOME_HELLO,Hey {name},Salut {name}
 UI_HOME_QUIZ_HINT,Tap the Quiz button below to start a round.,Appuie sur le bouton Quiz pour lancer une partie.

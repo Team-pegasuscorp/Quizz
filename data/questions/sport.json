@@ -6,16 +6,29 @@
       "category": "sport",
       "difficulty": 1,
       "correct_index": 2,
-      "locales": ["fr", "en"],
+      "locales": [
+        "fr",
+        "en"
+      ],
       "translations": {
         "en": {
           "text": "How many players are on a football team on the field?",
-          "choices": ["9", "10", "11", "12"],
+          "choices": [
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
           "explanation": "A team fields 11 players, including the goalkeeper."
         },
         "fr": {
           "text": "Combien de joueurs composent une équipe de football sur le terrain ?",
-          "choices": ["9", "10", "11", "12"],
+          "choices": [
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
           "explanation": "Une équipe aligne 11 joueurs, gardien inclus."
         }
       }
@@ -25,16 +38,29 @@
       "category": "sport",
       "difficulty": 1,
       "correct_index": 1,
-      "locales": ["fr", "en"],
+      "locales": [
+        "fr",
+        "en"
+      ],
       "translations": {
         "en": {
           "text": "Which country hosted the 2016 Summer Olympics?",
-          "choices": ["China", "Brazil", "United Kingdom", "Russia"],
+          "choices": [
+            "China",
+            "Brazil",
+            "United Kingdom",
+            "Russia"
+          ],
           "explanation": "The 2016 Summer Olympics were held in Rio de Janeiro, Brazil."
         },
         "fr": {
           "text": "Quel pays a accueilli les Jeux olympiques d'été de 2016 ?",
-          "choices": ["Chine", "Brésil", "Royaume-Uni", "Russie"],
+          "choices": [
+            "Chine",
+            "Brésil",
+            "Royaume-Uni",
+            "Russie"
+          ],
           "explanation": "Les Jeux de 2016 se sont tenus à Rio de Janeiro, au Brésil."
         }
       }
@@ -44,16 +70,29 @@
       "category": "sport",
       "difficulty": 2,
       "correct_index": 0,
-      "locales": ["fr", "en"],
+      "locales": [
+        "fr",
+        "en"
+      ],
       "translations": {
         "en": {
           "text": "In tennis, what does the term 'love' mean?",
-          "choices": ["Zero points", "A perfect serve", "Match point", "Deuce"],
+          "choices": [
+            "Zero points",
+            "A perfect serve",
+            "Match point",
+            "Deuce"
+          ],
           "explanation": "In tennis scoring, 'love' means zero."
         },
         "fr": {
           "text": "Au tennis, que signifie le terme « love » ?",
-          "choices": ["Zéro point", "Un service parfait", "Balle de match", "Égalité"],
+          "choices": [
+            "Zéro point",
+            "Un service parfait",
+            "Balle de match",
+            "Égalité"
+          ],
           "explanation": "Dans le score de tennis, « love » signifie zéro."
         }
       }
@@ -63,16 +102,29 @@
       "category": "sport",
       "difficulty": 2,
       "correct_index": 3,
-      "locales": ["fr", "en"],
+      "locales": [
+        "fr",
+        "en"
+      ],
       "translations": {
         "en": {
           "text": "How long is an Olympic swimming pool?",
-          "choices": ["25 meters", "33 meters", "40 meters", "50 meters"],
+          "choices": [
+            "25 meters",
+            "33 meters",
+            "40 meters",
+            "50 meters"
+          ],
           "explanation": "Olympic pools are 50 meters long."
         },
         "fr": {
           "text": "Quelle est la longueur d'un bassin olympique de natation ?",
-          "choices": ["25 mètres", "33 mètres", "40 mètres", "50 mètres"],
+          "choices": [
+            "25 mètres",
+            "33 mètres",
+            "40 mètres",
+            "50 mètres"
+          ],
           "explanation": "Un bassin olympique mesure 50 mètres."
         }
       }
@@ -82,16 +134,29 @@
       "category": "sport",
       "difficulty": 1,
       "correct_index": 2,
-      "locales": ["fr", "en"],
+      "locales": [
+        "fr",
+        "en"
+      ],
       "translations": {
         "en": {
           "text": "Which sport uses the terms 'birdie' and 'eagle'?",
-          "choices": ["Cricket", "Baseball", "Golf", "Rugby"],
+          "choices": [
+            "Cricket",
+            "Baseball",
+            "Golf",
+            "Rugby"
+          ],
           "explanation": "Birdie and eagle are scoring terms in golf."
         },
         "fr": {
           "text": "Quel sport utilise les termes « birdie » et « eagle » ?",
-          "choices": ["Cricket", "Baseball", "Golf", "Rugby"],
+          "choices": [
+            "Cricket",
+            "Baseball",
+            "Golf",
+            "Rugby"
+          ],
           "explanation": "Birdie et eagle sont des termes de score au golf."
         }
       }
@@ -101,16 +166,29 @@
       "category": "sport",
       "difficulty": 2,
       "correct_index": 1,
-      "locales": ["fr", "en"],
+      "locales": [
+        "fr",
+        "en"
+      ],
       "translations": {
         "en": {
           "text": "How many Grand Slam tennis tournaments are there each year?",
-          "choices": ["3", "4", "5", "6"],
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
           "explanation": "The four Grand Slams are Australian Open, Roland-Garros, Wimbledon, and US Open."
         },
         "fr": {
           "text": "Combien y a-t-il de tournois du Grand Chelem en tennis chaque année ?",
-          "choices": ["3", "4", "5", "6"],
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
           "explanation": "Les quatre Grand Chelem sont l'Open d'Australie, Roland-Garros, Wimbledon et l'US Open."
         }
       }
@@ -120,17 +198,1694 @@
       "category": "sport",
       "difficulty": 3,
       "correct_index": 0,
-      "locales": ["fr", "en"],
+      "locales": [
+        "fr",
+        "en"
+      ],
       "translations": {
         "en": {
           "text": "Which athlete has won the most Olympic gold medals?",
-          "choices": ["Michael Phelps", "Usain Bolt", "Simone Biles", "Carl Lewis"],
+          "choices": [
+            "Michael Phelps",
+            "Usain Bolt",
+            "Simone Biles",
+            "Carl Lewis"
+          ],
           "explanation": "Michael Phelps won 23 Olympic gold medals in swimming."
         },
         "fr": {
           "text": "Quel athlète a remporté le plus de médailles d'or olympiques ?",
-          "choices": ["Michael Phelps", "Usain Bolt", "Simone Biles", "Carl Lewis"],
+          "choices": [
+            "Michael Phelps",
+            "Usain Bolt",
+            "Simone Biles",
+            "Carl Lewis"
+          ],
           "explanation": "Michael Phelps a remporté 23 médailles d'or olympiques en natation."
+        }
+      }
+    },
+    {
+      "id": "sport_008",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which car manufacturer won the 2016 24 Hours of Le Mans?",
+          "choices": [
+            "Audi",
+            "Toyota",
+            "Ferrari",
+            "Porsche"
+          ],
+          "explanation": "The correct answer is: Porsche."
+        },
+        "fr": {
+          "text": "Quel constructeur automobile a remporté les 24 Heures du Mans 2016 ?",
+          "choices": [
+            "Audi",
+            "Toyota",
+            "Ferrari",
+            "Porsche"
+          ],
+          "explanation": "La bonne réponse est : Porsche."
+        }
+      }
+    },
+    {
+      "id": "sport_009",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 2,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which soccer team won the Copa América Centenario 2016?",
+          "choices": [
+            "Colombia",
+            "Brazil",
+            "Chile",
+            "Argentina"
+          ],
+          "explanation": "The correct answer is: Chile."
+        },
+        "fr": {
+          "text": "Quelle équipe de football a remporté la Copa América Centenario 2016 ?",
+          "choices": [
+            "Colombie",
+            "Brésil",
+            "Chili",
+            "Argentine"
+          ],
+          "explanation": "La bonne réponse est : Chili."
+        }
+      }
+    },
+    {
+      "id": "sport_010",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Who won the UEFA Champions League in 2016?",
+          "choices": [
+            "Atletico Madrid",
+            "Manchester City F.C.",
+            "FC Bayern Munich",
+            "Real Madrid C.F."
+          ],
+          "explanation": "The correct answer is: Real Madrid C.F.."
+        },
+        "fr": {
+          "text": "Qui a remporté la Ligue des Champions de l'UEFA en 2016 ?",
+          "choices": [
+            "Atletico Madrid",
+            "Manchester City C.F.",
+            "FC Bayern Munich",
+            "Real Madrid C.F."
+          ],
+          "explanation": "La bonne réponse est: Real Madrid C.F.."
+        }
+      }
+    },
+    {
+      "id": "sport_011",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 1,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which basketball team has attended the most NBA grand finals?",
+          "choices": [
+            "Boston Celtics",
+            "Los Angeles Lakers",
+            "Philadelphia 76ers",
+            "Golden State Warriors"
+          ],
+          "explanation": "The correct answer is: Los Angeles Lakers."
+        },
+        "fr": {
+          "text": "Quelle équipe de basketball a assisté à la plus grande finale de la NBA ?",
+          "choices": [
+            "Celtiques de Boston",
+            "Les Lakers de Los Angeles",
+            "Philadelphie 76 ans",
+            "Guerriers d'État dorés"
+          ],
+          "explanation": "La bonne réponse est : Los Angeles Lakers."
+        }
+      }
+    },
+    {
+      "id": "sport_012",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 2,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "The Rio 2016 Summer Olympics held it's closing ceremony on what date?",
+          "choices": [
+            "August 19",
+            "August 17",
+            "August 21",
+            "August 23"
+          ],
+          "explanation": "The correct answer is: August 21."
+        },
+        "fr": {
+          "text": "Les Jeux olympiques d'été de Rio 2016 ont eu lieu à quelle date ?",
+          "choices": [
+            "19 août",
+            "17 août",
+            "21 août",
+            "23 août"
+          ],
+          "explanation": "La bonne réponse est : 21 août."
+        }
+      }
+    },
+    {
+      "id": "sport_013",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 1,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which country hosted the 2022 FIFA World Cup?",
+          "choices": [
+            "Switzerland",
+            "Qatar",
+            "Japan",
+            "USA"
+          ],
+          "explanation": "The correct answer is: Qatar."
+        },
+        "fr": {
+          "text": "Quel pays a accueilli la Coupe du monde FIFA 2022 ?",
+          "choices": [
+            "Suisse",
+            "Qatar",
+            "Japon",
+            "États-Unis"
+          ],
+          "explanation": "La bonne réponse est : Qatar."
+        }
+      }
+    },
+    {
+      "id": "sport_014",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Who won the UEFA Champions League in 2017?",
+          "choices": [
+            "Atletico Madrid",
+            "Juventus F.C.",
+            "AS Monaco FC",
+            "Real Madrid C.F."
+          ],
+          "explanation": "The correct answer is: Real Madrid C.F.."
+        },
+        "fr": {
+          "text": "Qui a remporté la Ligue des Champions de l'UEFA en 2017 ?",
+          "choices": [
+            "Atletico Madrid",
+            "Juventus F.C.",
+            "AS Monaco FC",
+            "Real Madrid C.F."
+          ],
+          "explanation": "La bonne réponse est: Real Madrid C.F.."
+        }
+      }
+    },
+    {
+      "id": "sport_015",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 2,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "What city did the Lakers represent before relocating to Los Angeles?",
+          "choices": [
+            "Chicago",
+            "Philadelphia",
+            "Minneapolis",
+            "San Francisco"
+          ],
+          "explanation": "The correct answer is: Minneapolis."
+        },
+        "fr": {
+          "text": "Quelle ville les Lakers représentaient-ils avant de déménager à Los Angeles?",
+          "choices": [
+            "Chicago",
+            "Philadelphie",
+            "Minneapolis",
+            "San Francisco"
+          ],
+          "explanation": "La bonne réponse est : Minneapolis."
+        }
+      }
+    },
+    {
+      "id": "sport_016",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which professional wrestler fell from the rafters to his death during a live Pay-Per-View event in 1999?",
+          "choices": [
+            "Chris Benoit",
+            "Al Snow",
+            "Lex Luger",
+            "Owen Hart"
+          ],
+          "explanation": "The correct answer is: Owen Hart."
+        },
+        "fr": {
+          "text": "Quel lutteur professionnel est tombé des chevrons à sa mort lors d'un événement de Pay-Per-View en direct en 1999 ?",
+          "choices": [
+            "Chris Benoit",
+            "Al Snow",
+            "Lex Luger",
+            "Owen Hart"
+          ],
+          "explanation": "La bonne réponse est : Owen Hart."
+        }
+      }
+    },
+    {
+      "id": "sport_017",
+      "category": "sport",
+      "difficulty": 3,
+      "correct_index": 1,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Where was the Games of the XXII Olympiad held?",
+          "choices": [
+            "Barcelona",
+            "Moscow",
+            "Tokyo",
+            "Los Angeles"
+          ],
+          "explanation": "The correct answer is: Moscow."
+        },
+        "fr": {
+          "text": "Où ont eu lieu les Jeux de la XXIIe Olympiade ?",
+          "choices": [
+            "Barcelone",
+            "Moscou",
+            "Tokyo",
+            "Los Angeles"
+          ],
+          "explanation": "La bonne réponse est : Moscou."
+        }
+      }
+    },
+    {
+      "id": "sport_018",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 2,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "\"Stadium of Light\" is the home stadium for which soccer team?",
+          "choices": [
+            "Barcelona FC",
+            "Manchester United",
+            "Sunderland FC",
+            "Paris Saints-Germain"
+          ],
+          "explanation": "The correct answer is: Sunderland FC."
+        },
+        "fr": {
+          "text": "« Stadium of Light » est le stade d'attache pour quelle équipe de football ?",
+          "choices": [
+            "Barcelona FC",
+            "Manchester United",
+            "États-Unis",
+            "Paris Saints-Germain"
+          ],
+          "explanation": "La bonne réponse est : Sunderland FC."
+        }
+      }
+    },
+    {
+      "id": "sport_019",
+      "category": "sport",
+      "difficulty": 3,
+      "correct_index": 2,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "How many times did Martina Navratilova win the Wimbledon Singles Championship?",
+          "choices": [
+            "Seven",
+            "Eight",
+            "Nine",
+            "Ten"
+          ],
+          "explanation": "The correct answer is: Nine."
+        },
+        "fr": {
+          "text": "Combien de fois Martina Navratilova a-t-elle remporté le Championnat des Singles de Wimbledon ?",
+          "choices": [
+            "Sept",
+            "Huit",
+            "Neuf",
+            "Dix"
+          ],
+          "explanation": "La bonne réponse est : Neuf."
+        }
+      }
+    },
+    {
+      "id": "sport_020",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 0,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Who has played the most tournaments on the Brazilian national soccer team?",
+          "choices": [
+            "Cafu",
+            "Kaká",
+            "Ronaldo",
+            "Roberto Carlos"
+          ],
+          "explanation": "The correct answer is: Cafu."
+        },
+        "fr": {
+          "text": "Qui a joué le plus de tournois dans l'équipe nationale brésilienne de soccer ?",
+          "choices": [
+            "Cafu",
+            "Kaká",
+            "Ronaldo",
+            "Roberto Carlos"
+          ],
+          "explanation": "La bonne réponse est : Cafu."
+        }
+      }
+    },
+    {
+      "id": "sport_021",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 0,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Who has played the most tournaments in the German national soccer team?",
+          "choices": [
+            "Lothar Matthäus",
+            "Miroslav Klose",
+            "Oliver Kahn",
+            "Philipp Lahm"
+          ],
+          "explanation": "The correct answer is: Lothar Matthäus."
+        },
+        "fr": {
+          "text": "Qui a joué le plus de tournois dans l'équipe nationale allemande de soccer ?",
+          "choices": [
+            "Lothar Matthäus",
+            "Miroslav Klose",
+            "Oliver Kahn",
+            "Philipp Lahm"
+          ],
+          "explanation": "La bonne réponse est: Lothar Matthäus."
+        }
+      }
+    },
+    {
+      "id": "sport_022",
+      "category": "sport",
+      "difficulty": 3,
+      "correct_index": 2,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Who scored the injury time winning goal in the 1999 UEFA Champions League final between Manchester United and Bayern Munich?",
+          "choices": [
+            "Andy Cole",
+            "Dwight Yorke",
+            "Ole Gunnar Solskjær",
+            "David Beckham"
+          ],
+          "explanation": "The correct answer is: Ole Gunnar Solskjær."
+        },
+        "fr": {
+          "text": "Qui a marqué le but gagnant du temps de blessure lors de la finale de l'UEFA Champions League 1999 entre Manchester United et Bayern Munich ?",
+          "choices": [
+            "Andy Cole",
+            "Dwight Yorke",
+            "M. Ole Gunnar Solskjær",
+            "David Beckham"
+          ],
+          "explanation": "La bonne réponse est : Ole Gunnar Solskjær."
+        }
+      }
+    },
+    {
+      "id": "sport_023",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 1,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "In what country were the 2014 Winter Olympics held in the town of Sochi?",
+          "choices": [
+            "Canada",
+            "Russia",
+            "South Korea",
+            "Norway"
+          ],
+          "explanation": "The correct answer is: Russia."
+        },
+        "fr": {
+          "text": "Dans quel pays ont eu lieu les Jeux olympiques d'hiver 2014 dans la ville de Sotchi?",
+          "choices": [
+            "Canada",
+            "Russie",
+            "Corée du Sud",
+            "Norvège"
+          ],
+          "explanation": "La bonne réponse est : la Russie."
+        }
+      }
+    },
+    {
+      "id": "sport_024",
+      "category": "sport",
+      "difficulty": 3,
+      "correct_index": 2,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which city features all of their professional sports teams' jersey's with the same color scheme?",
+          "choices": [
+            "Tampa Bay",
+            "Seattle",
+            "Pittsburgh",
+            "New York"
+          ],
+          "explanation": "The correct answer is: Pittsburgh."
+        },
+        "fr": {
+          "text": "Quelle ville possède le maillot de toutes les équipes sportives professionnelles avec le même schéma de couleur ?",
+          "choices": [
+            "Baie de Tampa",
+            "Seattle",
+            "Pittsburgh",
+            "New York"
+          ],
+          "explanation": "La bonne réponse est : Pittsburgh."
+        }
+      }
+    },
+    {
+      "id": "sport_025",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "In Formula 1, the Virtual Safety Car was introduced following the fatal crash of which driver?",
+          "choices": [
+            "Ayrton Senna",
+            "Gilles Villeneuve",
+            "Ronald Ratzenberger",
+            "Jules Bianchi"
+          ],
+          "explanation": "The correct answer is: Jules Bianchi."
+        },
+        "fr": {
+          "text": "Dans la Formule 1, la voiture de sécurité virtuelle a été introduite à la suite de l'accident mortel de quel conducteur?",
+          "choices": [
+            "Ayrton Senna",
+            "Gilles Villeneuve",
+            "Ronald Ratzenberger",
+            "Jules Bianchi"
+          ],
+          "explanation": "La bonne réponse est : Jules Bianchi."
+        }
+      }
+    },
+    {
+      "id": "sport_026",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 0,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "What is the nickname of Northampton town's rugby union club?",
+          "choices": [
+            "Saints",
+            "Saracens",
+            "Wasps",
+            "Harlequins"
+          ],
+          "explanation": "The correct answer is: Saints."
+        },
+        "fr": {
+          "text": "Quel est le surnom du club syndical de rugby de Northampton ?",
+          "choices": [
+            "Saints",
+            "Sarrasins",
+            "Wasps",
+            "Arlequins"
+          ],
+          "explanation": "La bonne réponse est: Saints."
+        }
+      }
+    },
+    {
+      "id": "sport_027",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 1,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which football manager won more trophies than any other during his tenure at English football club Manchester United?",
+          "choices": [
+            "José Mourinho",
+            "Sir Alex Ferguson",
+            "David Moyes",
+            "Louis van Gaal"
+          ],
+          "explanation": "The correct answer is: Sir Alex Ferguson."
+        },
+        "fr": {
+          "text": "Quel manager de football a gagné plus de trophées que n'importe quel autre pendant son mandat au club de football anglais Manchester United ?",
+          "choices": [
+            "José Mourinho",
+            "Monsieur Alex Ferguson",
+            "David Moyes",
+            "Louis van Gaal"
+          ],
+          "explanation": "La bonne réponse est : Sir Alex Ferguson."
+        }
+      }
+    },
+    {
+      "id": "sport_028",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Josh Mansour is part of what NRL team?",
+          "choices": [
+            "North Queensland Cowboys",
+            "Sydney Roosters",
+            "Melbourne Storm",
+            "Penrith Panthers"
+          ],
+          "explanation": "The correct answer is: Penrith Panthers."
+        },
+        "fr": {
+          "text": "Josh Mansour fait partie de l'équipe de NRL ?",
+          "choices": [
+            "Cowboys du Queensland Nord",
+            "Rôtisseurs de Sydney",
+            "Storm de Melbourne",
+            "Panthères Penrith"
+          ],
+          "explanation": "La bonne réponse est : Penrith Panthers."
+        }
+      }
+    },
+    {
+      "id": "sport_029",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Edson Arantes do Nascimento is the full name of which legendary football player?",
+          "choices": [
+            "Zico",
+            "Romário",
+            "Ronaldinho",
+            "Pelé"
+          ],
+          "explanation": "The correct answer is: Pelé."
+        },
+        "fr": {
+          "text": "Edson Arantes do Nascimento est le nom complet de quel joueur de football légendaire ?",
+          "choices": [
+            "Zico",
+            "Romário",
+            "Ronaldinho",
+            "Pelé"
+          ],
+          "explanation": "La bonne réponse est : Pelé."
+        }
+      }
+    },
+    {
+      "id": "sport_030",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which city did the former NHL team \"The Nordiques\" originiate from?",
+          "choices": [
+            "Montreal",
+            "New York",
+            "Houston",
+            "Quebec City"
+          ],
+          "explanation": "The correct answer is: Quebec City."
+        },
+        "fr": {
+          "text": "De quelle ville est originaire l'ancienne équipe de la LNH \"Les Nordiques\" ?",
+          "choices": [
+            "Montréal",
+            "New York",
+            "Houston",
+            "Québec"
+          ],
+          "explanation": "La bonne réponse est : Québec."
+        }
+      }
+    },
+    {
+      "id": "sport_031",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 0,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "In bowling, what is the term used for getting three consecutive strikes?",
+          "choices": [
+            "Turkey",
+            "Birdie",
+            "Flamingo",
+            "Eagle"
+          ],
+          "explanation": "The correct answer is: Turkey."
+        },
+        "fr": {
+          "text": "Dans le bowling, quel est le terme utilisé pour obtenir trois grèves consécutives?",
+          "choices": [
+            "Turquie",
+            "Oiseaux",
+            "Flamingo",
+            "Aigle"
+          ],
+          "explanation": "La bonne réponse est la Turquie."
+        }
+      }
+    },
+    {
+      "id": "sport_032",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 1,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which year did Jenson Button won his first ever Formula One World Drivers' Championship?",
+          "choices": [
+            "2006",
+            "2009",
+            "2007",
+            "2010"
+          ],
+          "explanation": "The correct answer is: 2009."
+        },
+        "fr": {
+          "text": "Quelle année a remporté son premier championnat du monde de Formule 1 ?",
+          "choices": [
+            "2006",
+            "2009",
+            "2007",
+            "2010"
+          ],
+          "explanation": "La bonne réponse est : 2009."
+        }
+      }
+    },
+    {
+      "id": "sport_033",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 0,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which country won the 2018 FIFA World Cup hosted in Russia?",
+          "choices": [
+            "France",
+            "Belgium",
+            "Croatia",
+            "England"
+          ],
+          "explanation": "The correct answer is: France."
+        },
+        "fr": {
+          "text": "Quel pays a remporté la Coupe du monde de la FIFA 2018 en Russie ?",
+          "choices": [
+            "France",
+            "Belgique",
+            "Croatie",
+            "Angleterre"
+          ],
+          "explanation": "La bonne réponse est la France."
+        }
+      }
+    },
+    {
+      "id": "sport_034",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 0,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "What team won the 2016 MLS Cup?",
+          "choices": [
+            "Seattle Sounders",
+            "Colorado Rapids",
+            "Montreal Impact",
+            "Toronto FC"
+          ],
+          "explanation": "The correct answer is: Seattle Sounders."
+        },
+        "fr": {
+          "text": "Quelle équipe a remporté la Coupe MLS 2016 ?",
+          "choices": [
+            "Sondes de Seattle",
+            "Colorado Rapids",
+            "Impact de Montréal",
+            "Toronto FC"
+          ],
+          "explanation": "La bonne réponse est : Seattle Sounders."
+        }
+      }
+    },
+    {
+      "id": "sport_035",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "In 2016, who won the Formula 1 World Constructor's Championship for the third time in a row?",
+          "choices": [
+            "Red Bull Racing Renault",
+            "Scuderia Ferrari",
+            "McLaren Honda",
+            "Mercedes-AMG Petronas"
+          ],
+          "explanation": "The correct answer is: Mercedes-AMG Petronas."
+        },
+        "fr": {
+          "text": "En 2016, qui a remporté le Championnat du Monde de Formule 1 pour la troisième fois consécutive ?",
+          "choices": [
+            "Red Bull Racing Renault",
+            "Scuderia Ferrari",
+            "McLaren Honda",
+            "Mercedes-AMG Petronas"
+          ],
+          "explanation": "La bonne réponse est : Mercedes-AMG Petronas."
+        }
+      }
+    },
+    {
+      "id": "sport_036",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which player has scored the most goals in the England Premier League (EPL)?",
+          "choices": [
+            "Didier Drogba",
+            "Lionel Messi",
+            "Wayne Rooney",
+            "Alan Shearer"
+          ],
+          "explanation": "The correct answer is: Alan Shearer."
+        },
+        "fr": {
+          "text": "Quel joueur a marqué le plus de buts en Angleterre Premier League (EPL) ?",
+          "choices": [
+            "Didier Drogba",
+            "Lionel Messi",
+            "Wayne Rooney",
+            "Alan Shearer"
+          ],
+          "explanation": "La bonne réponse est : Alan Shearer."
+        }
+      }
+    },
+    {
+      "id": "sport_037",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 2,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "At which bridge does the annual Oxford and Cambridge boat race start?",
+          "choices": [
+            "Hammersmith",
+            "Battersea",
+            "Putney",
+            "Vauxhall"
+          ],
+          "explanation": "The correct answer is: Putney."
+        },
+        "fr": {
+          "text": "À quel pont commence la course annuelle Oxford et Cambridge ?",
+          "choices": [
+            "Hammersmith",
+            "Battersea",
+            "Putney",
+            "Vauxhall"
+          ],
+          "explanation": "La bonne réponse est : Putney."
+        }
+      }
+    },
+    {
+      "id": "sport_038",
+      "category": "sport",
+      "difficulty": 3,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "In Canadian football, scoring a rouge is worth how many points?",
+          "choices": [
+            "3",
+            "2",
+            "4",
+            "1"
+          ],
+          "explanation": "The correct answer is: 1."
+        },
+        "fr": {
+          "text": "Dans le football canadien, marquer un rouge vaut combien de points?",
+          "choices": [
+            "3",
+            "2",
+            "4",
+            "1"
+          ],
+          "explanation": "La bonne réponse est : 1."
+        }
+      }
+    },
+    {
+      "id": "sport_039",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "What is the most common type of pitch thrown by pitchers in baseball?",
+          "choices": [
+            "Palmball",
+            "Screwball",
+            "Slowball",
+            "Fastball"
+          ],
+          "explanation": "The correct answer is: Fastball."
+        },
+        "fr": {
+          "text": "Quel est le type de terrain le plus courant lancé par les lanceurs de baseball?",
+          "choices": [
+            "Balle de palme",
+            "Bouteille",
+            "Balle lente",
+            "Balle rapide"
+          ],
+          "explanation": "La bonne réponse est : Fastball."
+        }
+      }
+    },
+    {
+      "id": "sport_040",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 0,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which Formula One driver was nicknamed 'The Professor'?",
+          "choices": [
+            "Alain Prost",
+            "Niki Lauda",
+            "Emerson Fittipaldi",
+            "Ayrton Senna"
+          ],
+          "explanation": "The correct answer is: Alain Prost."
+        },
+        "fr": {
+          "text": "Quelle formule Un chauffeur a été surnommé \"Le Professeur\" ?",
+          "choices": [
+            "Alain Prost",
+            "Niki Lauda",
+            "Emerson Fittipaldi",
+            "Ayrton Senna"
+          ],
+          "explanation": "La bonne réponse est : Alain Prost."
+        }
+      }
+    },
+    {
+      "id": "sport_041",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 0,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Who was the top scorer of the 2014 FIFA World Cup?",
+          "choices": [
+            "James Rodríguez",
+            "Neymar",
+            "Lionel Messi",
+            "Thomas Müller"
+          ],
+          "explanation": "The correct answer is: James Rodríguez."
+        },
+        "fr": {
+          "text": "Qui a été le meilleur buteur de la Coupe du monde de FIFA 2014 ?",
+          "choices": [
+            "James Rodríguez",
+            "Neymar",
+            "Lionel Messi",
+            "Thomas Müller"
+          ],
+          "explanation": "La bonne réponse est : James Rodríguez."
+        }
+      }
+    },
+    {
+      "id": "sport_042",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 1,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "What is the name of the AHL affiliate of the Toronto Maple Leafs?",
+          "choices": [
+            "Toronto Argonauts",
+            "Toronto Marlies",
+            "Toronto Wolfpack",
+            "Toronto Rock"
+          ],
+          "explanation": "The correct answer is: Toronto Marlies."
+        },
+        "fr": {
+          "text": "Quel est le nom de la filiale de l'AHL des Maple Leafs de Toronto?",
+          "choices": [
+            "Toronto Argonautes",
+            "Toronto Marlies",
+            "Toronto Wolfpack",
+            "Toronto Rock"
+          ],
+          "explanation": "La bonne réponse est : Toronto Marlies."
+        }
+      }
+    },
+    {
+      "id": "sport_043",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "What is the name of the \"tool\" used to hit the white ball in snooker or billiards?",
+          "choices": [
+            "Racquet",
+            "Mallet",
+            "Bat",
+            "Cue"
+          ],
+          "explanation": "The correct answer is: Cue."
+        },
+        "fr": {
+          "text": "Quel est le nom de l'outil utilisé pour frapper la balle blanche en snooker ou billard?",
+          "choices": [
+            "Racquet",
+            "Mallettes",
+            "Bat",
+            "Cue"
+          ],
+          "explanation": "La bonne réponse est : Cue."
+        }
+      }
+    },
+    {
+      "id": "sport_044",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 2,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which portuguese island is soccer player Cristiano Ronaldo from?",
+          "choices": [
+            "Santa Maria",
+            "Porto Santo",
+            "Madeira",
+            "Terceira"
+          ],
+          "explanation": "The correct answer is: Madeira."
+        },
+        "fr": {
+          "text": "De quelle île portugaise est le footballeur Cristiano Ronaldo ?",
+          "choices": [
+            "Sainte-Marie",
+            "Porto Santo",
+            "Madère",
+            "Terceira"
+          ],
+          "explanation": "La bonne réponse est : Madère."
+        }
+      }
+    },
+    {
+      "id": "sport_045",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 0,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "What team did England beat to win in the 1966 World Cup final?",
+          "choices": [
+            "West Germany",
+            "Soviet Union",
+            "Portugal",
+            "Brazil"
+          ],
+          "explanation": "The correct answer is: West Germany."
+        },
+        "fr": {
+          "text": "Quelle équipe l'Angleterre a-t-elle battue pour remporter la finale de la Coupe du monde de 1966 ?",
+          "choices": [
+            "Allemagne occidentale",
+            "Union soviétique",
+            "Espagne",
+            "Brésil"
+          ],
+          "explanation": "La bonne réponse est: Allemagne de l'Ouest."
+        }
+      }
+    },
+    {
+      "id": "sport_046",
+      "category": "sport",
+      "difficulty": 3,
+      "correct_index": 1,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "With which doubles partner did John McEnroe have most success?",
+          "choices": [
+            "Mary Carillo",
+            "Peter Fleming",
+            "Michael Stich",
+            "Mark Woodforde"
+          ],
+          "explanation": "The correct answer is: Peter Fleming."
+        },
+        "fr": {
+          "text": "Avec quel double partenaire John McEnroe a-t-il eu le plus de succès ?",
+          "choices": [
+            "Marie Carillo",
+            "Peter Fleming",
+            "Michael Stich",
+            "Mark Woodforde"
+          ],
+          "explanation": "La bonne réponse est : Peter Fleming."
+        }
+      }
+    },
+    {
+      "id": "sport_047",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 1,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Who won NFL Super Bowl LI? (51)",
+          "choices": [
+            "Broncos",
+            "Patriots",
+            "Eagles",
+            "Falcons"
+          ],
+          "explanation": "The correct answer is: Patriots."
+        },
+        "fr": {
+          "text": "Qui a gagné le NFL Super Bowl LI? (51)",
+          "choices": [
+            "Broncos",
+            "Patriotes",
+            "Aigles",
+            "Faucons"
+          ],
+          "explanation": "La bonne réponse est : Patriotes."
+        }
+      }
+    },
+    {
+      "id": "sport_048",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Who won the 2018 Monaco Grand Prix?",
+          "choices": [
+            "Sebastian Vettel",
+            "Lewis Hamilton",
+            "Kimi Raikkonen",
+            "Daniel Ricciardo"
+          ],
+          "explanation": "The correct answer is: Daniel Ricciardo."
+        },
+        "fr": {
+          "text": "Qui a remporté le Grand Prix de Monaco 2018 ?",
+          "choices": [
+            "Sebastian Vettel",
+            "Lewis Hamilton",
+            "Kimi Raikkonen",
+            "Daniel Ricciardo"
+          ],
+          "explanation": "La bonne réponse est : Daniel Ricciardo."
+        }
+      }
+    },
+    {
+      "id": "sport_049",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 1,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "How many scoring zones are there on a conventional dart board?",
+          "choices": [
+            "42",
+            "82",
+            "102",
+            "62"
+          ],
+          "explanation": "The correct answer is: 82."
+        },
+        "fr": {
+          "text": "Combien de zones de notation y a-t-il sur un tableau de fléchettes conventionnel ?",
+          "choices": [
+            "42",
+            "82",
+            "102",
+            "62"
+          ],
+          "explanation": "La bonne réponse est : 82."
+        }
+      }
+    },
+    {
+      "id": "sport_050",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 0,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "What is the oldest team in Major League Baseball?",
+          "choices": [
+            "Atlanta Braves",
+            "St. Louis Cardinals",
+            "Chicago Cubs",
+            "Cincinnati Reds"
+          ],
+          "explanation": "The correct answer is: Atlanta Braves."
+        },
+        "fr": {
+          "text": "Quelle est l'équipe la plus ancienne de la Ligue majeure ?",
+          "choices": [
+            "Atlanta Braves",
+            "Cardinaux Saint Louis",
+            "Cubs de Chicago",
+            "Cincinnati Rouges"
+          ],
+          "explanation": "La bonne réponse est : Atlanta Braves."
+        }
+      }
+    },
+    {
+      "id": "sport_051",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 0,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Who is regarded as the best Romanian footballer of all time?",
+          "choices": [
+            "Gheorghe Hagi",
+            "Cristian Chivu",
+            "Nicolae Dobrin",
+            "Gheorghe Popescu"
+          ],
+          "explanation": "The correct answer is: Gheorghe Hagi."
+        },
+        "fr": {
+          "text": "Qui est considéré comme le meilleur footballeur roumain de tous les temps ?",
+          "choices": [
+            "Gheorghe Hagi",
+            "Cristian Chivu",
+            "Nicolae Dobrin",
+            "Gheorghe Popescu"
+          ],
+          "explanation": "La bonne réponse est : Gheorghe Hagi."
+        }
+      }
+    },
+    {
+      "id": "sport_052",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 2,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which of these teams isn't a member of the NHL's \"Original Six\" era?",
+          "choices": [
+            "New York Rangers",
+            "Toronto Maple Leafs",
+            "Philadelphia Flyers",
+            "Boston Bruins"
+          ],
+          "explanation": "The correct answer is: Philadelphia Flyers."
+        },
+        "fr": {
+          "text": "Laquelle de ces équipes n'est pas membre de l'ère \"Original Six\" de la LNH ?",
+          "choices": [
+            "Rangers de New York",
+            "Feuilles d'érable de Toronto",
+            "Flyers de Philadelphie",
+            "Bruins de Boston"
+          ],
+          "explanation": "La bonne réponse est: Flyers de Philadelphie."
+        }
+      }
+    },
+    {
+      "id": "sport_053",
+      "category": "sport",
+      "difficulty": 3,
+      "correct_index": 0,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "What is the full name of the footballer \"Cristiano Ronaldo\"?",
+          "choices": [
+            "Cristiano Ronaldo dos Santos Aveiro",
+            "Cristiano Ronaldo los Santos Diego",
+            "Cristiano Armando Diego Ronaldo",
+            "Cristiano Luis Armando Ronaldo"
+          ],
+          "explanation": "The correct answer is: Cristiano Ronaldo dos Santos Aveiro."
+        },
+        "fr": {
+          "text": "Quel est le nom complet du footballeur \"Cristiano Ronaldo\" ?",
+          "choices": [
+            "Cristiano Ronaldo dos Santos Aveiro",
+            "Cristiano Ronaldo los Santos Diego",
+            "Cristiano Armando Diego Ronaldo",
+            "Cristiano Luis Armando Ronaldo"
+          ],
+          "explanation": "La bonne réponse est: Cristiano Ronaldo dos Santos Aveiro."
+        }
+      }
+    },
+    {
+      "id": "sport_054",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 1,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Which Formula 1 driver switched teams in the middle of the 2017 season?",
+          "choices": [
+            "Rio Haryanto",
+            "Carlos Sainz Jr.",
+            "Daniil Kvyat",
+            "Jolyon Palmer"
+          ],
+          "explanation": "The correct answer is: Carlos Sainz Jr.."
+        },
+        "fr": {
+          "text": "Quel pilote de Formule 1 a changé d'équipe au milieu de la saison 2017 ?",
+          "choices": [
+            "Rio Haryanto",
+            "Carlos Sainz Jr.",
+            "Daniil Kvyat",
+            "Jolyon Palmer"
+          ],
+          "explanation": "La bonne réponse est : Carlos Sainz Jr.."
+        }
+      }
+    },
+    {
+      "id": "sport_055",
+      "category": "sport",
+      "difficulty": 3,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "The AHL affiliate team of the Boston Bruins is named what?",
+          "choices": [
+            "Cambridge Bruins",
+            "New Haven Bruins",
+            "Hartford Bruins",
+            "Providence Bruins"
+          ],
+          "explanation": "The correct answer is: Providence Bruins."
+        },
+        "fr": {
+          "text": "L'équipe affiliée de l'AHL des Bruins de Boston s'appelle quoi ?",
+          "choices": [
+            "Bruins de Cambridge",
+            "Bruins du nouveau Haven",
+            "Bruins de Hartford",
+            "Bruins de la Providence"
+          ],
+          "explanation": "La bonne réponse est : Providence Bruins."
+        }
+      }
+    },
+    {
+      "id": "sport_056",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 1,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "Hockey player Wayne Gretzky was born in what Canadian province?",
+          "choices": [
+            "Quebec",
+            "Ontario",
+            "Alberta",
+            "British Columbia"
+          ],
+          "explanation": "The correct answer is: Ontario."
+        },
+        "fr": {
+          "text": "Le joueur de hockey Wayne Gretzky est né dans quelle province canadienne?",
+          "choices": [
+            "Québec",
+            "Ontario",
+            "Alberta",
+            "Colombie-Britannique"
+          ],
+          "explanation": "La bonne réponse est : Ontario."
+        }
+      }
+    },
+    {
+      "id": "sport_057",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 2,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "In baseball, how many fouls are an out?",
+          "choices": [
+            "3",
+            "2",
+            "0",
+            "5"
+          ],
+          "explanation": "The correct answer is: 0."
+        },
+        "fr": {
+          "text": "Dans le baseball, combien de fautes ?",
+          "choices": [
+            "3",
+            "2",
+            "0",
+            "5"
+          ],
+          "explanation": "La bonne réponse est : 0."
+        }
+      }
+    },
+    {
+      "id": "sport_058",
+      "category": "sport",
+      "difficulty": 2,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "What is the oldest team in the NFL?",
+          "choices": [
+            "New York Giants",
+            "Chicago Bears",
+            "Green Bay Packers",
+            "Arizona Cardinals"
+          ],
+          "explanation": "The correct answer is: Arizona Cardinals."
+        },
+        "fr": {
+          "text": "Quelle est l'équipe la plus ancienne de la NFL ?",
+          "choices": [
+            "Les géants de New York",
+            "Ours de Chicago",
+            "Emballeurs Green Bay",
+            "Cardinaux d'Arizona"
+          ],
+          "explanation": "La bonne réponse est: Cardinals d'Arizona."
+        }
+      }
+    },
+    {
+      "id": "sport_059",
+      "category": "sport",
+      "difficulty": 1,
+      "correct_index": 3,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "translations": {
+        "en": {
+          "text": "How many points did LeBron James score in his first NBA game?",
+          "choices": [
+            "41",
+            "69",
+            "19",
+            "25"
+          ],
+          "explanation": "The correct answer is: 25."
+        },
+        "fr": {
+          "text": "Combien de points LeBron James a-t-il marqué dans son premier match NBA ?",
+          "choices": [
+            "41",
+            "69",
+            "19",
+            "25"
+          ],
+          "explanation": "La bonne réponse est : 25."
         }
       }
     }

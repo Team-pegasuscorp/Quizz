@@ -1,5 +1,6 @@
 {
   "sport": {
+    "opentdb_id": 21,
     "locales": ["fr", "en"],
     "translations": {
       "en": {
@@ -13,6 +14,7 @@
     }
   },
   "cinema": {
+    "opentdb_id": 11,
     "locales": ["fr", "en"],
     "translations": {
       "en": {
@@ -26,6 +28,7 @@
     }
   },
   "history": {
+    "opentdb_id": 23,
     "locales": ["fr", "en"],
     "translations": {
       "en": {

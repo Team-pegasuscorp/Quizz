@@ -98,7 +98,8 @@ func finish_round() -> Dictionary:
 		category_id,
 		score,
 		correct_count,
-		questions.size()
+		questions.size(),
+		max_combo,
 	)
 	last_summary = summary
 	return summary

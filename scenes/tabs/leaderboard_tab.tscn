@@ -26,7 +26,7 @@ theme_override_constants/margin_bottom = 24
 
 [node name="VBox" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBox"]
 unique_name_in_owner = true
@@ -36,18 +36,37 @@ theme_override_font_sizes/font_size = 24
 text = "Leaderboard"
 horizontal_alignment = 1
 
-[node name="Content" type="VBoxContainer" parent="MarginContainer/VBox"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 12
-alignment = 1
-
-[node name="MessageLabel" type="Label" parent="MarginContainer/VBox/Content"]
+[node name="SubtitleLabel" type="Label" parent="MarginContainer/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"SubtitleLabel"
-theme_override_font_sizes/font_size = 16
-text = "This feature is under development."
+theme_override_font_sizes/font_size = 14
+text = "Your rank: #1"
+horizontal_alignment = 1
+
+[node name="FilterRow" type="HBoxContainer" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="MarginContainer/VBox/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="DemoHintLabel" type="Label" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"SubtitleLabel"
+theme_override_font_sizes/font_size = 12
+text = "Sample leaderboard shown for preview."
 horizontal_alignment = 1
 autowrap_mode = 3

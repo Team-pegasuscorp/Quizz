@@ -18,6 +18,7 @@ static func build_full(locale: String) -> Dictionary:
 
 static func _from_save(locale: String) -> Dictionary:
 	var games := _count_games()
+	var win_rate := SaveManager.get_win_rate_percent()
 	return {
 		"player_name": SaveManager.player_name,
 		"level": SaveManager.level,
@@ -28,15 +29,15 @@ static func _from_save(locale: String) -> Dictionary:
 		"avatar_texture": SaveManager.get_profile_avatar_texture(),
 		"has_custom_avatar": SaveManager.has_custom_avatar(),
 		"games_played": games,
-		"wins": int(max(games * 0.55, 0)),
-		"losses": int(max(games - games * 0.55, 0)),
-		"win_rate_percent": 55.0 if games > 0 else 0.0,
+		"wins": SaveManager.wins,
+		"losses": SaveManager.losses,
+		"win_rate_percent": win_rate,
 		"correct_answers": _count_correct(),
-		"current_win_streak": 0,
-		"best_win_streak": 0,
+		"current_win_streak": SaveManager.current_win_streak,
+		"best_win_streak": SaveManager.best_win_streak,
 		"best_score": _best_score(),
 		"categories": _build_categories(locale),
-		"history": [],
+		"history": _build_history(locale),
 		"is_demo": false,
 	}
 
@@ -128,15 +129,35 @@ static func _make_history_row(category_id: String, locale: String, score: int, w
 	}
 
 
+static func _build_history(locale: String) -> Array:
+	var rows: Array = []
+	var now := int(Time.get_unix_time_from_system())
+	for raw in SaveManager.match_history:
+		if typeof(raw) != TYPE_DICTIONARY:
+			continue
+		var played_at := int(raw.get("played_at", now))
+		var age_hours := int(max(float(now - played_at) / 3600.0, 0.0))
+		rows.append(_make_history_row(
+			str(raw.get("category_id", "")),
+			locale,
+			int(raw.get("score", 0)),
+			bool(raw.get("won", false)),
+			int(raw.get("correct_count", 0)),
+			int(raw.get("total_count", 0)),
+			age_hours,
+		))
+	return rows
+
+
 static func _build_achievements(data: Dictionary) -> Array:
 	var unlock_stats := {
 		"games_played": data.get("games_played", 0),
 		"wins": data.get("wins", 0),
 		"best_win_streak": data.get("best_win_streak", 0),
 		"best_score": data.get("best_score", 0),
-		"has_perfect_round": false,
+		"has_perfect_round": SaveManager.has_perfect_round,
 		"level": data.get("level", 1),
-		"categories_played": data.get("categories", []).size(),
+		"categories_played": _count_categories_played_from_data(data),
 	}
 	var rows: Array = []
 	for achievement in AchievementsCatalog.all():
@@ -148,6 +169,16 @@ static func _build_achievements(data: Dictionary) -> Array:
 			"unlocked": AchievementsCatalog.is_unlocked(str(achievement.get("id", "")), unlock_stats),
 		})
 	return rows
+
+
+static func _count_categories_played_from_data(data: Dictionary) -> int:
+	var count := 0
+	for row in data.get("categories", []):
+		if typeof(row) != TYPE_DICTIONARY:
+			continue
+		if int(row.get("games_played", 0)) > 0:
+			count += 1
+	return count
 
 
 static func _resolve_category_name(category_id: String, locale: String) -> String:
