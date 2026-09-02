@@ -1,0 +1,21 @@
+---
+description: Keep each app tab as its own scene and script so pages can be edited independently.
+globs: scenes/tabs/**,scripts/ui/*_tab.gd,scripts/config/scene_paths.gd,scenes/app_shell.tscn
+alwaysApply: false
+---
+
+# Independent tab pages
+
+Each bottom-nav page is a dedicated pair. Change only that pair when asked to update one page:
+
+- Accueil: `scenes/tabs/home_tab.tscn` + `scripts/ui/home_tab.gd`
+- Classement: `scenes/tabs/leaderboard_tab.tscn` + `scripts/ui/leaderboard_tab.gd`
+- Quiz: `scenes/tabs/quiz_tab.tscn` + `scripts/ui/quiz_tab.gd`
+- Social: `scenes/tabs/social_tab.tscn` + `scripts/ui/social_tab.gd`
+- Profil: `scenes/tabs/profile_tab.tscn` + `scripts/ui/profile_tab.gd`
+
+Do not share one placeholder scene across tabs. Do not put page-specific UI in `app_shell.tscn`.
+
+`app_shell.tscn` only hosts chrome (top app bar, settings, bottom nav) and instances the five tab scenes in swipe order. Page order lives in `ScenePaths.TAB_PAGE_ORDER` / `TAB_SCENES`.
+
+Optional hook on each tab: `on_tab_shown()` — called when that page becomes visible.

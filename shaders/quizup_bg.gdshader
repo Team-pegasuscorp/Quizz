@@ -2,12 +2,12 @@ shader_type canvas_item;
 
 void fragment() {
 	vec2 uv = UV;
-	vec3 top = vec3(0.278, 0.290, 0.306);    // #474A4E
-	vec3 bottom = vec3(0.157, 0.165, 0.176); // #282A2D
-	vec3 bg = mix(bottom, top, uv.y);
-	vec3 highlight = vec3(0.380, 0.392, 0.408);
-	float top_glow = exp(-length((uv - vec2(0.5, 0.0)) * vec2(1.1, 2.4)) * 2.2) * 0.07;
-	float orb_left = exp(-length((uv - vec2(0.12, 0.72)) * vec2(1.8, 2.0)) * 2.0) * 0.05;
-	float orb_right = exp(-length((uv - vec2(0.88, 0.18)) * vec2(1.6, 1.8)) * 2.4) * 0.04;
-	COLOR = vec4(bg + highlight * (top_glow + orb_left + orb_right), 1.0);
+	vec3 white = vec3(1.0, 1.0, 1.0);
+	vec3 mist = vec3(0.96, 0.97, 0.985);
+	vec3 bg = mix(white, mist, uv.y * 0.45);
+	vec3 cyan = vec3(0.55, 0.82, 0.95);
+	vec3 lav = vec3(0.82, 0.80, 0.96);
+	float glow_l = exp(-length((uv - vec2(-0.05, 0.35)) * vec2(1.15, 1.4)) * 2.2) * 0.08;
+	float glow_r = exp(-length((uv - vec2(1.05, 0.12)) * vec2(1.4, 1.8)) * 2.6) * 0.05;
+	COLOR = vec4(bg + cyan * glow_l + lav * glow_r, 1.0);
 }

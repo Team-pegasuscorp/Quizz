@@ -1,5 +1,7 @@
 extends Control
 
+const UiTokens = preload("res://scripts/config/ui_tokens.gd")
+const UiStyle = preload("res://scripts/config/ui_style.gd")
 const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
 const ScenePaths = preload("res://scripts/config/scene_paths.gd")
 
@@ -14,12 +16,18 @@ const ScenePaths = preload("res://scripts/config/scene_paths.gd")
 @onready var average_value_label: Label = %AverageValueLabel
 @onready var play_again_button: Button = %PlayAgainButton
 @onready var menu_button: Button = %MenuButton
+@onready var stats_panel: PanelContainer = %StatsPanel
 
 var summary: Dictionary = {}
 
 
 func _ready() -> void:
 	summary = GameManager.last_summary
+	stats_panel.add_theme_stylebox_override("panel", UiStyle.card(UiTokens.ACCENT_QUIZ))
+	title_label.add_theme_color_override("font_color", UiTokens.INK)
+	correct_value_label.add_theme_color_override("font_color", UiTokens.FEEDBACK_CORRECT)
+	combo_value_label.add_theme_color_override("font_color", UiTokens.ACCENT_QUIZ)
+	average_value_label.add_theme_color_override("font_color", UiTokens.INK)
 	_apply_translations()
 	play_again_button.pressed.connect(_on_play_again_pressed)
 	menu_button.pressed.connect(_on_menu_pressed)

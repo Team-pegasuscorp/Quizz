@@ -1,6 +1,7 @@
 extends RefCounted
 
-const SCALE := 0.97
+const SCALE := 0.94
+const BOUNCE := 1.04
 
 
 static func wire(button: Button, host: Node) -> void:
@@ -16,5 +17,7 @@ static func wire(button: Button, host: Node) -> void:
 	)
 	button.button_up.connect(func() -> void:
 		var tween: Tween = host.create_tween()
-		tween.tween_property(button, "scale", Vector2.ONE, 0.08)
+		tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "scale", Vector2.ONE * BOUNCE, 0.08)
+		tween.tween_property(button, "scale", Vector2.ONE, 0.1)
 	)

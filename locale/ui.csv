@@ -44,9 +44,12 @@ UI_PROFILE_NO_FAVORITE,No favorite yet,Aucun thème favori
 UI_PROFILE_SAVED,Profile saved,Profil enregistré
 UI_TAB_HOME,Home,Accueil
 UI_TAB_QUIZ,Quiz,Quiz
-UI_TAB_MULTIPLAYER,Multiplayer,Multijoueur
+UI_TAB_SOCIAL,Social,Social
 UI_TAB_LEADERBOARD,Leaderboard,Classement
 UI_TAB_PROFILE,Profile,Profil
+UI_HOME_HELLO,Hey {name},Salut {name}
+UI_HOME_QUIZ_HINT,Tap the Quiz button below to start a round.,Appuie sur le bouton Quiz pour lancer une partie.
+UI_SOCIAL_CHALLENGE_HINT,Ready for a challenge,Prêt pour un défi
 UI_COMING_SOON,Coming soon,Bientôt disponible
 UI_COMING_SOON_DESC,This feature is under development.,Cette fonctionnalité est en cours de développement.
 UI_PROFILE_STATS_TITLE,Statistics,Statistiques

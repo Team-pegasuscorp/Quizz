@@ -3,13 +3,11 @@ extends Control
 const UiTokens = preload("res://scripts/config/ui_tokens.gd")
 const ScenePaths = preload("res://scripts/config/scene_paths.gd")
 const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
+const UiStyle = preload("res://scripts/config/ui_style.gd")
 
-@onready var title_label: Label = %TitleLabel
-@onready var settings_button: Button = %SettingsButton
-@onready var tab_swipe = %TabSwipeContainer
-@onready var bottom_nav: PanelContainer = %BottomNavBar
-@onready var home_tab: Control = %HomeTab
-@onready var profile_tab: Control = %ProfileTab
+@onready var top_app_bar: TopAppBar = %TopAppBar
+@onready var tab_swipe: TabSwipeContainer = %TabSwipeContainer
+@onready var bottom_nav: Control = %BottomNavBar
 @onready var settings_backdrop: ColorRect = %SettingsBackdrop
 @onready var language_option: OptionButton = %LanguageOption
 @onready var language_label: Label = %LanguageLabel
@@ -21,8 +19,7 @@ func _ready() -> void:
 	tab_swipe.swipe_threshold = UiTokens.TAB_SWIPE_THRESHOLD
 	tab_swipe.drag_lock_threshold = UiTokens.TAB_SWIPE_DRAG_LOCK
 	tab_swipe.animation_duration = UiTokens.TAB_SWIPE_DURATION
-	_configure_top_banner()
-	_configure_settings_button()
+	_configure_chrome()
 	_apply_translations()
 	_setup_language_option()
 	_wire_navigation()
@@ -30,22 +27,26 @@ func _ready() -> void:
 	LocaleManager.locale_changed.connect(_on_locale_changed)
 	PressScaleUtil.wire(close_settings_button, self)
 
+	if tab_swipe.pages_row.get_child_count() != ScenePaths.TAB_COUNT:
+		push_warning(
+			"AppShell: expected %d tab pages, found %d. Keep PagesRow in sync with ScenePaths.TAB_PAGE_ORDER."
+			% [ScenePaths.TAB_COUNT, tab_swipe.pages_row.get_child_count()]
+		)
+
 	var initial_tab: int = clampi(GameManager.shell_tab_index, 0, ScenePaths.TAB_COUNT - 1)
 	var initial_page: int = ScenePaths.page_index_for_tab(initial_tab)
 	tab_swipe.set_tab(initial_page, false)
 	bottom_nav.set_active_tab(initial_page)
-	if initial_tab == ScenePaths.Tab.PROFILE:
-		_refresh_profile_tab()
+	_notify_tab_shown(initial_page)
 
 
 func _wire_navigation() -> void:
 	bottom_nav.tab_selected.connect(_on_bottom_nav_selected)
 	tab_swipe.tab_changed.connect(_on_tab_changed)
-	home_tab.play_requested.connect(_on_home_play_requested)
 
 
 func _connect_settings() -> void:
-	settings_button.pressed.connect(_on_settings_pressed)
+	top_app_bar.settings_pressed.connect(_on_settings_pressed)
 	settings_backdrop.gui_input.connect(_on_settings_backdrop_gui_input)
 	close_settings_button.pressed.connect(_on_close_settings_pressed)
 	language_option.item_selected.connect(_on_language_selected)
@@ -59,27 +60,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
-func _configure_top_banner() -> void:
-	title_label.add_theme_color_override("font_color", UiTokens.HEADER_BANNER_FG)
-
-
-func _configure_settings_button() -> void:
-	var tile_size := Vector2.ONE * UiTokens.HEADER_SETTINGS_SIZE
-	settings_button.custom_minimum_size = tile_size
-	settings_button.text = ""
-	settings_button.flat = true
-	settings_button.focus_mode = Control.FOCUS_ALL
-	settings_button.mouse_filter = Control.MOUSE_FILTER_STOP
-	settings_button.add_theme_constant_override("icon_max_width", UiTokens.HEADER_SETTINGS_ICON_SIZE)
-	settings_button.add_theme_constant_override("icon_max_height", UiTokens.HEADER_SETTINGS_ICON_SIZE)
-	settings_button.add_theme_color_override("icon_normal_color", UiTokens.HEADER_BANNER_FG)
-	settings_button.add_theme_color_override("icon_hover_color", Color.WHITE)
-	settings_button.add_theme_color_override("icon_pressed_color", UiTokens.BRAND_CYAN)
+func _configure_chrome() -> void:
+	settings_panel.add_theme_stylebox_override("panel", UiStyle.card(UiTokens.ACCENT_QUIZ))
+	settings_backdrop.color = Color(0.12, 0.13, 0.15, 0.28)
 
 
 func _apply_translations() -> void:
-	title_label.text = tr("UI_APP_TITLE")
-	settings_button.tooltip_text = tr("UI_SETTINGS")
 	language_label.text = tr("UI_LANGUAGE")
 	close_settings_button.text = tr("UI_BACK")
 
@@ -101,19 +87,17 @@ func _on_bottom_nav_selected(index: int) -> void:
 
 func _on_tab_changed(page_index: int) -> void:
 	bottom_nav.set_active_tab(page_index)
-	var tab_id: int = ScenePaths.tab_for_page_index(page_index)
-	GameManager.shell_tab_index = tab_id
-	if tab_id == ScenePaths.Tab.PROFILE:
-		_refresh_profile_tab()
+	GameManager.shell_tab_index = ScenePaths.tab_for_page_index(page_index)
+	_notify_tab_shown(page_index)
 
 
-func _on_home_play_requested() -> void:
-	tab_swipe.set_tab(ScenePaths.page_index_for_tab(ScenePaths.Tab.QUIZ), true)
-
-
-func _refresh_profile_tab() -> void:
-	if profile_tab.has_method("refresh"):
-		profile_tab.call("refresh")
+func _notify_tab_shown(page_index: int) -> void:
+	var pages: HBoxContainer = tab_swipe.pages_row
+	if page_index < 0 or page_index >= pages.get_child_count():
+		return
+	var page := pages.get_child(page_index)
+	if page.has_method("on_tab_shown"):
+		page.call("on_tab_shown")
 
 
 func _on_settings_pressed() -> void:
@@ -125,7 +109,7 @@ func _open_settings() -> void:
 	settings_backdrop.visible = true
 	settings_panel.visible = true
 	settings_panel.move_to_front()
-	settings_button.release_focus()
+	top_app_bar.release_settings_focus()
 	language_option.grab_focus()
 
 
@@ -154,4 +138,4 @@ func _on_language_selected(index: int) -> void:
 func _on_locale_changed(_locale: String) -> void:
 	_apply_translations()
 	_setup_language_option()
-	_refresh_profile_tab()
+	_notify_tab_shown(tab_swipe.get_tab())

@@ -46,13 +46,12 @@ theme_override_font_sizes/font_size = 28
 text = "Choose a category"
 horizontal_alignment = 1
 
-[node name="CategoryList" type="ItemList" parent="MarginContainer/VBox"]
+[node name="CategoryList" type="VBoxContainer" parent="MarginContainer/VBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 340)
+custom_minimum_size = Vector2(0, 280)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 20
-allow_reselect = true
+theme_override_constants/separation = 12
 
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/VBox"]
 unique_name_in_owner = true

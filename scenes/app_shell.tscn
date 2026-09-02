@@ -2,22 +2,14 @@
 
 [ext_resource type="Script" path="res://scripts/ui/app_shell.gd" id="1_app_shell"]
 [ext_resource type="Material" path="res://themes/quizup_bg_material.tres" id="2_bg_mat"]
-[ext_resource type="Texture2D" path="res://assets/ui/icon_settings.png" id="3_settings_icon"]
+[ext_resource type="PackedScene" uid="uid://top_app_bar_scene" path="res://scenes/ui/top_app_bar.tscn" id="3_top_app_bar"]
 [ext_resource type="Script" path="res://scripts/ui/tab_swipe_container.gd" id="4_tab_swipe"]
 [ext_resource type="PackedScene" uid="uid://home_tab_scene" path="res://scenes/tabs/home_tab.tscn" id="5_home_tab"]
-[ext_resource type="PackedScene" uid="uid://category_select_scene" path="res://scenes/category_select.tscn" id="6_category_select"]
-[ext_resource type="PackedScene" uid="uid://placeholder_tab_scene" path="res://scenes/tabs/placeholder_tab.tscn" id="7_placeholder_tab"]
-[ext_resource type="PackedScene" uid="uid://profile_tab_scene" path="res://scenes/tabs/profile_tab.tscn" id="8_profile_tab"]
-[ext_resource type="PackedScene" uid="uid://bottom_nav_bar_scene" path="res://scenes/ui/bottom_nav_bar.tscn" id="9_bottom_nav"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_top_banner"]
-bg_color = Color(0.098, 0.4627, 0.8235, 1)
-border_width_bottom = 2
-border_color = Color(0, 0.7373, 0.8314, 0.45)
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-shadow_color = Color(0, 0, 0, 0.2)
-shadow_size = 6
+[ext_resource type="PackedScene" uid="uid://leaderboard_tab_scene" path="res://scenes/tabs/leaderboard_tab.tscn" id="6_leaderboard_tab"]
+[ext_resource type="PackedScene" uid="uid://quiz_tab_scene" path="res://scenes/tabs/quiz_tab.tscn" id="7_quiz_tab"]
+[ext_resource type="PackedScene" uid="uid://social_tab_scene" path="res://scenes/tabs/social_tab.tscn" id="8_social_tab"]
+[ext_resource type="PackedScene" uid="uid://profile_tab_scene" path="res://scenes/tabs/profile_tab.tscn" id="9_profile_tab"]
+[ext_resource type="PackedScene" uid="uid://bottom_nav_bar_scene" path="res://scenes/ui/bottom_nav_bar.tscn" id="10_bottom_nav"]
 
 [node name="AppShell" type="Control"]
 layout_mode = 3
@@ -44,61 +36,15 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -120.0
+offset_bottom = -188.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="TopBanner" type="PanelContainer" parent="MainColumn"]
-layout_mode = 2
-custom_minimum_size = Vector2(0, 100)
-mouse_filter = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_top_banner")
-
-[node name="BannerMargin" type="MarginContainer" parent="MainColumn/TopBanner"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 10
-
-[node name="BannerLayer" type="Control" parent="MainColumn/TopBanner/BannerMargin"]
+[node name="TopAppBar" parent="MainColumn" instance=ExtResource("3_top_app_bar")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-custom_minimum_size = Vector2(0, 80)
-
-[node name="TitleLabel" type="Label" parent="MainColumn/TopBanner/BannerMargin/BannerLayer"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"TitleLabel"
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 36
-text = "Quizz"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SettingsButton" type="Button" parent="MainColumn/TopBanner/BannerMargin/BannerLayer"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -80.0
-offset_bottom = 80.0
-grow_horizontal = 0
-focus_mode = 2
-mouse_filter = 0
-custom_minimum_size = Vector2(80, 80)
-flat = true
-icon = ExtResource("3_settings_icon")
-expand_icon = true
-text = ""
 
 [node name="TabSwipeContainer" type="Control" parent="MainColumn"]
 unique_name_in_owner = true
@@ -116,30 +62,30 @@ theme_override_constants/separation = 0
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MultiplayerTab" parent="MainColumn/TabSwipeContainer/PagesRow" instance=ExtResource("7_placeholder_tab")]
-layout_mode = 2
-message_key = "UI_TAB_MULTIPLAYER"
-
-[node name="CategorySelect" parent="MainColumn/TabSwipeContainer/PagesRow" instance=ExtResource("6_category_select")]
-layout_mode = 2
-embedded_mode = true
-
-[node name="LeaderboardTab" parent="MainColumn/TabSwipeContainer/PagesRow" instance=ExtResource("7_placeholder_tab")]
-layout_mode = 2
-message_key = "UI_TAB_LEADERBOARD"
-
-[node name="ProfileTab" parent="MainColumn/TabSwipeContainer/PagesRow" instance=ExtResource("8_profile_tab")]
+[node name="LeaderboardTab" parent="MainColumn/TabSwipeContainer/PagesRow" instance=ExtResource("6_leaderboard_tab")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="BottomNavBar" parent="." instance=ExtResource("9_bottom_nav")]
+[node name="QuizTab" parent="MainColumn/TabSwipeContainer/PagesRow" instance=ExtResource("7_quiz_tab")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SocialTab" parent="MainColumn/TabSwipeContainer/PagesRow" instance=ExtResource("8_social_tab")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ProfileTab" parent="MainColumn/TabSwipeContainer/PagesRow" instance=ExtResource("9_profile_tab")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BottomNavBar" parent="." instance=ExtResource("10_bottom_nav")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -120.0
+offset_top = -188.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -153,7 +99,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
-color = Color(0, 0, 0, 0.55)
+color = Color(0.12, 0.13, 0.15, 0.28)
 
 [node name="SettingsPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true

@@ -1,0 +1,94 @@
+[gd_scene load_steps=4 format=3 uid="uid://top_app_bar_scene"]
+
+[ext_resource type="Script" path="res://scripts/ui/top_app_bar.gd" id="1_top_app_bar"]
+[ext_resource type="Texture2D" path="res://assets/ui/logo_app.svg" id="2_logo"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_settings.svg" id="3_settings_icon"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar"]
+bg_color = Color(0.16, 0.52, 0.86, 1)
+shadow_color = Color(0.08, 0.18, 0.32, 0.18)
+shadow_size = 10
+shadow_offset = Vector2(0, 3)
+
+[node name="TopAppBar" type="Control"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 112)
+layout_mode = 2
+mouse_filter = 0
+script = ExtResource("1_top_app_bar")
+
+[node name="ShellMargin" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Bar" type="PanelContainer" parent="ShellMargin"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(0, 112)
+layout_mode = 2
+mouse_filter = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bar")
+
+[node name="BarMargin" type="MarginContainer" parent="ShellMargin/Bar"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="BarRow" type="HBoxContainer" parent="ShellMargin/Bar/BarMargin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Brand" type="HBoxContainer" parent="ShellMargin/Bar/BarMargin/BarRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="LogoTexture" type="TextureRect" parent="ShellMargin/Bar/BarMargin/BarRow/Brand"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("2_logo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="ShellMargin/Bar/BarMargin/BarRow/Brand"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"TitleLabel"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "Quizz"
+vertical_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="ShellMargin/Bar/BarMargin/BarRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 2
+mouse_filter = 0
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 1
+expand_icon = false
+icon = ExtResource("3_settings_icon")
+text = ""

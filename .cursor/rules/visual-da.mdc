@@ -1,0 +1,20 @@
+---
+description: Visual identity for the social quiz app (Minimal Premium). Keep pages independent.
+globs: scripts/config/ui_tokens.gd,scripts/config/ui_style.gd,themes/**,shaders/**,scripts/ui/**,scenes/**
+alwaysApply: false
+---
+
+# Visual identity (Minimal Premium)
+
+Inspired by QuizUp's *principles* only: cards, color, progression, social competition, mobile readability. Do not copy QuizUp's blue header, orange FAB, or layout.
+
+- Canvas: white-to-mist wash with a light cyan/lavender glow (`quizup_bg.gdshader`)
+- Surfaces: white rounded cards, no borders, soft cyan-tinted shadows
+- Text: dark ink (`#1E2126`) and muted grey secondary
+- Accents by tab: teal Accueil, gold Classement, light blue Quiz `#5CBFFF`, magenta Social, violet Profil
+- Top app bar: full-width Quiz-blue bar, brand mark + name on the left, settings chip on the right
+- Nav: floating white pill (no contour) + circular light-blue Quiz FAB above the bar
+- Active tab uses that tab's accent; inactive is grey
+- No play tile on Accueil. Quiz FAB is the primary action.
+
+Shared look lives in `UiTokens` and `UiStyle`. Page content still belongs in that tab's own scene/script.

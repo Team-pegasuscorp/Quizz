@@ -47,6 +47,7 @@ text = "Results"
 horizontal_alignment = 1
 
 [node name="StatsPanel" type="PanelContainer" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="StatsMargin" type="MarginContainer" parent="MarginContainer/VBox/StatsPanel"]
@@ -87,7 +88,7 @@ text = "Correct answers"
 [node name="CorrectValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.18, 0.78, 0.52, 1)
 theme_override_font_sizes/font_size = 20
 text = "0 / 7"
 horizontal_alignment = 2
@@ -102,7 +103,7 @@ text = "Best combo"
 [node name="ComboValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.898, 1, 1)
+theme_override_colors/font_color = Color(0.36, 0.75, 1, 1)
 theme_override_font_sizes/font_size = 20
 text = "x0"
 horizontal_alignment = 2
@@ -117,7 +118,7 @@ text = "Average time"
 [node name="AverageValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.12, 0.13, 0.15, 1)
 theme_override_font_sizes/font_size = 20
 text = "0.0s"
 horizontal_alignment = 2

@@ -1,8 +1,11 @@
+## Profile tab page. Edit this script and `scenes/tabs/profile_tab.tscn` only.
 extends Control
 
 const ProfileSnapshot = preload("res://scripts/profile/profile_snapshot.gd")
 const UiTokens = preload("res://scripts/config/ui_tokens.gd")
+const UiStyle = preload("res://scripts/config/ui_style.gd")
 const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
+const ArcMeterScript = preload("res://scripts/ui/arc_meter.gd")
 
 @onready var content_vbox: VBoxContainer = %ContentVBox
 @onready var hero_panel: PanelContainer = %HeroPanel
@@ -17,6 +20,7 @@ const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
 @onready var remove_photo_button: Button = %RemovePhotoButton
 @onready var profile_status_label: Label = %ProfileStatusLabel
 @onready var stats_grid: GridContainer = %StatsGrid
+@onready var spotlight_row: HBoxContainer = %SpotlightRow
 @onready var categories_list: VBoxContainer = %CategoriesList
 @onready var badges_grid: GridContainer = %BadgesGrid
 @onready var history_list: VBoxContainer = %HistoryList
@@ -34,6 +38,7 @@ var _animated_nodes: Array[Control] = []
 
 func _ready() -> void:
 	pseudo_input.max_length = UiTokens.MAX_PLAYER_NAME_LENGTH
+	hero_panel.add_theme_stylebox_override("panel", UiStyle.card(UiTokens.ACCENT_PROFILE))
 	_wire_events()
 	_apply_translations()
 	refresh()
@@ -47,6 +52,10 @@ func refresh() -> void:
 	_populate_badges()
 	_populate_history()
 	_play_entrance_animation()
+
+
+func on_tab_shown() -> void:
+	refresh()
 
 
 func _wire_events() -> void:
@@ -82,8 +91,8 @@ func _populate_identity() -> void:
 	level_label.text = tr("UI_PLAYER_LEVEL").format({"level": _profile_data.get("level", 1)})
 	xp_bar.max_value = _profile_data.get("xp_to_next", 100)
 	xp_bar.value = _profile_data.get("xp", 0)
-	xp_bar.add_theme_stylebox_override("background", _bar_bg_style())
-	xp_bar.add_theme_stylebox_override("fill", _bar_fill_style())
+	xp_bar.add_theme_stylebox_override("background", UiStyle.progress_bg())
+	xp_bar.add_theme_stylebox_override("fill", UiStyle.progress_fill(UiTokens.ACCENT_XP))
 	xp_caption_label.text = tr("UI_PROFILE_XP_PROGRESS").format({
 		"current": _profile_data.get("xp", 0),
 		"target": _profile_data.get("xp_to_next", 100),
@@ -93,19 +102,27 @@ func _populate_identity() -> void:
 
 
 func _populate_stats() -> void:
+	_clear_container(spotlight_row)
 	_clear_container(stats_grid)
+	spotlight_row.add_child(_make_win_rate_card())
+	spotlight_row.add_child(_make_stat_card(
+		tr("UI_PROFILE_WIN_STREAK"),
+		str(_profile_data.get("current_win_streak", 0)),
+		UiTokens.ACCENT_HOME
+	))
+	spotlight_row.add_child(_make_stat_card(
+		tr("UI_PROFILE_BEST_SCORE"),
+		str(_profile_data.get("best_score", 0)),
+		UiTokens.ACCENT_LEADERBOARD
+	))
 	var stats := [
-		{"label": tr("UI_PROFILE_GAMES_PLAYED"), "value": str(_profile_data.get("games_played", 0)), "accent": UiTokens.NEUTRAL},
+		{"label": tr("UI_PROFILE_GAMES_PLAYED"), "value": str(_profile_data.get("games_played", 0)), "accent": UiTokens.ACCENT_PROFILE},
 		{"label": tr("UI_PROFILE_WINS"), "value": str(_profile_data.get("wins", 0)), "accent": UiTokens.FEEDBACK_CORRECT},
 		{"label": tr("UI_PROFILE_LOSSES"), "value": str(_profile_data.get("losses", 0)), "accent": UiTokens.FEEDBACK_WRONG},
-		{"label": tr("UI_PROFILE_WIN_RATE"), "value": "%.0f%%" % _profile_data.get("win_rate_percent", 0.0), "accent": UiTokens.PROFILE_STAT_ACCENT},
-		{"label": tr("UI_PROFILE_CORRECT_ANSWERS"), "value": str(_profile_data.get("correct_answers", 0)), "accent": UiTokens.NEUTRAL},
-		{"label": tr("UI_PROFILE_WIN_STREAK"), "value": str(_profile_data.get("current_win_streak", 0)), "accent": UiTokens.FEEDBACK_CORRECT},
-		{"label": tr("UI_PROFILE_BEST_STREAK"), "value": str(_profile_data.get("best_win_streak", 0)), "accent": UiTokens.PROFILE_STAT_ACCENT},
-		{"label": tr("UI_PROFILE_BEST_SCORE"), "value": str(_profile_data.get("best_score", 0)), "accent": UiTokens.PROFILE_STAT_ACCENT},
+		{"label": tr("UI_PROFILE_BEST_STREAK"), "value": str(_profile_data.get("best_win_streak", 0)), "accent": UiTokens.ACCENT_SOCIAL},
 	]
 	for stat in stats:
-		var card := _make_stat_card(stat.get("label", ""), stat.get("value", ""), stat.get("accent", UiTokens.NEUTRAL))
+		var card := _make_stat_card(stat.get("label", ""), stat.get("value", ""), stat.get("accent", UiTokens.INK))
 		stats_grid.add_child(card)
 		_animated_nodes.append(card)
 
@@ -142,10 +159,36 @@ func _populate_history() -> void:
 		_animated_nodes.append(card)
 
 
+func _make_win_rate_card() -> PanelContainer:
+	var panel := PanelContainer.new()
+	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	panel.custom_minimum_size = Vector2(120, 128)
+	panel.add_theme_stylebox_override("panel", UiStyle.card(UiTokens.ACCENT_PROFILE))
+	var vbox := VBoxContainer.new()
+	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	panel.add_child(vbox)
+	var meter := ArcMeterScript.new()
+	meter.custom_minimum_size = Vector2(88, 88)
+	meter.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	vbox.add_child(meter)
+	var ratio := float(_profile_data.get("win_rate_percent", 0.0)) / 100.0
+	meter.call_deferred("set_ratio", ratio, UiTokens.ACCENT_PROFILE)
+	var caption := Label.new()
+	caption.text = "%.0f%% %s" % [_profile_data.get("win_rate_percent", 0.0), tr("UI_PROFILE_WIN_RATE")]
+	caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	caption.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	caption.add_theme_font_size_override("font_size", 11)
+	caption.add_theme_color_override("font_color", UiTokens.INK_MUTED)
+	vbox.add_child(caption)
+	_animated_nodes.append(panel)
+	return panel
+
+
 func _make_stat_card(caption: String, value: String, accent: Color) -> PanelContainer:
 	var panel := PanelContainer.new()
-	panel.custom_minimum_size = Vector2(150, 88)
-	panel.add_theme_stylebox_override("panel", _card_style())
+	panel.custom_minimum_size = Vector2(110, 96)
+	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	panel.add_theme_stylebox_override("panel", UiStyle.card(accent))
 
 	var margin := MarginContainer.new()
 	margin.add_theme_constant_override("margin_left", 12)
@@ -178,7 +221,8 @@ func _make_stat_card(caption: String, value: String, accent: Color) -> PanelCont
 
 func _make_category_card(row: Dictionary) -> PanelContainer:
 	var panel := PanelContainer.new()
-	panel.add_theme_stylebox_override("panel", _card_style())
+	var accent := UiTokens.accent_for_category(str(row.get("id", "")))
+	panel.add_theme_stylebox_override("panel", UiStyle.card(accent))
 
 	var margin := MarginContainer.new()
 	margin.add_theme_constant_override("margin_left", 14)
@@ -198,7 +242,7 @@ func _make_category_card(row: Dictionary) -> PanelContainer:
 	name_label.text = str(row.get("name", ""))
 	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	name_label.add_theme_font_size_override("font_size", 18)
-	name_label.add_theme_color_override("font_color", UiTokens.PROFILE_STAT_ACCENT)
+	name_label.add_theme_color_override("font_color", accent)
 	header.add_child(name_label)
 
 	var mastery_label := Label.new()
@@ -221,8 +265,8 @@ func _make_category_card(row: Dictionary) -> PanelContainer:
 	bar.max_value = 1.0
 	bar.value = row.get("mastery_progress", 0.0)
 	bar.show_percentage = false
-	bar.add_theme_stylebox_override("background", _bar_bg_style())
-	bar.add_theme_stylebox_override("fill", _bar_fill_style())
+	bar.add_theme_stylebox_override("background", UiStyle.progress_bg())
+	bar.add_theme_stylebox_override("fill", UiStyle.progress_fill(UiTokens.accent_for_category(str(row.get("id", "")))))
 	vbox.add_child(bar)
 
 	return panel
@@ -230,22 +274,28 @@ func _make_category_card(row: Dictionary) -> PanelContainer:
 
 func _make_badge_button(achievement: Dictionary) -> Button:
 	var button := Button.new()
-	button.custom_minimum_size = Vector2(72, 84)
-	button.flat = true
+	button.custom_minimum_size = Vector2(76, 92)
 	var unlocked: bool = achievement.get("unlocked", false)
+	var accent := UiTokens.ACCENT_LEADERBOARD if unlocked else UiTokens.INK_MUTED
+	button.add_theme_stylebox_override("normal", UiStyle.card(accent))
+	button.add_theme_stylebox_override("hover", UiStyle.card(accent))
+	button.add_theme_stylebox_override("pressed", UiStyle.card(accent))
 	button.modulate = Color.WHITE if unlocked else UiTokens.PROFILE_BADGE_LOCKED
 	button.text = "%s\n%s" % [
 		str(achievement.get("icon", "?")),
 		tr(str(achievement.get("title_key", ""))),
 	]
 	button.add_theme_font_size_override("font_size", 11)
+	button.add_theme_color_override("font_color", UiTokens.INK)
 	button.pressed.connect(_on_badge_pressed.bind(achievement))
 	return button
 
 
 func _make_history_card(row: Dictionary) -> PanelContainer:
 	var panel := PanelContainer.new()
-	panel.add_theme_stylebox_override("panel", _card_style())
+	panel.add_theme_stylebox_override("panel", UiStyle.card(
+		UiTokens.FEEDBACK_CORRECT if row.get("won", false) else UiTokens.FEEDBACK_WRONG
+	))
 
 	var margin := MarginContainer.new()
 	margin.add_theme_constant_override("margin_left", 14)
@@ -301,26 +351,7 @@ func _make_empty_label(text: String) -> Label:
 
 
 func _card_style() -> StyleBoxFlat:
-	var style := StyleBoxFlat.new()
-	style.bg_color = UiTokens.PROFILE_CARD_BG
-	style.border_color = UiTokens.PROFILE_CARD_BORDER
-	style.set_border_width_all(1)
-	style.set_corner_radius_all(UiTokens.PROFILE_CARD_RADIUS)
-	return style
-
-
-func _bar_bg_style() -> StyleBoxFlat:
-	var style := StyleBoxFlat.new()
-	style.bg_color = UiTokens.PROFILE_MASTERY_BAR_BG
-	style.set_corner_radius_all(5)
-	return style
-
-
-func _bar_fill_style() -> StyleBoxFlat:
-	var style := StyleBoxFlat.new()
-	style.bg_color = UiTokens.PROFILE_MASTERY_BAR_FILL
-	style.set_corner_radius_all(5)
-	return style
+	return UiStyle.card()
 
 
 func _clear_container(node: Node) -> void:
@@ -345,9 +376,9 @@ func _play_entrance_animation() -> void:
 		node.position.y += 12.0
 		var tween := create_tween()
 		tween.set_parallel(true)
-		tween.tween_property(node, "modulate:a", 1.0, 0.28).set_delay(delay)
-		tween.tween_property(node, "position:y", node.position.y - 12.0, 0.28).set_delay(delay)
-		delay += 0.04
+		tween.tween_property(node, "modulate:a", 1.0, 0.18).set_delay(delay)
+		tween.tween_property(node, "position:y", node.position.y - 12.0, 0.18).set_delay(delay)
+		delay += 0.03
 	_animated_nodes.clear()
 
 

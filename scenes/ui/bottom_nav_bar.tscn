@@ -3,31 +3,97 @@
 [ext_resource type="Script" path="res://scripts/ui/bottom_nav_bar.gd" id="1_bottom_nav"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottom_nav"]
-bg_color = Color(0.118, 0.122, 0.133, 0.98)
-border_width_top = 1
-border_color = Color(0, 0.7373, 0.8314, 0.25)
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+shadow_color = Color(0.45, 0.62, 0.78, 0.12)
+shadow_size = 16
+shadow_offset = Vector2(0, 4)
 
-[node name="BottomNavBar" type="PanelContainer"]
+[node name="BottomNavBar" type="Control"]
 clip_contents = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -72.0
+offset_top = -188.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_bottom_nav")
 script = ExtResource("1_bottom_nav")
 
-[node name="NavMargin" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 4
+[node name="DockShell" type="MarginContainer" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
 
-[node name="TabsRow" type="HBoxContainer" parent="NavMargin"]
+[node name="Dock" type="PanelContainer" parent="DockShell"]
 unique_name_in_owner = true
+clip_contents = false
 layout_mode = 2
-theme_override_constants/separation = 4
+mouse_filter = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bottom_nav")
+
+[node name="Inner" type="Control" parent="DockShell/Dock"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 0
+
+[node name="EnergyBar" type="ColorRect" parent="DockShell/Dock/Inner"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 28.0
+offset_top = 3.0
+offset_right = -28.0
+offset_bottom = 5.0
+mouse_filter = 2
+color = Color(0.36, 0.75, 1, 0.7)
+
+[node name="HighlightLayer" type="Control" parent="DockShell/Dock/Inner"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ActivePill" type="PanelContainer" parent="DockShell/Dock/Inner/HighlightLayer"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 58.0
+mouse_filter = 2
+
+[node name="NavMargin" type="MarginContainer" parent="DockShell/Dock/Inner"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 10
+
+[node name="TabsRow" type="HBoxContainer" parent="DockShell/Dock/Inner/NavMargin"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+theme_override_constants/separation = 2
