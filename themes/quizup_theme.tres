@@ -1,4 +1,7 @@
-[gd_resource type="Theme" load_steps=16 format=3]
+[gd_resource type="Theme" load_steps=17 format=3]
+
+[ext_resource type="FontFile" path="res://assets/fonts/Nunito-Bold.ttf" id="1_nunito_bold"]
+[ext_resource type="FontFile" path="res://assets/fonts/Nunito-ExtraBold.ttf" id="2_nunito_xbold"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
 content_margin_left = 18.0
@@ -6,10 +9,10 @@ content_margin_top = 14.0
 content_margin_right = 18.0
 content_margin_bottom = 14.0
 bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
 shadow_color = Color(0.45, 0.62, 0.78, 0.1)
 shadow_size = 8
 shadow_offset = Vector2(0, 3)
@@ -19,27 +22,22 @@ content_margin_left = 18.0
 content_margin_top = 14.0
 content_margin_right = 18.0
 content_margin_bottom = 14.0
-bg_color = Color(0.36, 0.75, 1, 0.1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.36, 0.75, 1, 0.35)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+bg_color = Color(0.36, 0.75, 1, 0.12)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
 content_margin_left = 18.0
 content_margin_top = 14.0
 content_margin_right = 18.0
 content_margin_bottom = 14.0
-bg_color = Color(0.36, 0.75, 1, 0.18)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+bg_color = Color(0.36, 0.75, 1, 0.2)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_disabled"]
 content_margin_left = 18.0
@@ -47,10 +45,10 @@ content_margin_top = 14.0
 content_margin_right = 18.0
 content_margin_bottom = 14.0
 bg_color = Color(1, 1, 1, 0.45)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_primary_normal"]
 content_margin_left = 22.0
@@ -97,10 +95,10 @@ content_margin_top = 16.0
 content_margin_right = 16.0
 content_margin_bottom = 16.0
 bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 shadow_color = Color(0.45, 0.62, 0.78, 0.1)
 shadow_size = 12
 shadow_offset = Vector2(0, 4)
@@ -111,10 +109,10 @@ content_margin_top = 20.0
 content_margin_right = 20.0
 content_margin_bottom = 20.0
 bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 shadow_color = Color(0.45, 0.62, 0.78, 0.12)
 shadow_size = 20
 shadow_offset = Vector2(0, 8)
@@ -139,10 +137,10 @@ content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 8.0
 bg_color = Color(1, 1, 1, 0.5)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_item_selected"]
 content_margin_left = 14.0
@@ -155,10 +153,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.36, 0.75, 1, 0.55)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_line"]
 content_margin_left = 14.0
@@ -166,10 +164,10 @@ content_margin_top = 12.0
 content_margin_right = 14.0
 content_margin_bottom = 12.0
 bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
 
 [resource]
 default_font_size = 17
@@ -188,6 +186,7 @@ PrimaryButton/base_type = &"Button"
 PrimaryButton/colors/font_color = Color(1, 1, 1, 1)
 PrimaryButton/colors/font_hover_color = Color(1, 1, 1, 1)
 PrimaryButton/colors/font_pressed_color = Color(1, 1, 1, 0.92)
+PrimaryButton/fonts/font = ExtResource("1_nunito_bold")
 PrimaryButton/font_sizes/font_size = 18
 PrimaryButton/styles/disabled = SubResource("StyleBoxFlat_btn_disabled")
 PrimaryButton/styles/focus = SubResource("StyleBoxFlat_primary_hover")
@@ -198,6 +197,7 @@ Label/colors/font_color = Color(0.12, 0.13, 0.15, 1)
 Label/font_sizes/font_size = 16
 TitleLabel/base_type = &"Label"
 TitleLabel/colors/font_color = Color(0.12, 0.13, 0.15, 1)
+TitleLabel/fonts/font = ExtResource("2_nunito_xbold")
 TitleLabel/font_sizes/font_size = 34
 SubtitleLabel/base_type = &"Label"
 SubtitleLabel/colors/font_color = Color(0.55, 0.57, 0.6, 1)
@@ -210,7 +210,12 @@ GoldMonoLabel/colors/font_color = Color(0.941, 0.706, 0.161, 1)
 GoldMonoLabel/font_sizes/font_size = 14
 QuestionLabel/base_type = &"Label"
 QuestionLabel/colors/font_color = Color(0.12, 0.13, 0.15, 1)
+QuestionLabel/fonts/font = ExtResource("1_nunito_bold")
 QuestionLabel/font_sizes/font_size = 24
+NumberLabel/base_type = &"Label"
+NumberLabel/colors/font_color = Color(0.12, 0.13, 0.15, 1)
+NumberLabel/fonts/font = ExtResource("2_nunito_xbold")
+NumberLabel/font_sizes/font_size = 30
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_panel")
 PopupPanel/styles/panel = SubResource("StyleBoxFlat_panel_popup")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_progress_bg")

@@ -53,21 +53,28 @@ text = "Question 1 / 7"
 [node name="ScoreLabel" type="Label" parent="MarginContainer/VBox/HeaderHBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_type_variation = &"GoldMonoLabel"
-theme_override_font_sizes/font_size = 13
-text = "Score: 0"
+size_flags_vertical = 4
+theme_type_variation = &"NumberLabel"
+theme_override_colors/font_color = Color(0.941, 0.706, 0.161, 1)
+theme_override_font_sizes/font_size = 26
+text = "0"
 
-[node name="ComboLabel" type="Label" parent="MarginContainer/VBox/HeaderHBox"]
+[node name="ComboBadge" type="PanelContainer" parent="MarginContainer/VBox/HeaderHBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_type_variation = &"GoldMonoLabel"
-theme_override_colors/font_color = Color(0.36, 0.75, 1, 1)
-theme_override_font_sizes/font_size = 13
-text = "Combo: x1"
+size_flags_vertical = 4
+
+[node name="ComboValue" type="Label" parent="MarginContainer/VBox/HeaderHBox/ComboBadge"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"NumberLabel"
+theme_override_font_sizes/font_size = 20
+text = "x1"
+vertical_alignment = 1
 
 [node name="TimerBar" type="ProgressBar" parent="MarginContainer/VBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 14)
+custom_minimum_size = Vector2(0, 18)
 layout_mode = 2
 max_value = 100.0
 value = 100.0
@@ -75,6 +82,7 @@ show_percentage = false
 
 [node name="QuestionPanel" type="PanelContainer" parent="MarginContainer/VBox"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 170)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -96,8 +104,8 @@ autowrap_mode = 3
 [node name="FeedbackLabel" type="Label" parent="MarginContainer/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_type_variation = &"MonoLabel"
-theme_override_font_sizes/font_size = 15
+theme_type_variation = &"NumberLabel"
+theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 
 [node name="AnswersGrid" type="GridContainer" parent="MarginContainer/VBox"]
@@ -118,7 +126,6 @@ theme_override_font_sizes/font_size = 17
 text = "Answer 1"
 alignment = 1
 autowrap_mode = 3
-clip_text = true
 
 [node name="AnswerButton2" type="Button" parent="MarginContainer/VBox/AnswersGrid"]
 unique_name_in_owner = true
@@ -130,7 +137,6 @@ theme_override_font_sizes/font_size = 17
 text = "Answer 2"
 alignment = 1
 autowrap_mode = 3
-clip_text = true
 
 [node name="AnswerButton3" type="Button" parent="MarginContainer/VBox/AnswersGrid"]
 unique_name_in_owner = true
@@ -142,7 +148,6 @@ theme_override_font_sizes/font_size = 17
 text = "Answer 3"
 alignment = 1
 autowrap_mode = 3
-clip_text = true
 
 [node name="AnswerButton4" type="Button" parent="MarginContainer/VBox/AnswersGrid"]
 unique_name_in_owner = true
@@ -154,4 +159,3 @@ theme_override_font_sizes/font_size = 17
 text = "Answer 4"
 alignment = 1
 autowrap_mode = 3
-clip_text = true

@@ -17,7 +17,7 @@ static func card(accent: Color = Color(0, 0, 0, 0), radius: int = -1) -> StyleBo
 	style.content_margin_right = 16
 	style.content_margin_bottom = 16
 	if accent.a > 0.02:
-		style.shadow_color = Color(accent.r, accent.g, accent.b, 0.12)
+		style.shadow_color = Color(accent.r, accent.g, accent.b, 0.2)
 	return style
 
 
@@ -137,4 +137,60 @@ static func category_tile_selected(accent: Color) -> StyleBoxFlat:
 	style.set_border_width_all(2)
 	style.border_color = Color(accent.r, accent.g, accent.b, 0.55)
 	style.shadow_color = Color(accent.r, accent.g, accent.b, 0.16)
+	return style
+
+
+## --- Arcade : écran de jeu -------------------------------------------------
+
+## Tuile réponse : fond plein coloré, relief clair en haut, ombre teintée.
+static func answer_tile(slot_color: Color) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = slot_color
+	style.set_corner_radius_all(UiTokens.RADIUS_MD)
+	style.border_width_top = 3
+	style.border_color = Color(1, 1, 1, 0.28)
+	style.shadow_color = Color(slot_color.r, slot_color.g, slot_color.b, 0.35)
+	style.shadow_size = 12
+	style.shadow_offset = Vector2(0, 5)
+	style.content_margin_left = 14
+	style.content_margin_top = 14
+	style.content_margin_right = 14
+	style.content_margin_bottom = 14
+	style.anti_aliasing = true
+	return style
+
+
+## État après réponse : bonne (vert) / mauvaise (rouge), plein et net.
+static func answer_tile_state(color: Color) -> StyleBoxFlat:
+	var style := answer_tile(color)
+	style.border_width_top = 0
+	style.border_width_bottom = 4
+	style.border_color = Color(1, 1, 1, 0.5)
+	style.shadow_color = Color(color.r, color.g, color.b, 0.5)
+	style.shadow_size = 18
+	return style
+
+
+## Remplissage de la barre de timer selon le temps restant (1..0).
+static func timer_fill_for_ratio(ratio: float) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = UiTokens.timer_color_for_ratio(ratio)
+	style.set_corner_radius_all(UiTokens.RADIUS_SM)
+	return style
+
+
+## Fond de la pastille combo, teinté selon le palier.
+static func combo_badge(color: Color) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(color.r, color.g, color.b, 0.16)
+	style.set_corner_radius_all(UiTokens.RADIUS_PILL)
+	style.border_width_left = 2
+	style.border_width_top = 2
+	style.border_width_right = 2
+	style.border_width_bottom = 2
+	style.border_color = Color(color.r, color.g, color.b, 0.55)
+	style.content_margin_left = 14
+	style.content_margin_top = 4
+	style.content_margin_right = 14
+	style.content_margin_bottom = 4
 	return style

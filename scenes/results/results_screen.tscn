@@ -38,12 +38,30 @@ theme_override_constants/margin_bottom = 40
 layout_mode = 2
 theme_override_constants/separation = 20
 
+[node name="GradeLabel" type="Label" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"NumberLabel"
+theme_override_font_sizes/font_size = 96
+text = "A"
+horizontal_alignment = 1
+
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"TitleLabel"
 theme_override_font_sizes/font_size = 36
 text = "Results"
+horizontal_alignment = 1
+
+[node name="PerfectBanner" type="Label" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_type_variation = &"NumberLabel"
+theme_override_colors/font_color = Color(0.18, 0.78, 0.52, 1)
+theme_override_font_sizes/font_size = 22
+text = "Perfect Round"
 horizontal_alignment = 1
 
 [node name="StatsPanel" type="PanelContainer" parent="MarginContainer/VBox"]
@@ -73,8 +91,9 @@ text = "Final score"
 [node name="ScoreValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_type_variation = &"GoldMonoLabel"
-theme_override_font_sizes/font_size = 24
+theme_type_variation = &"NumberLabel"
+theme_override_colors/font_color = Color(0.941, 0.706, 0.161, 1)
+theme_override_font_sizes/font_size = 26
 text = "0"
 horizontal_alignment = 2
 
@@ -88,6 +107,7 @@ text = "Correct answers"
 [node name="CorrectValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"NumberLabel"
 theme_override_colors/font_color = Color(0.18, 0.78, 0.52, 1)
 theme_override_font_sizes/font_size = 20
 text = "0 / 7"
@@ -103,6 +123,7 @@ text = "Best combo"
 [node name="ComboValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"NumberLabel"
 theme_override_colors/font_color = Color(0.36, 0.75, 1, 1)
 theme_override_font_sizes/font_size = 20
 text = "x0"
@@ -118,15 +139,16 @@ text = "Average time"
 [node name="AverageValueLabel" type="Label" parent="MarginContainer/VBox/StatsPanel/StatsMargin/StatsGrid"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"NumberLabel"
 theme_override_colors/font_color = Color(0.12, 0.13, 0.15, 1)
 theme_override_font_sizes/font_size = 20
 text = "0.0s"
 horizontal_alignment = 2
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBox"]
-custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="PlayAgainButton" type="Button" parent="MarginContainer/VBox"]
 unique_name_in_owner = true

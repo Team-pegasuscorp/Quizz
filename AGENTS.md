@@ -1,6 +1,6 @@
 # Agent handoff — branche `test`
 
-> Dernière mise à jour : **2026-09-02**  
+> Dernière mise à jour : **2026-09-03**  
 > Lire aussi : [`PROGRESS.md`](PROGRESS.md), [`docs/CATEGORIES.md`](docs/CATEGORIES.md)
 
 Résumé pour la prochaine session de travail sur Quizz (Godot 4.7, FR/EN).
@@ -21,6 +21,40 @@ Résumé pour la prochaine session de travail sur Quizz (Godot 4.7, FR/EN).
 
 **Scène principale :** `scenes/app_shell.tscn`  
 **Branche active :** `test` (remote `origin/test`)
+
+---
+
+## Ce qui a été fait (session 2026-09-03) — passe visuelle « Arcade Premium » lot 1
+
+Branche `visual/arcade-lot1` (partie de `test`). Aucune feature ajoutée, aucun nouveau texte i18n.
+
+### Fondations
+- `scripts/config/ui_tokens.gd` — retrait des alias morts (`BRAND_*`), échelle de rayons `RADIUS_SM/MD/LG/PILL`, palette `ANSWER_SLOTS` (4 couleurs réponses), tokens `TIMER_*`, helpers `answer_slot_color()` / `combo_tier()` / `timer_color_for_ratio()`.
+- `scripts/config/ui_style.gd` — helpers `answer_tile()`, `answer_tile_state()`, `timer_fill_for_ratio()`, `combo_badge()` ; ombre d'accent des cartes 0.12 → 0.20.
+- `themes/quizup_theme.tres` — rayons unifiés, retrait des bordures sur `hover`, police **Nunito** (Bold + ExtraBold) branchée sur `TitleLabel` / `QuestionLabel` / `PrimaryButton` + nouvelle variation `NumberLabel`.
+- `shaders/quizup_bg.gdshader` — fond réellement visible (dégradé + 2 halos + vignette basse).
+- `assets/fonts/` — ajout `Nunito-Bold.ttf`, `Nunito-ExtraBold.ttf`, `OFL.txt` ; retrait des serif inutilisées (Cinzel, Cormorant, DMMono) + `themes/fableris_theme.tres` + `assets/ui/icon_settings.png`.
+  ⚠️ `themes/fableris_bg_material.tres` + `shaders/fableris_bg.gdshader` **conservés** : encore utilisés par `scenes/main_menu.tscn` et `scenes/profile/player_profile.tscn` (scènes legacy hors flux onglets — à repointer/supprimer au lot 2).
+
+### Écran de jeu — `scenes/game/quiz_game.tscn` + `scripts/ui/quiz_game.gd`
+- 4 réponses = 4 couleurs pleines (`UiStyle.answer_tile`), texte blanc bold.
+- Timer : couleur bleu → ambre → rouge selon le temps + pulse sous 25 %.
+- Score : gros chiffre `NumberLabel` avec count-up + punch à chaque gain.
+- Combo : pastille `ComboBadge` masquée à x1, apparaît/grossit/change de couleur par palier (x2-3 / x4-5 / x6+).
+- Feedback : bonne réponse = punch + fill vert ; mauvaise = shake + fill rouge ; réponses hors résultat estompées. Ancien `_blink_answer` (strobe) supprimé.
+- Transition d'entrée de la question (fade + scale) + réponses en fade échelonné.
+- Délai de feedback 1,2 s → **0,8 s** + **tap pour enchaîner** (`_input`).
+
+### Écran résultats — `scenes/results/results_screen.tscn` + `scripts/ui/results_screen.gd`
+- Note **S / A / B / C / D** dérivée de `correct/total` (lettres neutres, pas d'i18n), couleur par note, punch à l'entrée.
+- Score + bonnes réponses en count-up.
+- Sans-faute → `PerfectBanner` (réutilise `UI_ACH_PERFECT`) + burst de particules.
+- `Spacer` corrigé (double sizing).
+
+### Vérif faite / à faire
+- ✅ Parse GDScript validé (`godot --headless --check-only`) sur les 4 scripts modifiés.
+- ✅ Structure des `.tscn` / `.tres` validée (refs de ressources, arbre de nœuds).
+- ⚠️ **Impossible de lancer Godot dans l'env proot/Termux** (`double free` du générateur de thème éditeur, 4.6 comme 4.7) → test visuel à faire dans un vrai éditeur : ouvrir le projet (laisse importer les 2 `.ttf`), F5 sur `app_shell`, jouer une manche catégorie **Histoire** (réponses longues), vérifier couleurs / timer / combo / feedback / résultats / sans-faute, puis basculer FR↔EN.
 
 ---
 

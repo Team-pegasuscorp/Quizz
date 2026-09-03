@@ -118,6 +118,7 @@ Hook disponible sur chaque onglet : `on_tab_shown()`.
 
 ## Historique récent (`test`)
 
+- branche `visual/arcade-lot1` — Passe « Arcade Premium » (lot 1) : réponses 4 couleurs, timer d'urgence (rampe + pulse), combo/score animés, feedback net (punch / shake), écran résultats (note S–D, count-up, burst sans-faute), fond visible, nettoyage tokens/thème + police Nunito, retrait des assets morts (`fableris_theme`, polices serif)
 - `9282a7a` — UI Minimal Premium, onglets indépendants, top bar
 - `e8b1fa8` — Tailles icônes / labels nav
 - `00d066d` — App shell, onglet Quiz mis en avant, refresh UI QuizUp

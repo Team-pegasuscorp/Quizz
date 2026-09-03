@@ -35,13 +35,35 @@ const CARD_BG := Color(1, 1, 1, 1)
 const CARD_BG_SOFT := Color(0.97, 0.98, 0.99, 1)
 const CARD_BORDER := Color(0, 0, 0, 0)
 const CARD_SHADOW := Color(0.45, 0.62, 0.78, 0.1)
-const CARD_RADIUS: int = 24
 const TEXT_MUTED := INK_MUTED
 
-const BRAND_BLUE := ACCENT_HOME
-const BRAND_BLUE_DARK := Color(0.086, 0.22, 0.35, 1)
-const BRAND_CYAN := ACCENT_HOME
-const BRAND_ORANGE := ACCENT_QUIZ
+## Rayons — une seule échelle pour toute l'app.
+const RADIUS_SM: int = 14
+const RADIUS_MD: int = 22
+const RADIUS_LG: int = 30
+const RADIUS_PILL: int = 999
+const CARD_RADIUS: int = RADIUS_LG
+
+## Réponses arcade — 4 teintes vives à luminance proche, texte blanc lisible.
+## Indexé par position du bouton (0..3).
+const ANSWER_SLOTS: Array[Color] = [
+	Color(0.96, 0.62, 0.13, 1),   # ambre
+	Color(0.92, 0.31, 0.43, 1),   # corail
+	Color(0.13, 0.71, 0.61, 1),   # turquoise
+	Color(0.40, 0.44, 0.93, 1),   # indigo
+]
+
+## Timer — rampe d'urgence.
+const TIMER_CALM := ACCENT_QUIZ
+const TIMER_WARN := Color(0.96, 0.66, 0.13, 1)
+const TIMER_DANGER := Color(0.95, 0.27, 0.33, 1)
+const TIMER_WARN_RATIO: float = 0.45
+const TIMER_DANGER_RATIO: float = 0.25
+
+## Combo — paliers visuels (couleur + taille de police du badge).
+const COMBO_TIER_LOW := ACCENT_QUIZ
+const COMBO_TIER_MID := Color(0.96, 0.66, 0.13, 1)
+const COMBO_TIER_HIGH := Color(0.92, 0.31, 0.43, 1)
 
 const HEADER_BANNER_BG := Color(0.16, 0.52, 0.86, 1)           # slightly deeper than Quiz FAB #5CBFFF
 const HEADER_BANNER_FG := TEXT_ON_ACCENT
@@ -136,3 +158,27 @@ static func accent_for_category(category_id: String) -> Color:
 			return ACCENT_LEADERBOARD
 		_:
 			return ACCENT_PROFILE
+
+
+static func answer_slot_color(index: int) -> Color:
+	if index < 0 or index >= ANSWER_SLOTS.size():
+		return ACCENT_QUIZ
+	return ANSWER_SLOTS[index]
+
+
+## Couleur + taille de police du badge combo pour une valeur donnée.
+static func combo_tier(combo: int) -> Dictionary:
+	if combo >= 6:
+		return {"color": COMBO_TIER_HIGH, "font_size": 26}
+	if combo >= 4:
+		return {"color": COMBO_TIER_MID, "font_size": 23}
+	return {"color": COMBO_TIER_LOW, "font_size": 20}
+
+
+## Couleur de remplissage du timer selon le ratio de temps restant (1..0).
+static func timer_color_for_ratio(ratio: float) -> Color:
+	if ratio <= TIMER_DANGER_RATIO:
+		return TIMER_DANGER
+	if ratio <= TIMER_WARN_RATIO:
+		return TIMER_WARN
+	return TIMER_CALM
