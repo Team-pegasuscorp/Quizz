@@ -24,9 +24,21 @@ Résumé pour la prochaine session de travail sur Quizz (Godot 4.7, FR/EN).
 
 ---
 
-## Ce qui a été fait (session 2026-09-03) — passe visuelle « Arcade Premium » lot 1
+## Ce qui a été fait (session 2026-09-03) — passe visuelle « Arcade Premium »
 
-Branche `visual/arcade-lot1` (partie de `test`). Aucune feature ajoutée, aucun nouveau texte i18n.
+Branche `visual/arcade-lot1` (partie de `test`), PR #2. Aucune feature ajoutée, aucun nouveau texte i18n.
+
+### Lot 2 — chrome de l'app + code mort
+
+- **Nav du bas** (`bottom_nav_bar.gd` + `.tscn`) : hauteur `BOTTOM_NAV_TOTAL_HEIGHT` 188 → 164 (+ `BOTTOM_NAV_HEIGHT` 96→88, `QUIZ_FAB_LIFT` 56→48, offsets répercutés dans `app_shell.tscn`) ; nœud `EnergyBar` mort supprimé ; **FAB Quiz toujours vif** (`ACCENT_QUIZ` plein, halo qui pulse en continu — plus d'atténuation hors onglet Quiz) ; scale-punch sur les onglets secondaires au tap.
+- **Top bar** (`top_app_bar.tscn` + `UiStyle.header_bar()` + tokens) : `HEADER_BANNER_BG` → **`TOP_BAR_BG` (= `ACCENT_QUIZ_DEEP`, source unique)** ; hauteur 112 → 88 ; `StyleBoxFlat` mort retiré du `.tscn` ; titre + logo calés à gauche (retrait des `alignment = center`) ; ombre allégée.
+- **Cartes** (`UiStyle.card()`) : quand un accent est fourni, **liseré haut 3px de la couleur d'accent** en plus de l'ombre teintée → accents enfin visibles partout (Home, profil, classement, social, `QuestionPanel`, `StatsPanel`, `SettingsPanel`).
+- **Home** (`home_tab.gd`) : niveau joueur en `NumberLabel` 30px couleur accent ; pastilles de stats sur fond teinté d'accent.
+- **Code mort supprimé** : `scenes/main_menu.tscn` + `scripts/ui/main_menu.gd`, `scenes/profile/player_profile.tscn` + `scripts/ui/player_profile.gd`, `themes/fableris_bg_material.tres`, `shaders/fableris_bg.gdshader`, const `ScenePaths.CATEGORY_SELECT`. Plus aucune trace du template « Fableris ». `category_select.tscn` reste (instancié dans `quiz_tab`).
+
+### Lot 1 — fondations + jeu + résultats
+
+Aucune feature ajoutée, aucun nouveau texte i18n.
 
 ### Fondations
 - `scripts/config/ui_tokens.gd` — retrait des alias morts (`BRAND_*`), échelle de rayons `RADIUS_SM/MD/LG/PILL`, palette `ANSWER_SLOTS` (4 couleurs réponses), tokens `TIMER_*`, helpers `answer_slot_color()` / `combo_tier()` / `timer_color_for_ratio()`.

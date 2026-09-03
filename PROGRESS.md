@@ -118,6 +118,7 @@ Hook disponible sur chaque onglet : `on_tab_shown()`.
 
 ## Historique récent (`test`)
 
+- branche `visual/arcade-lot1` — Passe « Arcade Premium » (lot 2) : nav du bas plus courte (188→164), `EnergyBar` mort retiré, FAB Quiz toujours vif + halo continu, retour tactile sur les onglets ; top bar affinée (88px, 1 seule couleur `TOP_BAR_BG`, titre calé à gauche, ombre légère) ; liseré d'accent coloré sur toutes les cartes (`UiStyle.card`), niveau joueur en gros sur l'Accueil ; suppression des scènes legacy `main_menu` / `player_profile` + `fableris_bg_material` / `fableris_bg.gdshader`
 - branche `visual/arcade-lot1` — Passe « Arcade Premium » (lot 1) : réponses 4 couleurs, timer d'urgence (rampe + pulse), combo/score animés, feedback net (punch / shake), écran résultats (note S–D, count-up, burst sans-faute), fond visible, nettoyage tokens/thème + police Nunito, retrait des assets morts (`fableris_theme`, polices serif)
 - `9282a7a` — UI Minimal Premium, onglets indépendants, top bar
 - `e8b1fa8` — Tailles icônes / labels nav

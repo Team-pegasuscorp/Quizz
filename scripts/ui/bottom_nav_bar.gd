@@ -9,7 +9,6 @@ const ScenePaths = preload("res://scripts/config/scene_paths.gd")
 @onready var dock: PanelContainer = %Dock
 @onready var tabs_row: HBoxContainer = %TabsRow
 @onready var active_pill: PanelContainer = %ActivePill
-@onready var energy_bar: ColorRect = %EnergyBar
 @onready var highlight_layer: Control = %HighlightLayer
 
 var _tab_items: Array[Control] = []
@@ -41,7 +40,6 @@ func _ready() -> void:
 	clip_contents = false
 	dock.clip_contents = false
 	dock.add_theme_stylebox_override("panel", UiStyle.nav_dock())
-	energy_bar.visible = false
 	_build_tabs()
 	LocaleManager.locale_changed.connect(_on_locale_changed)
 	resized.connect(_on_nav_resized)
@@ -141,7 +139,22 @@ func _make_secondary_tab(page_index: int, tab_id: int) -> Control:
 	column.add_child(label)
 	_tab_labels.append(label)
 
+	button.button_down.connect(_on_secondary_tab_down.bind(column))
+	button.button_up.connect(_on_secondary_tab_up.bind(column))
+
 	return wrapper
+
+
+func _on_secondary_tab_down(column: Control) -> void:
+	column.pivot_offset = column.size * 0.5
+	var tween := create_tween()
+	tween.tween_property(column, "scale", Vector2.ONE * 0.9, 0.06)
+
+
+func _on_secondary_tab_up(column: Control) -> void:
+	column.pivot_offset = column.size * 0.5
+	var tween := create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(column, "scale", Vector2.ONE, 0.14)
 
 
 func _make_quiz_fab(page_index: int) -> Control:
@@ -250,18 +263,18 @@ func _center_quiz_fab() -> void:
 	_quiz_button.pivot_offset = _quiz_button.size * 0.5
 
 
-func _update_quiz_fab_state(is_active: bool) -> void:
+func _update_quiz_fab_state(_is_active: bool) -> void:
 	if _quiz_disc == null:
 		return
 
-	_stop_quiz_glow_tween()
-	if is_active:
-		_quiz_disc.modulate = Color.WHITE
-		_quiz_disc.add_theme_stylebox_override(
-			"panel",
-			UiStyle.filled_disc(UiTokens.ACCENT_QUIZ, UiTokens.QUIZ_FAB_CORNER_RADIUS)
-		)
-		_quiz_glow.visible = true
+	# Le FAB Quiz est l'action principale : toujours vif, halo qui pulse en continu.
+	_quiz_disc.modulate = Color.WHITE
+	_quiz_disc.add_theme_stylebox_override(
+		"panel",
+		UiStyle.filled_disc(UiTokens.ACCENT_QUIZ, UiTokens.QUIZ_FAB_CORNER_RADIUS)
+	)
+	_quiz_glow.visible = true
+	if _quiz_glow_tween == null or not _quiz_glow_tween.is_valid():
 		_quiz_glow.modulate.a = UiTokens.QUIZ_FAB_GLOW_ALPHA_MIN
 		_quiz_glow_tween = create_tween().set_loops()
 		_quiz_glow_tween.tween_property(
@@ -270,19 +283,6 @@ func _update_quiz_fab_state(is_active: bool) -> void:
 		_quiz_glow_tween.tween_property(
 			_quiz_glow, "modulate:a", UiTokens.QUIZ_FAB_GLOW_ALPHA_MIN, UiTokens.QUIZ_FAB_GLOW_DURATION * 0.5
 		)
-	else:
-		_quiz_glow.visible = false
-		_quiz_disc.modulate = Color(1, 1, 1, UiTokens.QUIZ_FAB_INACTIVE_ALPHA)
-		_quiz_disc.add_theme_stylebox_override(
-			"panel",
-			UiStyle.filled_disc(UiTokens.ACCENT_QUIZ_DEEP, UiTokens.QUIZ_FAB_CORNER_RADIUS)
-		)
-
-
-func _stop_quiz_glow_tween() -> void:
-	if _quiz_glow_tween != null and _quiz_glow_tween.is_valid():
-		_quiz_glow_tween.kill()
-	_quiz_glow_tween = null
 
 
 func _on_quiz_button_down() -> void:

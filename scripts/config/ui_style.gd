@@ -18,6 +18,8 @@ static func card(accent: Color = Color(0, 0, 0, 0), radius: int = -1) -> StyleBo
 	style.content_margin_bottom = 16
 	if accent.a > 0.02:
 		style.shadow_color = Color(accent.r, accent.g, accent.b, 0.2)
+		style.border_width_top = 3
+		style.border_color = Color(accent.r, accent.g, accent.b, 0.9)
 	return style
 
 
@@ -104,12 +106,12 @@ static func nav_pill(accent: Color) -> StyleBoxFlat:
 
 static func header_bar() -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
-	style.bg_color = UiTokens.HEADER_BANNER_BG
+	style.bg_color = UiTokens.TOP_BAR_BG
 	style.set_border_width_all(0)
 	style.set_corner_radius_all(0)
-	style.shadow_color = Color(0.08, 0.18, 0.32, 0.18)
-	style.shadow_size = 10
-	style.shadow_offset = Vector2(0, 3)
+	style.shadow_color = Color(0.08, 0.18, 0.32, 0.1)
+	style.shadow_size = 6
+	style.shadow_offset = Vector2(0, 2)
 	return style
 
 

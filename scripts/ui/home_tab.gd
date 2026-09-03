@@ -72,8 +72,9 @@ func _make_progress_card(snapshot: Dictionary) -> PanelContainer:
 
 	var level := Label.new()
 	level.text = tr("UI_PLAYER_LEVEL").format({"level": snapshot.get("level", 1)})
-	level.add_theme_font_size_override("font_size", 22)
-	level.add_theme_color_override("font_color", UiTokens.INK)
+	level.theme_type_variation = &"NumberLabel"
+	level.add_theme_font_size_override("font_size", 30)
+	level.add_theme_color_override("font_color", UiTokens.ACCENT_XP)
 	vbox.add_child(level)
 
 	var bar := ProgressBar.new()
@@ -100,7 +101,9 @@ func _make_stat_chip(caption: String, value: String, accent: Color) -> PanelCont
 	var panel := PanelContainer.new()
 	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	panel.custom_minimum_size.y = 96
-	panel.add_theme_stylebox_override("panel", UiStyle.card(accent))
+	var chip_style := UiStyle.card(accent)
+	chip_style.bg_color = Color(accent.r, accent.g, accent.b, 0.1)
+	panel.add_theme_stylebox_override("panel", chip_style)
 
 	var margin := MarginContainer.new()
 	margin.add_theme_constant_override("margin_left", 4)
@@ -116,6 +119,8 @@ func _make_stat_chip(caption: String, value: String, accent: Color) -> PanelCont
 	var value_label := Label.new()
 	value_label.text = value
 	value_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	value_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	value_label.theme_type_variation = &"NumberLabel"
 	value_label.add_theme_font_size_override("font_size", 22)
 	value_label.add_theme_color_override("font_color", accent)
 	vbox.add_child(value_label)
