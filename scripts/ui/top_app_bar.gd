@@ -46,11 +46,13 @@ func _configure_logo() -> void:
 
 
 func _configure_title() -> void:
+	## Official stacked logo lives on Home; header keeps compact brand mark + name.
 	title_label.add_theme_color_override("font_color", UiTokens.HEADER_BANNER_FG)
 	title_label.add_theme_font_size_override("font_size", UiTokens.HEADER_TITLE_SIZE)
 	title_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	title_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	title_label.text = "BRAINUP"
 
 
 func _configure_settings_button() -> void:
@@ -79,7 +81,7 @@ func _configure_settings_button() -> void:
 
 
 func _apply_translations() -> void:
-	title_label.text = tr("UI_APP_TITLE")
+	title_label.text = "BRAINUP"
 	settings_button.tooltip_text = tr("UI_SETTINGS")
 
 

@@ -43,6 +43,28 @@ func _ready() -> void:
 func _wire_navigation() -> void:
 	bottom_nav.tab_selected.connect(_on_bottom_nav_selected)
 	tab_swipe.tab_changed.connect(_on_tab_changed)
+	var home_page := _page_for_tab(ScenePaths.Tab.HOME)
+	if home_page != null:
+		if home_page.has_signal("play_requested") and not home_page.play_requested.is_connected(_on_home_play_requested):
+			home_page.play_requested.connect(_on_home_play_requested)
+		if home_page.has_signal("login_requested") and not home_page.login_requested.is_connected(_on_home_login_requested):
+			home_page.login_requested.connect(_on_home_login_requested)
+
+
+func _page_for_tab(tab: ScenePaths.Tab) -> Node:
+	var page_index := ScenePaths.page_index_for_tab(tab)
+	var pages: HBoxContainer = tab_swipe.pages_row
+	if page_index < 0 or page_index >= pages.get_child_count():
+		return null
+	return pages.get_child(page_index)
+
+
+func _on_home_play_requested() -> void:
+	tab_swipe.set_tab(ScenePaths.page_index_for_tab(ScenePaths.Tab.QUIZ), true)
+
+
+func _on_home_login_requested() -> void:
+	tab_swipe.set_tab(ScenePaths.page_index_for_tab(ScenePaths.Tab.PROFILE), true)
 
 
 func _connect_settings() -> void:

@@ -1,153 +1,80 @@
-## Home tab page. Edit this script and `scenes/tabs/home_tab.tscn` only.
+## Home tab — BrainUp splash matching brand sheet.
 extends Control
+
+signal play_requested
+signal login_requested
 
 const UiTokens = preload("res://scripts/config/ui_tokens.gd")
 const UiStyle = preload("res://scripts/config/ui_style.gd")
-const ProfileSnapshot = preload("res://scripts/profile/profile_snapshot.gd")
+const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
 
-@onready var subtitle_label: Label = %SubtitleLabel
-@onready var content: VBoxContainer = %Content
-
-var _cards: Array[Control] = []
+@onready var logo_texture: TextureRect = %LogoTexture
+@onready var play_button: Button = %PlayButton
+@onready var login_button: Button = %LoginButton
 
 
 func _ready() -> void:
-	_rebuild()
+	_configure_logo()
+	_configure_buttons()
+	_apply_translations()
 	LocaleManager.locale_changed.connect(_on_locale_changed)
 
 
 func on_tab_shown() -> void:
-	_rebuild()
-
-
-func _rebuild() -> void:
 	_apply_translations()
-	_rebuild_cards()
+
+
+func _configure_logo() -> void:
+	logo_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	logo_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	logo_texture.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	if ResourceLoader.exists(UiTokens.BRAND_LOGO_FULL_PATH):
+		logo_texture.texture = load(UiTokens.BRAND_LOGO_FULL_PATH)
+
+
+func _configure_buttons() -> void:
+	play_button.theme_type_variation = &"PrimaryButton"
+	play_button.custom_minimum_size.y = 58
+	login_button.flat = false
+	login_button.custom_minimum_size.y = 54
+	login_button.add_theme_stylebox_override("normal", _ghost_style(false))
+	login_button.add_theme_stylebox_override("hover", _ghost_style(true))
+	login_button.add_theme_stylebox_override("pressed", _ghost_style(true))
+	login_button.add_theme_stylebox_override("focus", _ghost_style(true))
+	login_button.add_theme_color_override("font_color", UiTokens.BRAND_WHITE)
+	login_button.add_theme_color_override("font_hover_color", UiTokens.BRAND_WHITE)
+	login_button.add_theme_color_override("font_pressed_color", UiTokens.BRAND_WHITE)
+	play_button.pressed.connect(_on_play_pressed)
+	login_button.pressed.connect(_on_login_pressed)
+	PressScaleUtil.wire(play_button, self)
+	PressScaleUtil.wire(login_button, self)
+
+
+func _ghost_style(emphasized: bool) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(1, 1, 1, 0.04 if emphasized else 0.0)
+	style.set_border_width_all(2)
+	style.border_color = Color(1, 1, 1, 0.95 if emphasized else 0.85)
+	style.set_corner_radius_all(22)
+	style.content_margin_left = 22
+	style.content_margin_top = 14
+	style.content_margin_right = 22
+	style.content_margin_bottom = 14
+	return style
 
 
 func _apply_translations() -> void:
-	var snapshot: Dictionary = ProfileSnapshot.build_full(LocaleManager.get_content_locale())
-	var name: String = str(snapshot.get("player_name", UiTokens.DEFAULT_PLAYER_NAME))
-	subtitle_label.text = tr("UI_HOME_HELLO").format({"name": name})
+	play_button.text = tr("UI_PLAY")
+	login_button.text = tr("UI_LOGIN")
 
 
-func _rebuild_cards() -> void:
-	for child in content.get_children():
-		child.queue_free()
-	_cards.clear()
-
-	var snapshot: Dictionary = ProfileSnapshot.build_full(LocaleManager.get_content_locale())
-	content.add_child(_make_progress_card(snapshot))
-	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 12)
-	row.add_child(_make_stat_chip(
-		tr("UI_PROFILE_WIN_STREAK"),
-		str(snapshot.get("current_win_streak", 0)),
-		UiTokens.ACCENT_HOME
-	))
-	row.add_child(_make_stat_chip(
-		tr("UI_TAB_LEADERBOARD"),
-		tr(str(snapshot.get("rank_title_key", "UI_RANK_ROOKIE"))),
-		UiTokens.ACCENT_LEADERBOARD
-	))
-	content.add_child(row)
-	content.add_child(_make_hint_card())
+func _on_play_pressed() -> void:
+	play_requested.emit()
 
 
-func _make_progress_card(snapshot: Dictionary) -> PanelContainer:
-	var panel := PanelContainer.new()
-	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	panel.add_theme_stylebox_override("panel", UiStyle.card(UiTokens.ACCENT_XP))
-
-	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 4)
-	margin.add_theme_constant_override("margin_top", 4)
-	margin.add_theme_constant_override("margin_right", 4)
-	margin.add_theme_constant_override("margin_bottom", 4)
-	panel.add_child(margin)
-
-	var vbox := VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 10)
-	margin.add_child(vbox)
-
-	var level := Label.new()
-	level.text = tr("UI_PLAYER_LEVEL").format({"level": snapshot.get("level", 1)})
-	level.add_theme_font_size_override("font_size", 22)
-	level.add_theme_color_override("font_color", UiTokens.INK)
-	vbox.add_child(level)
-
-	var bar := ProgressBar.new()
-	bar.custom_minimum_size.y = 12
-	bar.max_value = snapshot.get("xp_to_next", 100)
-	bar.value = snapshot.get("xp", 0)
-	bar.show_percentage = false
-	bar.add_theme_stylebox_override("background", UiStyle.progress_bg())
-	bar.add_theme_stylebox_override("fill", UiStyle.progress_fill(UiTokens.ACCENT_XP))
-	vbox.add_child(bar)
-
-	var xp := Label.new()
-	xp.text = tr("UI_PROFILE_XP_PROGRESS").format({
-		"current": snapshot.get("xp", 0),
-		"target": snapshot.get("xp_to_next", 100),
-	})
-	xp.add_theme_font_size_override("font_size", 13)
-	xp.add_theme_color_override("font_color", UiTokens.INK_MUTED)
-	vbox.add_child(xp)
-	return panel
-
-
-func _make_stat_chip(caption: String, value: String, accent: Color) -> PanelContainer:
-	var panel := PanelContainer.new()
-	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	panel.custom_minimum_size.y = 96
-	panel.add_theme_stylebox_override("panel", UiStyle.card(accent))
-
-	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 4)
-	margin.add_theme_constant_override("margin_top", 8)
-	margin.add_theme_constant_override("margin_right", 4)
-	margin.add_theme_constant_override("margin_bottom", 8)
-	panel.add_child(margin)
-
-	var vbox := VBoxContainer.new()
-	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
-	margin.add_child(vbox)
-
-	var value_label := Label.new()
-	value_label.text = value
-	value_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	value_label.add_theme_font_size_override("font_size", 22)
-	value_label.add_theme_color_override("font_color", accent)
-	vbox.add_child(value_label)
-
-	var caption_label := Label.new()
-	caption_label.text = caption
-	caption_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	caption_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	caption_label.add_theme_font_size_override("font_size", 12)
-	caption_label.add_theme_color_override("font_color", UiTokens.INK_MUTED)
-	vbox.add_child(caption_label)
-	return panel
-
-
-func _make_hint_card() -> PanelContainer:
-	var panel := PanelContainer.new()
-	panel.add_theme_stylebox_override("panel", UiStyle.card(UiTokens.ACCENT_QUIZ))
-	var label := Label.new()
-	label.text = tr("UI_HOME_QUIZ_HINT")
-	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.add_theme_font_size_override("font_size", 15)
-	label.add_theme_color_override("font_color", UiTokens.INK)
-	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 8)
-	margin.add_theme_constant_override("margin_top", 8)
-	margin.add_theme_constant_override("margin_right", 8)
-	margin.add_theme_constant_override("margin_bottom", 8)
-	panel.add_child(margin)
-	margin.add_child(label)
-	return panel
+func _on_login_pressed() -> void:
+	login_requested.emit()
 
 
 func _on_locale_changed(_locale: String) -> void:
-	_rebuild()
+	_apply_translations()

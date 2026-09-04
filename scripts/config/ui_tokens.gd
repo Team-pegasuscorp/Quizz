@@ -68,6 +68,7 @@ const HEADER_SETTINGS_SIZE: float = 56.0
 const HEADER_SETTINGS_ICON_SIZE: int = 34
 const APP_LOGO_PATH := "res://assets/branding/brainup-app-icon.png"
 const APP_ICON_PATH := "res://assets/branding/brainup-app-icon.png"
+const BRAND_LOGO_FULL_PATH := "res://assets/branding/brainup_logo_official.png"
 
 const BOTTOM_NAV_HEIGHT: float = 96.0
 const BOTTOM_NAV_TOTAL_HEIGHT: float = 188.0
