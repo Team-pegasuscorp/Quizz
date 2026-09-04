@@ -32,13 +32,18 @@ func _ready() -> void:
 
 
 func _configure_logo() -> void:
-	var logo_size := Vector2.ONE * UiTokens.HEADER_LOGO_SIZE
-	logo_texture.custom_minimum_size = logo_size
+	## Official logo PNG already includes mark + BRAINUP wordmark typography.
+	logo_texture.custom_minimum_size = Vector2(UiTokens.HEADER_BRAND_WIDTH, UiTokens.HEADER_BRAND_HEIGHT)
+	logo_texture.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	logo_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	logo_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	logo_texture.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	logo_texture.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	if ResourceLoader.exists(UiTokens.APP_LOGO_PATH):
+	var logo_path := UiTokens.BRAND_LOGO_FULL_PATH
+	if ResourceLoader.exists(logo_path):
+		logo_texture.texture = load(logo_path)
+		logo_texture.visible = true
+	elif ResourceLoader.exists(UiTokens.APP_LOGO_PATH):
 		logo_texture.texture = load(UiTokens.APP_LOGO_PATH)
 		logo_texture.visible = true
 	else:
@@ -46,13 +51,9 @@ func _configure_logo() -> void:
 
 
 func _configure_title() -> void:
-	## Official stacked logo lives on Home; header keeps compact brand mark + name.
-	title_label.add_theme_color_override("font_color", UiTokens.HEADER_BANNER_FG)
-	title_label.add_theme_font_size_override("font_size", UiTokens.HEADER_TITLE_SIZE)
-	title_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
-	title_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	title_label.text = "BRAINUP"
+	## Hide text title — name + typography come from the official logo asset.
+	title_label.visible = false
+	title_label.text = ""
 
 
 func _configure_settings_button() -> void:
@@ -81,7 +82,6 @@ func _configure_settings_button() -> void:
 
 
 func _apply_translations() -> void:
-	title_label.text = "BRAINUP"
 	settings_button.tooltip_text = tr("UI_SETTINGS")
 
 

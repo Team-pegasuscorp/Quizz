@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://home_tab_scene"]
+[gd_scene load_steps=2 format=3 uid="uid://home_tab_scene"]
 
 [ext_resource type="Script" path="res://scripts/ui/home_tab.gd" id="1_home_tab"]
-[ext_resource type="Texture2D" path="res://assets/branding/brainup_logo_official.png" id="2_logo"]
 
 [node name="HomeTab" type="Control"]
 layout_mode = 3
@@ -20,49 +19,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 36
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 36
-theme_override_constants/margin_bottom = 28
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
 
 [node name="VBox" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 28
-alignment = 1
+theme_override_constants/separation = 24
 
-[node name="SpacerTop" type="Control" parent="MarginContainer/VBox"]
+[node name="SubtitleLabel" type="Label" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 28
+text = "Fast trivia"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Content" type="VBoxContainer" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="LogoTexture" type="TextureRect" parent="MarginContainer/VBox"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 280)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-texture = ExtResource("2_logo")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Actions" type="VBoxContainer" parent="MarginContainer/VBox"]
-layout_mode = 2
-theme_override_constants/separation = 14
-
-[node name="PlayButton" type="Button" parent="MarginContainer/VBox/Actions"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 58)
-layout_mode = 2
-theme_type_variation = &"PrimaryButton"
-theme_override_font_sizes/font_size = 20
-text = "Jouer"
-
-[node name="LoginButton" type="Button" parent="MarginContainer/VBox/Actions"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 54)
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "Se connecter"
-
-[node name="SpacerBottom" type="Control" parent="MarginContainer/VBox"]
-layout_mode = 2
-size_flags_vertical = 3
+theme_override_constants/separation = 16
