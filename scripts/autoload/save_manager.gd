@@ -154,7 +154,7 @@ func record_match_result(
 	stats["total_questions"] = int(stats.get("total_questions", 0)) + total_count
 	category_stats[category_id] = stats
 
-	var won := _is_match_won(correct_count, total_count)
+	var won := is_match_won(correct_count, total_count)
 	if won:
 		wins += 1
 		current_win_streak += 1
@@ -194,7 +194,7 @@ func _prepend_match_history(entry: Dictionary) -> void:
 		match_history = match_history.slice(0, MAX_MATCH_HISTORY)
 
 
-func _is_match_won(correct_count: int, total_count: int) -> bool:
+func is_match_won(correct_count: int, total_count: int) -> bool:
 	if total_count <= 0:
 		return false
 	return correct_count * 2 > total_count

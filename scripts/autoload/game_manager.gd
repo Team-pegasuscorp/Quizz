@@ -16,14 +16,18 @@ var max_combo: int = 0
 var answer_times: Array[float] = []
 var last_summary: Dictionary = {}
 var shell_tab_index: int = 0
+var active_challenge_code: String = ""
 
 
-func start_round(selected_category_id: String) -> void:
+func start_round(selected_category_id: String, challenge_code: String = "") -> void:
 	category_id = selected_category_id
+	active_challenge_code = challenge_code
+	var seed_value := challenge_code.hash() if not challenge_code.is_empty() else 0
 	questions = QuestionLoaderScript.load_questions_for_category(
 		category_id,
 		LocaleManager.get_content_locale(),
-		QUESTIONS_PER_ROUND
+		QUESTIONS_PER_ROUND,
+		seed_value
 	)
 	current_index = 0
 	score = 0
@@ -101,5 +105,16 @@ func finish_round() -> Dictionary:
 		questions.size(),
 		max_combo,
 	)
+	NetworkManager.submit_match(
+		category_id,
+		score,
+		correct_count,
+		questions.size(),
+		max_combo,
+		SaveManager.is_match_won(correct_count, questions.size()),
+	)
+	if not active_challenge_code.is_empty():
+		NetworkManager.submit_challenge_result(active_challenge_code, score, correct_count)
+		active_challenge_code = ""
 	last_summary = summary
 	return summary

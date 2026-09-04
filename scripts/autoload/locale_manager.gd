@@ -2,7 +2,10 @@ extends Node
 
 const SUPPORTED_LOCALES: Array[String] = ["fr", "en"]
 const DEFAULT_LOCALE: String = "fr"
-const TRANSLATIONS_PATH: String = "res://locale/ui.csv"
+const TRANSLATION_PATHS: Array[String] = [
+	"res://locale/ui.en.translation",
+	"res://locale/ui.fr.translation",
+]
 
 var current_locale: String = DEFAULT_LOCALE
 
@@ -10,7 +13,7 @@ signal locale_changed(locale: String)
 
 
 func _ready() -> void:
-	_load_csv_translations(TRANSLATIONS_PATH)
+	_load_translation_resources()
 	var saved_locale: String = SaveManager.get_preferred_locale()
 	if saved_locale.is_empty():
 		_apply_system_locale()
@@ -53,39 +56,14 @@ func _apply_system_locale() -> void:
 		set_locale(DEFAULT_LOCALE)
 
 
-func _load_csv_translations(path: String) -> void:
-	var file := FileAccess.open(path, FileAccess.READ)
-	if file == null:
-		push_error("LocaleManager: unable to open %s" % path)
-		return
-
-	var header: PackedStringArray = file.get_csv_line()
-	if header.size() < 2:
-		push_error("LocaleManager: invalid CSV header in %s" % path)
-		return
-
-	var locales: Array[String] = []
-	for index in range(1, header.size()):
-		locales.append(header[index])
-
-	var translations: Dictionary = {}
-	for locale in locales:
-		var translation := Translation.new()
-		translation.locale = locale
-		translations[locale] = translation
-
-	while not file.eof_reached():
-		var line: PackedStringArray = file.get_csv_line()
-		if line.is_empty() or line[0].is_empty() or line[0] == "keys":
+func _load_translation_resources() -> void:
+	# Exported Android builds ship .translation files, not ui.csv (source only).
+	for path in TRANSLATION_PATHS:
+		if not ResourceLoader.exists(path):
+			push_error("LocaleManager: missing translation resource %s" % path)
 			continue
-
-		var key: String = line[0]
-		for index in range(locales.size()):
-			var locale: String = locales[index]
-			if index + 1 < line.size():
-				translations[locale].add_message(key, line[index + 1])
-
-	for locale in locales:
-		TranslationServer.add_translation(translations[locale])
-
-	file.close()
+		var translation: Translation = load(path) as Translation
+		if translation == null:
+			push_error("LocaleManager: failed to load %s" % path)
+			continue
+		TranslationServer.add_translation(translation)

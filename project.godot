@@ -25,6 +25,7 @@ config/icon="res://icon.svg"
 SaveManager="*res://scripts/autoload/save_manager.gd"
 LocaleManager="*res://scripts/autoload/locale_manager.gd"
 GameManager="*res://scripts/autoload/game_manager.gd"
+NetworkManager="*res://scripts/autoload/network_manager.gd"
 
 [display]
 
@@ -40,6 +41,12 @@ window/handheld/orientation=1
 
 theme/custom="res://themes/quizup_theme.tres"
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://locale/ui.en.translation", "res://locale/ui.fr.translation")
+locale/fallback="en"
+
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

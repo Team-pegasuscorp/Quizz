@@ -14,11 +14,14 @@ const LeaderboardSnapshot = preload("res://scripts/profile/leaderboard_snapshot.
 
 var _selected_filter: String = "all"
 var _filter_buttons: Array[Button] = []
+var _online_entries_by_category: Dictionary = {}
 
 
 func _ready() -> void:
 	_apply()
 	LocaleManager.locale_changed.connect(_on_locale_changed)
+	NetworkManager.leaderboard_received.connect(_on_leaderboard_received)
+	NetworkManager.leaderboard_failed.connect(_on_leaderboard_failed)
 
 
 func on_tab_shown() -> void:
@@ -50,13 +53,69 @@ func _rebuild_filters() -> void:
 
 
 func _rebuild_board() -> void:
+	var online_entries: Variant = _online_entries_by_category.get(_selected_filter)
+	if online_entries != null:
+		_render_snapshot(_snapshot_from_online(online_entries))
+	else:
+		_render_snapshot(LeaderboardSnapshot.build(_selected_filter, LocaleManager.get_content_locale()))
+	NetworkManager.fetch_leaderboard(_selected_filter)
+
+
+func _on_leaderboard_received(category: String, entries: Array) -> void:
+	_online_entries_by_category[category] = entries
+	if category == _selected_filter:
+		_render_snapshot(_snapshot_from_online(entries))
+
+
+func _on_leaderboard_failed(_category: String) -> void:
+	pass # backend injoignable : le classement local/démo déjà affiché reste en place
+
+
+func _snapshot_from_online(entries: Array) -> Dictionary:
+	var built: Array[Dictionary] = []
+	for raw in entries:
+		if typeof(raw) != TYPE_DICTIONARY:
+			continue
+		var is_player := not NetworkManager.player_id.is_empty() \
+			and str(raw.get("player_id", "")) == NetworkManager.player_id
+		built.append({
+			"id": str(raw.get("player_id", "")),
+			"name": str(raw.get("display_name", "")),
+			"score": int(raw.get("score", 0)),
+			"level": 1,
+			"rank_title_key": "UI_RANK_ROOKIE",
+			"is_player": is_player,
+			"rank": int(raw.get("rank", 0)),
+		})
+
+	var player_rank := 0
+	for entry in built:
+		if entry.get("is_player", false):
+			player_rank = int(entry.get("rank", 0))
+			break
+
+	var podium: Array[Dictionary] = []
+	var rest: Array[Dictionary] = []
+	for index in range(built.size()):
+		if index < 3:
+			podium.append(built[index])
+		else:
+			rest.append(built[index])
+
+	return {
+		"entries": built,
+		"podium": podium,
+		"rest": rest,
+		"player_rank": player_rank,
+		"is_demo": false,
+		"filter": _selected_filter,
+	}
+
+
+func _render_snapshot(snapshot: Dictionary) -> void:
 	for child in content.get_children():
 		child.queue_free()
 
-	var snapshot: Dictionary = LeaderboardSnapshot.build(
-		_selected_filter,
-		LocaleManager.get_content_locale()
-	)
 	var player_rank := int(snapshot.get("player_rank", 0))
 	if player_rank > 0:
 		subtitle_label.text = tr("UI_LEADERBOARD_YOUR_RANK").format({"rank": player_rank})

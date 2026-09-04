@@ -31,7 +31,8 @@ static func get_categories(locale: String) -> Array[Dictionary]:
 static func load_questions_for_category(
 	category_id: String,
 	locale: String,
-	count: int
+	count: int,
+	seed_value: int = 0
 ) -> Array[Dictionary]:
 	var path: String = "%s%s.json" % [QUESTIONS_DIR, category_id]
 	var parsed: Variant = _load_json(path)
@@ -50,10 +51,23 @@ static func load_questions_for_category(
 			continue
 		localized.append(question)
 
-	localized.shuffle()
+	if seed_value == 0:
+		localized.shuffle()
+	else:
+		_seeded_shuffle(localized, seed_value)
 	if count > 0 and localized.size() > count:
 		return localized.slice(0, count)
 	return localized
+
+
+static func _seeded_shuffle(array: Array, seed_value: int) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = seed_value
+	for index in range(array.size() - 1, 0, -1):
+		var swap_index := rng.randi_range(0, index)
+		var tmp: Variant = array[index]
+		array[index] = array[swap_index]
+		array[swap_index] = tmp
 
 
 static func _localize_question(raw: Dictionary, locale: String) -> Dictionary:

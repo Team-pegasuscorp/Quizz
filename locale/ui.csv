@@ -58,6 +58,31 @@ UI_TAB_PROFILE,Profile,Profil
 UI_HOME_HELLO,Hey {name},Salut {name}
 UI_HOME_QUIZ_HINT,Tap the Quiz button below to start a round.,Appuie sur le bouton Quiz pour lancer une partie.
 UI_SOCIAL_CHALLENGE_HINT,Ready for a challenge,Prêt pour un défi
+UI_SOCIAL_CREATE_CHALLENGE,Create a challenge,Créer un défi
+UI_SOCIAL_CREATE_BUTTON,Create,Créer
+UI_SOCIAL_JOIN_CHALLENGE,Join a challenge,Rejoindre un défi
+UI_SOCIAL_CODE_PLACEHOLDER,Enter code,Entrer le code
+UI_SOCIAL_JOIN_BUTTON,Join,Rejoindre
+UI_SOCIAL_CHALLENGE_HEADER,{category} challenge - code {code},Défi {category} - code {code}
+UI_SOCIAL_COPY_CODE,Copy code,Copier le code
+UI_SOCIAL_STATUS_PENDING,Waiting for an opponent to join,En attente qu'un adversaire rejoigne
+UI_SOCIAL_STATUS_ACCEPTED,Challenge accepted - play whenever you are ready,Défi accepté - joue quand tu es prêt
+UI_SOCIAL_REFRESH,Refresh,Rafraîchir
+UI_SOCIAL_NEW_CHALLENGE,New challenge,Nouveau défi
+UI_SOCIAL_RESULT_WIN,You won {my_score} to {opponent_score},Tu as gagné {my_score} à {opponent_score}
+UI_SOCIAL_RESULT_LOSS,You lost {my_score} to {opponent_score},Tu as perdu {my_score} à {opponent_score}
+UI_SOCIAL_RESULT_TIE,Tied at {my_score},Égalité à {my_score}
+UI_SOCIAL_CREATING,Creating challenge...,Création du défi...
+UI_SOCIAL_JOINING,Joining challenge...,Connexion au défi...
+UI_SOCIAL_ERROR_OFFLINE,Backend unreachable - try again later,Serveur injoignable - réessaie plus tard
+UI_SOCIAL_ERROR_JOIN,Could not join this challenge - check the code,Impossible de rejoindre ce défi - vérifie le code
+UI_SOCIAL_LIVE_TITLE,Live match,Match en direct
+UI_SOCIAL_LIVE_SEARCH,Find an opponent,Chercher un adversaire
+UI_SOCIAL_LIVE_SEARCHING,Searching for an opponent...,Recherche d'un adversaire...
+UI_SOCIAL_LIVE_CANCEL,Cancel,Annuler
+UI_SOCIAL_LIVE_HEADER,vs {opponent} - you {my_score} / them {opponent_score},vs {opponent} - toi {my_score} / lui {opponent_score}
+UI_SOCIAL_LIVE_POINTS,+{points} points,+{points} points
+UI_SOCIAL_LIVE_CLOSE,Close,Fermer
 UI_COMING_SOON,Coming soon,Bientôt disponible
 UI_COMING_SOON_DESC,This feature is under development.,Cette fonctionnalité est en cours de développement.
 UI_PROFILE_STATS_TITLE,Statistics,Statistiques
