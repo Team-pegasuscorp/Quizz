@@ -118,7 +118,7 @@ func _make_secondary_tab(page_index: int, tab_id: int) -> Control:
 	var column := VBoxContainer.new()
 	column.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	column.alignment = BoxContainer.ALIGNMENT_CENTER
-	column.add_theme_constant_override("separation", 4)
+	column.add_theme_constant_override("separation", UiTokens.QUIZ_FAB_ICON_LABEL_SEPARATION)
 	column.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	wrapper.add_child(column)
 
@@ -181,7 +181,7 @@ func _make_quiz_fab(page_index: int) -> Control:
 	var column := VBoxContainer.new()
 	column.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	column.alignment = BoxContainer.ALIGNMENT_CENTER
-	column.add_theme_constant_override("separation", 0)
+	column.add_theme_constant_override("separation", UiTokens.QUIZ_FAB_ICON_LABEL_SEPARATION)
 	column.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_quiz_disc.add_child(column)
 
@@ -189,7 +189,7 @@ func _make_quiz_fab(page_index: int) -> Control:
 	_quiz_icon.custom_minimum_size = Vector2(UiTokens.QUIZ_FAB_ICON_SIZE, UiTokens.QUIZ_FAB_ICON_SIZE)
 	_quiz_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_quiz_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_quiz_icon.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	_quiz_icon.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	_quiz_icon.texture = load(UiTokens.TAB_ICON_PATHS[ScenePaths.Tab.QUIZ])
 	_quiz_icon.modulate = Color.WHITE
 	_quiz_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE

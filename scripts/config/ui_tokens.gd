@@ -51,11 +51,18 @@ const HEADER_SHELL_MARGIN_H: int = 0
 const HEADER_SHELL_MARGIN_TOP: int = 0
 const HEADER_SHELL_MARGIN_BOTTOM: int = 0
 const HEADER_BAR_RADIUS: int = 0
-const HEADER_LOGO_SIZE: float = 48.0
+const HEADER_LOGO_SIZE: float = 80.0
+const HEADER_WORDMARK_WIDTH: float = 280.0
+const HEADER_WORDMARK_HEIGHT: float = 64.0
+const HEADER_BRAND_SEPARATION: int = 12
+const HEADER_BRAND_OFFSET_X: float = 10.0
 const HEADER_TITLE_SIZE: int = 28
-const HEADER_SETTINGS_SIZE: float = 56.0
-const HEADER_SETTINGS_ICON_SIZE: int = 34
-const APP_LOGO_PATH := "res://assets/ui/logo_app.svg"
+const HEADER_SETTINGS_SIZE: float = 64.0
+const HEADER_SETTINGS_ICON_SIZE: int = 56
+const HEADER_SIDE_PADDING: float = 26.0
+const APP_LOGO_PATH := "res://assets/ui/logo_app.png"
+const APP_WORDMARK_PATH := "res://assets/ui/brainup_wordmark.png"
+const APP_SETTINGS_ICON_PATH := "res://assets/ui/icon_settings.png"
 
 const BOTTOM_NAV_HEIGHT: float = 96.0
 const BOTTOM_NAV_TOTAL_HEIGHT: float = 188.0
@@ -74,8 +81,9 @@ const SECONDARY_NAV_LABEL_SIZE_INACTIVE: int = 16
 const SECONDARY_NAV_INACTIVE_ALPHA: float = 1.0
 const QUIZ_FAB_SIZE: float = 128.0
 const QUIZ_FAB_LIFT: float = 56.0
-const QUIZ_FAB_ICON_SIZE: int = 66
-const QUIZ_FAB_LABEL_SIZE: int = 18
+const QUIZ_FAB_ICON_SIZE: int = 52
+const QUIZ_FAB_LABEL_SIZE: int = 17
+const QUIZ_FAB_ICON_LABEL_SEPARATION: int = 4
 const QUIZ_FAB_SHADOW_SIZE: int = 14
 const QUIZ_FAB_GLOW_SIZE: float = 140.0
 const QUIZ_FAB_RING_SIZE: float = 144.0
@@ -94,7 +102,7 @@ const TAB_INACTIVE_COLOR := Color(0.55, 0.57, 0.6, 1)
 const TAB_ACTIVE_COLOR := Color(0.12, 0.13, 0.15, 1)
 const TAB_ICON_PATHS: Array[String] = [
 	"res://assets/ui/icon_tab_home.svg",
-	"res://assets/ui/icon_tab_quiz.svg",
+	"res://assets/ui/icon_tab_quiz.png",
 	"res://assets/ui/icon_tab_multiplayer.svg",
 	"res://assets/ui/icon_tab_leaderboard.svg",
 	"res://assets/ui/icon_tab_profile.svg",
