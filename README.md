@@ -1,6 +1,8 @@
-# Quizz
+# BrainUp
 
-QuizUp-style trivia game built with **Godot 4.3**, with **French and English** support from day one.
+Trivia game built with **Godot 4.7**, with **French and English** support from day one.
+
+**Tagline:** Learn · Compete · Rise
 
 ## Features (MVP)
 
@@ -17,9 +19,9 @@ QuizUp-style trivia game built with **Godot 4.3**, with **French and English** s
 
 ## Run the project
 
-1. Open Godot 4.3
+1. Open Godot 4.7
 2. Import/open this folder as a project
-3. Press **F5** (main scene: `scenes/main_menu.tscn`)
+3. Press **F5** (main scene: `scenes/app_shell.tscn`)
 
 Or from the command line:
 

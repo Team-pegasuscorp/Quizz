@@ -67,9 +67,9 @@ func _configure_settings_button() -> void:
 	settings_button.mouse_filter = Control.MOUSE_FILTER_STOP
 	settings_button.add_theme_constant_override("icon_max_width", UiTokens.HEADER_SETTINGS_ICON_SIZE)
 	settings_button.add_theme_constant_override("h_separation", 0)
-	settings_button.add_theme_color_override("icon_normal_color", UiTokens.INK)
-	settings_button.add_theme_color_override("icon_hover_color", UiTokens.ACCENT_QUIZ_DEEP)
-	settings_button.add_theme_color_override("icon_pressed_color", UiTokens.ACCENT_QUIZ_DEEP)
+	settings_button.add_theme_color_override("icon_normal_color", UiTokens.BRAND_WHITE)
+	settings_button.add_theme_color_override("icon_hover_color", UiTokens.BRAND_CYAN)
+	settings_button.add_theme_color_override("icon_pressed_color", UiTokens.BRAND_PINK)
 	settings_button.add_theme_stylebox_override("normal", UiStyle.settings_chip())
 	settings_button.add_theme_stylebox_override("hover", UiStyle.settings_chip())
 	settings_button.add_theme_stylebox_override("pressed", UiStyle.settings_chip())

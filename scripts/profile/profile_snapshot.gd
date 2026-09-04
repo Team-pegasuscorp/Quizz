@@ -36,6 +36,7 @@ static func _from_save(locale: String) -> Dictionary:
 		"current_win_streak": SaveManager.current_win_streak,
 		"best_win_streak": SaveManager.best_win_streak,
 		"best_score": _best_score(),
+		"xp_remaining": maxi(int(SaveManager.get_xp_for_next_level()) - SaveManager.xp, 0),
 		"categories": _build_categories(locale),
 		"history": _build_history(locale),
 		"is_demo": false,
@@ -66,27 +67,29 @@ static func _best_score() -> int:
 static func _merge_demo(base: Dictionary, locale: String) -> Dictionary:
 	var demo := base.duplicate(true)
 	demo["is_demo"] = true
-	demo["level"] = 4
-	demo["xp"] = 65
-	demo["xp_to_next"] = 175
-	demo["xp_progress"] = 0.37
-	demo["rank_title_key"] = PlayerRanks.title_for_level(4)
-	demo["games_played"] = 18
-	demo["wins"] = 11
-	demo["losses"] = 7
-	demo["win_rate_percent"] = 61.1
-	demo["correct_answers"] = 84
-	demo["current_win_streak"] = 2
-	demo["best_win_streak"] = 4
-	demo["best_score"] = 620
+	demo["level"] = 12
+	demo["xp"] = 750
+	demo["xp_to_next"] = 1200
+	demo["xp_progress"] = 750.0 / 1200.0
+	demo["xp_remaining"] = 450
+	demo["rank_title_key"] = PlayerRanks.title_for_level(12)
+	demo["games_played"] = 48
+	demo["wins"] = 34
+	demo["losses"] = 14
+	demo["win_rate_percent"] = 70.8
+	demo["correct_answers"] = 186
+	demo["current_win_streak"] = 4
+	demo["best_win_streak"] = 12
+	demo["best_score"] = 985
 	demo["categories"] = [
-		_make_category_row("sport", locale, 8, 72.0, 2),
-		_make_category_row("cinema", locale, 6, 58.0, 3),
-		_make_category_row("history", locale, 4, 45.0, 1),
+		_make_category_row("sport", locale, 18, 81.0, 3),
+		_make_category_row("cinema", locale, 16, 65.0, 2),
+		_make_category_row("history", locale, 14, 58.0, 2),
 	]
 	demo["history"] = [
-		_make_history_row("cinema", locale, 540, true, 6, 7, 2),
-		_make_history_row("sport", locale, 410, false, 4, 7, 26),
+		_make_history_row("sport", locale, 985, true, 6, 7, 2, "AlexStrike"),
+		_make_history_row("cinema", locale, 621, false, 3, 7, 8, "Luna"),
+		_make_history_row("sport", locale, 842, true, 5, 7, 22, "TheBrain"),
 	]
 	return demo
 
@@ -117,7 +120,16 @@ static func _make_category_row(category_id: String, locale: String, games: int, 
 	}
 
 
-static func _make_history_row(category_id: String, locale: String, score: int, won: bool, correct: int, total: int, age_hours: int) -> Dictionary:
+static func _make_history_row(
+	category_id: String,
+	locale: String,
+	score: int,
+	won: bool,
+	correct: int,
+	total: int,
+	age_hours: int,
+	opponent_name: String = ""
+) -> Dictionary:
 	return {
 		"category_id": category_id,
 		"category_name": _resolve_category_name(category_id, locale),
@@ -126,6 +138,7 @@ static func _make_history_row(category_id: String, locale: String, score: int, w
 		"correct_count": correct,
 		"total_count": total,
 		"age_hours": age_hours,
+		"opponent_name": opponent_name,
 	}
 
 
@@ -145,6 +158,7 @@ static func _build_history(locale: String) -> Array:
 			int(raw.get("correct_count", 0)),
 			int(raw.get("total_count", 0)),
 			age_hours,
+			str(raw.get("opponent_name", "")),
 		))
 	return rows
 
@@ -157,6 +171,7 @@ static func _build_achievements(data: Dictionary) -> Array:
 		"best_score": data.get("best_score", 0),
 		"has_perfect_round": SaveManager.has_perfect_round,
 		"level": data.get("level", 1),
+		"correct_answers": data.get("correct_answers", 0),
 		"categories_played": _count_categories_played_from_data(data),
 	}
 	var rows: Array = []

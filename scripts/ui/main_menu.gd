@@ -11,6 +11,7 @@ const PressScaleUtil = preload("res://scripts/ui/press_scale.gd")
 @onready var language_label: Label = %LanguageLabel
 @onready var settings_panel: PanelContainer = %SettingsPanel
 @onready var close_settings_button: Button = %CloseSettingsButton
+@onready var content_margin: MarginContainer = %MarginContainer
 
 
 func _ready() -> void:

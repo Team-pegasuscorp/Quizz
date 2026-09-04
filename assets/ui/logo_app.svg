@@ -1,5 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24" fill="none">
-  <rect width="24" height="24" rx="7" fill="#FFFFFF"/>
-  <circle cx="11.2" cy="11.2" r="4.3" stroke="#5CBFFF" stroke-width="2"/>
-  <path d="M14.4 14.4L18 18" stroke="#5CBFFF" stroke-width="2.2" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="brain" x1="28" y1="30" x2="100" y2="98" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00D4FF"/>
+      <stop offset="0.45" stop-color="#7B61FF"/>
+      <stop offset="1" stop-color="#FF4DFF"/>
+    </linearGradient>
+    <linearGradient id="arrow" x1="48" y1="96" x2="92" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF9A00"/>
+      <stop offset="1" stop-color="#FFD400"/>
+    </linearGradient>
+  </defs>
+  <path d="M62 22 C38 22 22 40 22 64 C22 88 38 106 62 106" stroke="url(#brain)" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+  <path d="M66 22 C90 22 106 40 106 64 C106 88 90 106 66 106" stroke="url(#brain)" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+  <circle cx="40" cy="48" r="3.4" fill="#00D4FF"/>
+  <circle cx="48" cy="38" r="2.8" fill="#00D4FF"/>
+  <circle cx="34" cy="68" r="3" fill="#00D4FF"/>
+  <circle cx="46" cy="82" r="2.8" fill="#7B61FF"/>
+  <path d="M40 48 L48 38 M40 48 L34 68 M34 68 L46 82" stroke="#00D4FF" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="88" cy="48" r="3.4" fill="#FF4DFF"/>
+  <circle cx="80" cy="38" r="2.8" fill="#FF4DFF"/>
+  <circle cx="94" cy="68" r="3" fill="#FF4DFF"/>
+  <circle cx="82" cy="82" r="2.8" fill="#7B61FF"/>
+  <path d="M88 48 L80 38 M88 48 L94 68 M94 68 L82 82" stroke="#FF4DFF" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M64 98 L64 32 L48 48 M64 32 L80 48" stroke="url(#arrow)" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>

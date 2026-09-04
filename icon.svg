@@ -1,5 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
-  <rect width="128" height="128" rx="24" fill="#4f46e5"/>
-  <circle cx="64" cy="64" r="36" fill="none" stroke="#ffffff" stroke-width="8"/>
-  <text x="64" y="76" text-anchor="middle" font-family="sans-serif" font-size="42" font-weight="700" fill="#ffffff">?</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="64" y1="0" x2="64" y2="128" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12182E"/>
+      <stop offset="1" stop-color="#070A14"/>
+    </linearGradient>
+    <linearGradient id="brain" x1="28" y1="30" x2="100" y2="98" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00D4FF"/>
+      <stop offset="0.45" stop-color="#7B61FF"/>
+      <stop offset="1" stop-color="#FF4DFF"/>
+    </linearGradient>
+    <linearGradient id="arrow" x1="48" y1="96" x2="92" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF9A00"/>
+      <stop offset="1" stop-color="#FFD400"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <path d="M62 28 C40 28 26 44 26 64 C26 84 40 100 62 100" stroke="url(#brain)" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M66 28 C88 28 102 44 102 64 C102 84 88 100 66 100" stroke="url(#brain)" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <circle cx="40" cy="48" r="3.2" fill="#00D4FF"/>
+  <circle cx="48" cy="40" r="2.6" fill="#00D4FF"/>
+  <circle cx="36" cy="68" r="2.8" fill="#00D4FF"/>
+  <circle cx="46" cy="80" r="2.6" fill="#7B61FF"/>
+  <path d="M40 48 L48 40 M40 48 L36 68 M36 68 L46 80" stroke="#00D4FF" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="88" cy="48" r="3.2" fill="#FF4DFF"/>
+  <circle cx="80" cy="40" r="2.6" fill="#FF4DFF"/>
+  <circle cx="92" cy="68" r="2.8" fill="#FF4DFF"/>
+  <circle cx="82" cy="80" r="2.6" fill="#7B61FF"/>
+  <path d="M88 48 L80 40 M88 48 L92 68 M92 68 L82 80" stroke="#FF4DFF" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M64 94 L64 38 L50 52 M64 38 L78 52" stroke="url(#arrow)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>

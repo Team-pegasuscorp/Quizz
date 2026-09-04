@@ -5,10 +5,12 @@ extends RefCounted
 static func title_for_level(level: int) -> String:
 	if level >= 25:
 		return "UI_RANK_LEGEND"
-	if level >= 15:
+	if level >= 18:
 		return "UI_RANK_MASTER"
-	if level >= 10:
+	if level >= 15:
 		return "UI_RANK_EXPERT"
+	if level >= 8:
+		return "UI_RANK_CONNOISSEUR"
 	if level >= 5:
 		return "UI_RANK_CHALLENGER"
 	if level >= 2:

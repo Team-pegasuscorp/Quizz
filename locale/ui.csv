@@ -1,6 +1,7 @@
 keys,en,fr
-UI_APP_TITLE,Quizz,Quizz
-UI_APP_SUBTITLE,Fast trivia. Beat your best score.,Quiz rapide. Battez votre meilleur score.
+UI_APP_TITLE,BrainUp,BrainUp
+UI_APP_SUBTITLE,Learn • Compete • Rise,Apprendre • Rivaliser • Progresser
+UI_APP_TAGLINE,LEARN • COMPETE • RISE,LEARN • COMPETE • RISE
 UI_PLAY,Play,Jouer
 UI_SETTINGS,Settings,Paramètres
 UI_PROFILE,Profile,Profil
@@ -35,10 +36,10 @@ UI_PROFILE_PHOTO,Profile photo,Photo de profil
 UI_PROFILE_CHANGE_PHOTO,Change photo,Changer la photo
 UI_PROFILE_REMOVE_PHOTO,Remove photo,Retirer la photo
 UI_PROFILE_SAVE,Save profile,Enregistrer le profil
-UI_PROFILE_GAMES_PLAYED,Quizzes played,Quiz joués
+UI_PROFILE_GAMES_PLAYED,Games played,Parties jouées
 UI_PROFILE_WINS,Wins,Victoires
 UI_PROFILE_LOSSES,Losses,Défaites
-UI_PROFILE_WIN_RATE,Win rate,Taux de victoire
+UI_PROFILE_WIN_RATE,Win rate,Taux de réussite
 UI_PROFILE_FAVORITE_THEME,Favorite theme,Thème favori
 UI_PROFILE_NO_FAVORITE,No favorite yet,Aucun thème favori
 UI_PROFILE_SAVED,Profile saved,Profil enregistré
@@ -63,7 +64,7 @@ UI_COMING_SOON_DESC,This feature is under development.,Cette fonctionnalité est
 UI_PROFILE_STATS_TITLE,Statistics,Statistiques
 UI_PROFILE_CATEGORIES_TITLE,Categories,Catégories
 UI_PROFILE_BADGES_TITLE,Achievements,Succès
-UI_PROFILE_HISTORY_TITLE,Recent history,Historique récent
+UI_PROFILE_HISTORY_TITLE,Recent activity,Activité récente
 UI_PROFILE_XP_PROGRESS,{current} / {target} XP,{current} / {target} XP
 UI_PROFILE_DEMO_HINT,Sample data shown for preview.,Données d'exemple affichées en aperçu.
 UI_PROFILE_CORRECT_ANSWERS,Correct answers,Bonnes réponses
@@ -81,6 +82,7 @@ UI_PROFILE_BADGE_LOCKED,Complete the challenge to unlock this badge.,Terminez le
 UI_RANK_ROOKIE,Rookie,Débutant
 UI_RANK_APPRENTICE,Apprentice,Apprenti
 UI_RANK_CHALLENGER,Challenger,Challenger
+UI_RANK_CONNOISSEUR,Connoisseur,Connaisseur
 UI_RANK_EXPERT,Expert,Expert
 UI_RANK_MASTER,Master,Maître
 UI_RANK_LEGEND,Legend,Légende
@@ -105,3 +107,20 @@ UI_ACH_LEVEL_5,Rising Star,Étoile montante
 UI_ACH_LEVEL_5_DESC,Reach level 5.,Atteignez le niveau 5.
 UI_ACH_EXPLORER,Explorer,Explorateur
 UI_ACH_EXPLORER_DESC,Play quizzes in at least 2 categories.,Jouez dans au moins 2 catégories.
+UI_ACH_UNBEATABLE,Unbeatable,Imbattable
+UI_ACH_UNBEATABLE_DESC,Win 100 quizzes.,Gagnez 100 parties.
+UI_ACH_SCIENTIST,Scientist,Scientifique
+UI_ACH_SCIENTIST_DESC,Answer 500 questions correctly.,Répondez à 500 questions.
+UI_ACH_SERIOUS,On a roll,Sérieux
+UI_ACH_SERIOUS_DESC,Reach a win streak of 10.,Série de 10 victoires.
+UI_ACH_EXPERT,Expert,Expert
+UI_ACH_EXPERT_DESC,Reach level 20.,Atteignez le niveau 20.
+UI_PROFILE_SEE_ALL,See all,Voir tout
+UI_PROFILE_CATEGORY_GAMES,{games} games,{games} parties
+UI_PROFILE_XP_NEXT,Next level in {xp} XP,Prochain niveau dans {xp} XP
+UI_PROFILE_VICTORY,VICTORY,VICTOIRE
+UI_PROFILE_DEFEAT,DEFEAT,DÉFAITE
+UI_PROFILE_SOLO,Solo match,Partie solo
+UI_PROFILE_VS,VS {name},VS {name}
+UI_PROFILE_EDIT_AVATAR,Edit avatar,Modifier l'avatar
+UI_PROFILE_VERIFIED,Verified player,Joueur vérifié

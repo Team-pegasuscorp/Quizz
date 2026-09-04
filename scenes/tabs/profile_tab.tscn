@@ -1,16 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://profile_tab_scene"]
+[gd_scene load_steps=2 format=3 uid="uid://profile_tab_scene"]
 
 [ext_resource type="Script" path="res://scripts/ui/profile_tab.gd" id="1_profile_tab"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hero"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
-shadow_color = Color(0.42, 0.361, 1, 0.12)
-shadow_size = 14
-shadow_offset = Vector2(0, 3)
 
 [node name="ProfileTab" type="Control"]
 layout_mode = 3
@@ -35,191 +25,230 @@ horizontal_scroll_mode = 0
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 16
+theme_override_constants/separation = 0
 
-[node name="OuterMargin" type="MarginContainer" parent="ScrollContainer/ContentVBox"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="InnerVBox" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="HeroPanel" type="PanelContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox"]
+[node name="HeroPanel" type="PanelContainer" parent="ScrollContainer/ContentVBox"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 156)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hero")
 
-[node name="HeroMargin" type="MarginContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel"]
+[node name="HeroMargin" type="MarginContainer" parent="ScrollContainer/ContentVBox/HeroPanel"]
 layout_mode = 2
-theme_override_constants/margin_left = 18
+theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 18
-theme_override_constants/margin_right = 18
-theme_override_constants/margin_bottom = 18
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 48
 
-[node name="HeroVBox" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin"]
+[node name="HeroRow" type="HBoxContainer" parent="ScrollContainer/ContentVBox/HeroPanel/HeroMargin"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 14
+alignment = 1
 
-[node name="AvatarCenter" type="CenterContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
-layout_mode = 2
-
-[node name="AvatarFrame" type="PanelContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox/AvatarCenter"]
-custom_minimum_size = Vector2(112, 112)
-layout_mode = 2
-
-[node name="AvatarTexture" type="TextureRect" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox/AvatarCenter/AvatarFrame"]
+[node name="AvatarFrame" type="PanelContainer" parent="ScrollContainer/ContentVBox/HeroPanel/HeroMargin/HeroRow"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(104, 104)
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="AvatarTexture" type="TextureRect" parent="ScrollContainer/ContentVBox/HeroPanel/HeroMargin/HeroRow/AvatarFrame"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PseudoInput" type="LineEdit" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
-unique_name_in_owner = true
+[node name="IdentityVBox" type="VBoxContainer" parent="ScrollContainer/ContentVBox/HeroPanel/HeroMargin/HeroRow"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-placeholder_text = "Enter your name..."
-horizontal_alignment = 1
-max_length = 24
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 4
 
-[node name="RankLabel" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_type_variation = &"GoldMonoLabel"
-theme_override_font_sizes/font_size = 14
-text = "Rookie"
-horizontal_alignment = 1
-
-[node name="LevelLabel" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Level 1"
-horizontal_alignment = 1
-
-[node name="XpBar" type="ProgressBar" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 14)
-layout_mode = 2
-max_value = 100.0
-value = 35.0
-show_percentage = false
-
-[node name="XpCaptionLabel" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_type_variation = &"MonoLabel"
-theme_override_font_sizes/font_size = 12
-text = "65 / 175 XP"
-horizontal_alignment = 1
-
-[node name="PhotoButtonsHBox" type="HBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
+[node name="NameRow" type="HBoxContainer" parent="ScrollContainer/ContentVBox/HeroPanel/HeroMargin/HeroRow/IdentityVBox"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="ChangePhotoButton" type="Button" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox/PhotoButtonsHBox"]
+[node name="PseudoInput" type="LineEdit" parent="ScrollContainer/ContentVBox/HeroPanel/HeroMargin/HeroRow/IdentityVBox/NameRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Change photo"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 0.65)
+theme_override_font_sizes/font_size = 26
+placeholder_text = "Enter your name..."
+max_length = 24
+flat = true
+caret_blink = true
 
-[node name="RemovePhotoButton" type="Button" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox/PhotoButtonsHBox"]
+[node name="VerifiedBadge" type="Label" parent="ScrollContainer/ContentVBox/HeroPanel/HeroMargin/HeroRow/IdentityVBox/NameRow"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(22, 22)
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Remove photo"
-
-[node name="DemoHintLabel" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_type_variation = &"MonoLabel"
-theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "✓"
 horizontal_alignment = 1
-autowrap_mode = 3
+vertical_alignment = 1
 
-[node name="ProfileStatusLabel" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HeroPanel/HeroMargin/HeroVBox"]
+[node name="RankLabel" type="Label" parent="ScrollContainer/ContentVBox/HeroPanel/HeroMargin/HeroRow/IdentityVBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_type_variation = &"GoldMonoLabel"
-theme_override_font_sizes/font_size = 12
-horizontal_alignment = 1
+theme_override_colors/font_color = Color(1, 1, 1, 0.86)
+theme_override_font_sizes/font_size = 15
+text = "Rookie"
 
-[node name="StatsSection" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox"]
+[node name="EditAvatarButton" type="Button" parent="ScrollContainer/ContentVBox/HeroPanel/HeroMargin/HeroRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
-theme_override_constants/separation = 10
+size_flags_vertical = 4
+text = "✎"
 
-[node name="StatsTitle" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/StatsSection"]
+[node name="BodyMargin" type="MarginContainer" parent="ScrollContainer/ContentVBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = -36
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 28
+
+[node name="BodyVBox" type="VBoxContainer" parent="ScrollContainer/ContentVBox/BodyMargin"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="XpPanel" type="PanelContainer" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="XpMargin" type="MarginContainer" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/XpPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="XpVBox" type="VBoxContainer" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/XpPanel/XpMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LevelLabel" type="Label" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/XpPanel/XpMargin/XpVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 22
+text = "Level 12"
+
+[node name="XpCaptionLabel" type="Label" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/XpPanel/XpMargin/XpVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.6, 1)
+theme_override_font_sizes/font_size = 14
+text = "750 / 1200 XP"
+
+[node name="XpBar" type="ProgressBar" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/XpPanel/XpMargin/XpVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+max_value = 100.0
+value = 0.0
+show_percentage = false
+
+[node name="XpNextLabel" type="Label" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/XpPanel/XpMargin/XpVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.6, 1)
+theme_override_font_sizes/font_size = 13
+text = "Next level in 450 XP"
+
+[node name="StatsSection" type="VBoxContainer" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="StatsTitle" type="Label" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/StatsSection"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"TitleLabel"
 theme_override_font_sizes/font_size = 20
 text = "Statistics"
 
-[node name="SpotlightRow" type="HBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/StatsSection"]
+[node name="StatsGrid" type="GridContainer" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/StatsSection"]
 unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="CategoriesSection" type="VBoxContainer" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="StatsGrid" type="GridContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/StatsSection"]
+[node name="CategoriesHeader" type="HBoxContainer" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/CategoriesSection"]
+layout_mode = 2
+
+[node name="CategoriesTitle" type="Label" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/CategoriesSection/CategoriesHeader"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
-columns = 2
-
-[node name="CategoriesSection" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="CategoriesTitle" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/CategoriesSection"]
-unique_name_in_owner = true
-layout_mode = 2
+size_flags_horizontal = 3
 theme_type_variation = &"TitleLabel"
 theme_override_font_sizes/font_size = 20
 text = "Categories"
 
-[node name="CategoriesList" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/CategoriesSection"]
+[node name="SeeAllButton" type="Button" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/CategoriesSection/CategoriesHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+flat = true
+text = "See all"
+
+[node name="CategoriesList" type="VBoxContainer" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/CategoriesSection"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="BadgesSection" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox"]
+[node name="BadgesSection" type="VBoxContainer" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 12
 
-[node name="BadgesTitle" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/BadgesSection"]
+[node name="BadgesTitle" type="Label" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/BadgesSection"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"TitleLabel"
 theme_override_font_sizes/font_size = 20
 text = "Achievements"
 
-[node name="BadgesGrid" type="GridContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/BadgesSection"]
+[node name="BadgesGrid" type="GridContainer" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/BadgesSection"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 8
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
 columns = 4
 
-[node name="HistorySection" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox"]
+[node name="HistorySection" type="VBoxContainer" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 12
 
-[node name="HistoryTitle" type="Label" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HistorySection"]
+[node name="HistoryTitle" type="Label" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/HistorySection"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"TitleLabel"
 theme_override_font_sizes/font_size = 20
-text = "Recent history"
+text = "Recent activity"
 
-[node name="HistoryList" type="VBoxContainer" parent="ScrollContainer/ContentVBox/OuterMargin/InnerVBox/HistorySection"]
+[node name="HistoryList" type="VBoxContainer" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox/HistorySection"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 10
+
+[node name="DemoHintLabel" type="Label" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.6, 1)
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ProfileStatusLabel" type="Label" parent="ScrollContainer/ContentVBox/BodyMargin/BodyVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
 
 [node name="PhotoDialog" type="FileDialog" parent="."]
 unique_name_in_owner = true
@@ -240,7 +269,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
-color = Color(0, 0, 0, 0.55)
+color = Color(0.12, 0.13, 0.15, 0.28)
 
 [node name="BadgeDetailPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true

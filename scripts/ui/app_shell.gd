@@ -61,8 +61,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _configure_chrome() -> void:
-	settings_panel.add_theme_stylebox_override("panel", UiStyle.card(UiTokens.ACCENT_QUIZ))
-	settings_backdrop.color = Color(0.12, 0.13, 0.15, 0.28)
+	settings_panel.add_theme_stylebox_override("panel", UiStyle.card(UiTokens.BRAND_CYAN))
+	settings_backdrop.color = Color(0.027, 0.039, 0.078, 0.72)
 
 
 func _apply_translations() -> void:

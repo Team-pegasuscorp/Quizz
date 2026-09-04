@@ -23,6 +23,7 @@ grow_vertical = 2
 color = Color(1, 1, 1, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,7 +44,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"TitleLabel"
 theme_override_font_sizes/font_size = 56
-text = "Quizz"
+text = "BrainUp"
 horizontal_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="MarginContainer/VBox"]

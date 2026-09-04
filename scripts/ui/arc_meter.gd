@@ -3,7 +3,7 @@ class_name ArcMeter
 
 @export var value: float = 0.0
 @export var accent := Color(0.42, 0.361, 1.0, 1)
-@export var track := Color(0.12, 0.13, 0.15, 0.08)
+@export var track := Color(1, 1, 1, 0.1)
 @export var line_width: float = 11.0
 
 
