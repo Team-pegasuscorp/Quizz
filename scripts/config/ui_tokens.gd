@@ -62,11 +62,12 @@ const HEADER_SHELL_MARGIN_H: int = 0
 const HEADER_SHELL_MARGIN_TOP: int = 0
 const HEADER_SHELL_MARGIN_BOTTOM: int = 0
 const HEADER_BAR_RADIUS: int = 0
-const HEADER_LOGO_SIZE: float = 48.0
+const HEADER_LOGO_SIZE: float = 56.0
 const HEADER_TITLE_SIZE: int = 28
 const HEADER_SETTINGS_SIZE: float = 56.0
 const HEADER_SETTINGS_ICON_SIZE: int = 34
-const APP_LOGO_PATH := "res://assets/ui/logo_app.svg"
+const APP_LOGO_PATH := "res://assets/branding/brainup-app-icon.png"
+const APP_ICON_PATH := "res://assets/branding/brainup-app-icon.png"
 
 const BOTTOM_NAV_HEIGHT: float = 96.0
 const BOTTOM_NAV_TOTAL_HEIGHT: float = 188.0

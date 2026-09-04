@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://top_app_bar_scene"]
 
 [ext_resource type="Script" path="res://scripts/ui/top_app_bar.gd" id="1_top_app_bar"]
-[ext_resource type="Texture2D" path="res://assets/ui/logo_app.svg" id="2_logo"]
+[ext_resource type="Texture2D" path="res://assets/branding/brainup-app-icon.png" id="2_logo"]
 [ext_resource type="Texture2D" path="res://assets/ui/icon_settings.svg" id="3_settings_icon"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar"]
