@@ -1,4 +1,4 @@
-# Quizz
+# BrainUp
 
 QuizUp-style trivia game built with **Godot 4.3**, with **French and English** support from day one.
 
