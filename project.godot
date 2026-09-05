@@ -44,7 +44,6 @@ theme/custom="res://themes/quizup_theme.tres"
 [internationalization]
 
 locale/translations=PackedStringArray("res://locale/ui.en.translation", "res://locale/ui.fr.translation")
-locale/fallback="en"
 
 [rendering]
 

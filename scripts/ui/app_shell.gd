@@ -13,13 +13,21 @@ const UiStyle = preload("res://scripts/config/ui_style.gd")
 @onready var language_label: Label = %LanguageLabel
 @onready var settings_panel: PanelContainer = %SettingsPanel
 @onready var close_settings_button: Button = %CloseSettingsButton
+@onready var shell_background: ColorRect = $Background
+@onready var main_column: VBoxContainer = $MainColumn
+
+var _brand_bg_material: Material
 
 
 func _ready() -> void:
+	_brand_bg_material = shell_background.material
+	## Small protected band under the bottom menu — nothing from pages draws there.
+	main_column.offset_bottom = -UiTokens.BOTTOM_NAV_SAFE_ZONE
 	tab_swipe.swipe_threshold = UiTokens.TAB_SWIPE_THRESHOLD
 	tab_swipe.drag_lock_threshold = UiTokens.TAB_SWIPE_DRAG_LOCK
 	tab_swipe.animation_duration = UiTokens.TAB_SWIPE_DURATION
 	_configure_chrome()
+	_apply_page_backgrounds()
 	_apply_translations()
 	_setup_language_option()
 	_wire_navigation()
@@ -37,7 +45,42 @@ func _ready() -> void:
 	var initial_page: int = ScenePaths.page_index_for_tab(initial_tab)
 	tab_swipe.set_tab(initial_page, false)
 	bottom_nav.set_active_tab(initial_page)
+	_sync_shell_background(initial_page)
 	_notify_tab_shown(initial_page)
+
+
+func _apply_page_backgrounds() -> void:
+	var pages: HBoxContainer = tab_swipe.pages_row
+	for page_index in range(pages.get_child_count()):
+		var tab_id: int = ScenePaths.tab_for_page_index(page_index)
+		## Quiz keeps the shared brand navy canvas behind the pages.
+		if tab_id == ScenePaths.Tab.QUIZ:
+			continue
+		var page := pages.get_child(page_index) as Control
+		if page == null:
+			continue
+		if page.has_meta("tab_page_bg"):
+			continue
+		var bg := ColorRect.new()
+		bg.name = "TabPageBackground"
+		bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		bg.color = UiTokens.page_bg_for_tab(tab_id)
+		page.add_child(bg)
+		page.move_child(bg, 0)
+		page.set_meta("tab_page_bg", true)
+
+
+func _sync_shell_background(page_index: int) -> void:
+	## Pages stop above the bottom nav; tint the full-screen shell so the color
+	## continues behind / below the floating dock.
+	var tab_id: int = ScenePaths.tab_for_page_index(page_index)
+	if tab_id == ScenePaths.Tab.QUIZ:
+		shell_background.material = _brand_bg_material
+		shell_background.color = UiTokens.BG_CREAM
+	else:
+		shell_background.material = null
+		shell_background.color = UiTokens.page_bg_for_tab(tab_id)
 
 
 func _wire_navigation() -> void:
@@ -88,6 +131,7 @@ func _on_bottom_nav_selected(index: int) -> void:
 func _on_tab_changed(page_index: int) -> void:
 	bottom_nav.set_active_tab(page_index)
 	GameManager.shell_tab_index = ScenePaths.tab_for_page_index(page_index)
+	_sync_shell_background(page_index)
 	_notify_tab_shown(page_index)
 
 

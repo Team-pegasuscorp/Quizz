@@ -39,7 +39,16 @@ const _LABEL_KEYS := {
 
 func _ready() -> void:
 	clip_contents = false
+	## Root / shell must not steal hits in the FAB float zone above the white dock.
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var dock_shell := get_node_or_null("DockShell") as MarginContainer
+	if dock_shell:
+		dock_shell.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		dock_shell.add_theme_constant_override(
+			"margin_top", int(UiTokens.BOTTOM_NAV_FAB_CLEARANCE)
+		)
 	dock.clip_contents = false
+	dock.mouse_filter = Control.MOUSE_FILTER_STOP
 	dock.add_theme_stylebox_override("panel", UiStyle.nav_dock())
 	energy_bar.visible = false
 	_build_tabs()
@@ -163,7 +172,7 @@ func _make_quiz_fab(page_index: int) -> Control:
 	_quiz_glow.custom_minimum_size = Vector2(UiTokens.QUIZ_FAB_GLOW_SIZE, UiTokens.QUIZ_FAB_GLOW_SIZE)
 	_quiz_glow.add_theme_stylebox_override(
 		"panel",
-		UiStyle.glow_disc(UiTokens.ACCENT_QUIZ, int(UiTokens.QUIZ_FAB_GLOW_SIZE * 0.5))
+		UiStyle.glow_disc(UiTokens.QUIZ_FAB_GLOW_COLOR, int(UiTokens.QUIZ_FAB_GLOW_SIZE * 0.5))
 	)
 	_quiz_glow.visible = false
 	_quiz_glow.modulate = Color(1, 1, 1, UiTokens.QUIZ_FAB_GLOW_ALPHA_MIN)
@@ -174,7 +183,7 @@ func _make_quiz_fab(page_index: int) -> Control:
 	_quiz_disc.custom_minimum_size = Vector2(UiTokens.QUIZ_FAB_SIZE, UiTokens.QUIZ_FAB_SIZE)
 	_quiz_disc.add_theme_stylebox_override(
 		"panel",
-		UiStyle.filled_disc(UiTokens.ACCENT_QUIZ, UiTokens.QUIZ_FAB_CORNER_RADIUS)
+		UiStyle.quiz_fab_disc(UiTokens.QUIZ_FAB_BG)
 	)
 	fab_layer.add_child(_quiz_disc)
 
@@ -259,7 +268,7 @@ func _update_quiz_fab_state(is_active: bool) -> void:
 		_quiz_disc.modulate = Color.WHITE
 		_quiz_disc.add_theme_stylebox_override(
 			"panel",
-			UiStyle.filled_disc(UiTokens.ACCENT_QUIZ, UiTokens.QUIZ_FAB_CORNER_RADIUS)
+			UiStyle.quiz_fab_disc(UiTokens.QUIZ_FAB_BG)
 		)
 		_quiz_glow.visible = true
 		_quiz_glow.modulate.a = UiTokens.QUIZ_FAB_GLOW_ALPHA_MIN
@@ -275,7 +284,7 @@ func _update_quiz_fab_state(is_active: bool) -> void:
 		_quiz_disc.modulate = Color(1, 1, 1, UiTokens.QUIZ_FAB_INACTIVE_ALPHA)
 		_quiz_disc.add_theme_stylebox_override(
 			"panel",
-			UiStyle.filled_disc(UiTokens.ACCENT_QUIZ_DEEP, UiTokens.QUIZ_FAB_CORNER_RADIUS)
+			UiStyle.quiz_fab_disc(UiTokens.QUIZ_FAB_BG_INACTIVE)
 		)
 
 

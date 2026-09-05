@@ -57,6 +57,16 @@ UI_LEADERBOARD_DEMO_HINT,Sample leaderboard shown for preview.,Classement d'exem
 UI_TAB_PROFILE,Profile,Profil
 UI_HOME_HELLO,Hey {name},Salut {name}
 UI_HOME_QUIZ_HINT,Tap the Quiz button below to start a round.,Appuie sur le bouton Quiz pour lancer une partie.
+UI_HOME_TODAY,Today,Aujourd'hui
+UI_HOME_RESUME_TITLE,Pick up where you left off — {category},Reprends là où tu t'étais arrêté — {category}
+UI_HOME_RESUME_DETAIL,Last score {score} · {result},Dernier score {score} · {result}
+UI_HOME_SUGGEST_TITLE,Train {category},Entraîne-toi en {category}
+UI_HOME_SUGGEST_DETAIL,Your accuracy there is {percent}% — one round can help.,Ta précision y est de {percent}% — une partie peut aider.
+UI_HOME_START_TITLE,Ready for a round?,Prêt pour une partie ?
+UI_HOME_RANK,World rank,Classement
+UI_HOME_LAST_MATCH,Last match,Dernière partie
+UI_HOME_LAST_MATCH_LINE,{category} · {score} pts · {result} · {time},{category} · {score} pts · {result} · {time}
+UI_HOME_NO_LAST_MATCH,No matches yet. Start with the Quiz button.,Pas encore de partie. Lance-toi avec le bouton Quiz.
 UI_SOCIAL_CHALLENGE_HINT,Ready for a challenge,Prêt pour un défi
 UI_SOCIAL_CREATE_CHALLENGE,Create a challenge,Créer un défi
 UI_SOCIAL_CREATE_BUTTON,Create,Créer
@@ -130,3 +140,21 @@ UI_ACH_LEVEL_5,Rising Star,Étoile montante
 UI_ACH_LEVEL_5_DESC,Reach level 5.,Atteignez le niveau 5.
 UI_ACH_EXPLORER,Explorer,Explorateur
 UI_ACH_EXPLORER_DESC,Play quizzes in at least 2 categories.,Jouez dans au moins 2 catégories.
+UI_PROFILE_EDIT,Edit profile,Modifier le profil
+UI_PROFILE_XP_TO_NEXT,{xp} XP to next level,{xp} XP avant le prochain niveau
+UI_PROFILE_LEAGUE,League,Ligue
+UI_PROFILE_RANKING_TITLE,Ranking points,Points de classement
+UI_PROFILE_CATEGORIES_MASTERED,Mastered categories,Catégories maîtrisées
+UI_PROFILE_BEST_SUBJECT,Best subject,Meilleur sujet
+UI_PROFILE_BEST_SUBJECT_ACC,{percent}% correct answers,{percent}% de bonnes réponses
+UI_PROFILE_WIN_SPLIT,Victory breakdown,Répartition des victoires
+UI_PROFILE_WINS_COUNT,{count} wins,{count} victoires
+UI_PROFILE_WIN,Win,Victoire
+UI_PROFILE_LOSS,Loss,Défaite
+UI_PROFILE_BADGES_RECENT,Recent achievements,Succès récents
+UI_PROFILE_WORLD_RANK,World ranking,Classement mondial
+UI_PROFILE_TOP_PERCENT,TOP {percent}%,TOP {percent}%
+UI_PROFILE_SEE_LEADERBOARD,View leaderboard,Voir le classement
+UI_PROFILE_BEST_SEASON,Best season,Meilleure saison
+UI_PROFILE_SEASON_N,Season {n},Saison {n}
+UI_PROFILE_SEASON_META,{wins} wins · {rate}% winrate,{wins} victoires · {rate}% winrate

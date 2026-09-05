@@ -52,6 +52,18 @@ static func filled_disc(color: Color, radius: int) -> StyleBoxFlat:
 	return style
 
 
+static func quiz_fab_disc(color: Color) -> StyleBoxFlat:
+	var style := filled(color, UiTokens.QUIZ_FAB_CORNER_RADIUS)
+	style.bg_color = Color(color.r, color.g, color.b, 1.0)
+	style.shadow_size = UiTokens.QUIZ_FAB_SHADOW_SIZE
+	style.shadow_color = Color(0, 0, 0, 0.45)
+	style.shadow_offset = Vector2(0, 6)
+	style.set_border_width_all(0)
+	style.anti_aliasing = true
+	style.anti_aliasing_size = 1.0
+	return style
+
+
 static func glow_disc(color: Color, radius: int) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color(color.r, color.g, color.b, UiTokens.QUIZ_FAB_GLOW_COLOR.a)
@@ -107,7 +119,7 @@ static func header_bar() -> StyleBoxFlat:
 	style.bg_color = UiTokens.HEADER_BANNER_BG
 	style.set_border_width_all(0)
 	style.set_corner_radius_all(0)
-	style.shadow_color = Color(0.08, 0.18, 0.32, 0.18)
+	style.shadow_color = Color(0.0, 0.0, 0.04, 0.35)
 	style.shadow_size = 10
 	style.shadow_offset = Vector2(0, 3)
 	return style
@@ -137,4 +149,29 @@ static func category_tile_selected(accent: Color) -> StyleBoxFlat:
 	style.set_border_width_all(2)
 	style.border_color = Color(accent.r, accent.g, accent.b, 0.55)
 	style.shadow_color = Color(accent.r, accent.g, accent.b, 0.16)
+	return style
+
+
+static func profile_card(accent: Color = Color(0, 0, 0, 0), raised: bool = false) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = UiTokens.PROFILE_CARD_BG_RAISED if raised else UiTokens.PROFILE_CARD_BG
+	style.set_border_width_all(1)
+	style.border_color = UiTokens.PROFILE_CARD_BORDER
+	style.set_corner_radius_all(UiTokens.PROFILE_CARD_RADIUS)
+	style.shadow_color = Color(0, 0, 0, 0.28)
+	style.shadow_size = 10 if raised else 6
+	style.shadow_offset = Vector2(0, 3)
+	style.content_margin_left = 0
+	style.content_margin_top = 0
+	style.content_margin_right = 0
+	style.content_margin_bottom = 0
+	if accent.a > 0.02:
+		style.shadow_color = Color(accent.r, accent.g, accent.b, 0.18)
+	return style
+
+
+static func profile_progress_bg() -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = UiTokens.PROFILE_MASTERY_BAR_BG
+	style.set_corner_radius_all(8)
 	return style

@@ -4,20 +4,28 @@ extends RefCounted
 const QuestionLoaderScript = preload("res://scripts/quiz/question_loader.gd")
 const PlayerRanks = preload("res://scripts/profile/player_ranks.gd")
 const AchievementsCatalog = preload("res://scripts/profile/achievements_catalog.gd")
+const LeaderboardSnapshot = preload("res://scripts/profile/leaderboard_snapshot.gd")
 
 const USE_DEMO_WHEN_EMPTY: bool = true
+const DAILY_GOAL_TARGET: int = 5
+const HISTORY_OPPONENTS: Array[String] = ["Lucas", "Emma", "Noah", "Léa", "Hugo", "Chloé"]
 
 
 static func build_full(locale: String) -> Dictionary:
 	var data := _from_save(locale)
-	if USE_DEMO_WHEN_EMPTY and data.get("games_played", 0) == 0:
+	if USE_DEMO_WHEN_EMPTY and int(data.get("games_played", 0)) == 0:
 		data = _merge_demo(data, locale)
 	data["achievements"] = _build_achievements(data)
+	data["ranking"] = _build_ranking(data, locale)
+	data["daily_goal"] = _build_daily_goal(data)
 	return data
 
 
 static func _from_save(locale: String) -> Dictionary:
 	var games := _count_games()
+	var questions := _count_questions()
+	var correct := _count_correct()
+	var accuracy := 0.0 if questions <= 0 else float(correct) / float(questions) * 100.0
 	var win_rate := SaveManager.get_win_rate_percent()
 	return {
 		"player_name": SaveManager.player_name,
@@ -25,6 +33,7 @@ static func _from_save(locale: String) -> Dictionary:
 		"xp": SaveManager.xp,
 		"xp_to_next": SaveManager.get_xp_for_next_level(),
 		"xp_progress": SaveManager.get_xp_progress_ratio(),
+		"xp_remaining": maxi(SaveManager.get_xp_for_next_level() - SaveManager.xp, 0),
 		"rank_title_key": PlayerRanks.title_for_level(SaveManager.level),
 		"avatar_texture": SaveManager.get_profile_avatar_texture(),
 		"has_custom_avatar": SaveManager.has_custom_avatar(),
@@ -32,7 +41,9 @@ static func _from_save(locale: String) -> Dictionary:
 		"wins": SaveManager.wins,
 		"losses": SaveManager.losses,
 		"win_rate_percent": win_rate,
-		"correct_answers": _count_correct(),
+		"correct_answers": correct,
+		"questions_answered": questions,
+		"accuracy_percent": accuracy,
 		"current_win_streak": SaveManager.current_win_streak,
 		"best_win_streak": SaveManager.best_win_streak,
 		"best_score": _best_score(),
@@ -56,6 +67,13 @@ static func _count_correct() -> int:
 	return total
 
 
+static func _count_questions() -> int:
+	var total := 0
+	for category_id in SaveManager.category_stats.keys():
+		total += int(SaveManager.category_stats[category_id].get("total_questions", 0))
+	return total
+
+
 static func _best_score() -> int:
 	var best := 0
 	for category_id in SaveManager.category_stats.keys():
@@ -66,27 +84,32 @@ static func _best_score() -> int:
 static func _merge_demo(base: Dictionary, locale: String) -> Dictionary:
 	var demo := base.duplicate(true)
 	demo["is_demo"] = true
-	demo["level"] = 4
-	demo["xp"] = 65
-	demo["xp_to_next"] = 175
-	demo["xp_progress"] = 0.37
-	demo["rank_title_key"] = PlayerRanks.title_for_level(4)
-	demo["games_played"] = 18
-	demo["wins"] = 11
-	demo["losses"] = 7
-	demo["win_rate_percent"] = 61.1
-	demo["correct_answers"] = 84
-	demo["current_win_streak"] = 2
-	demo["best_win_streak"] = 4
-	demo["best_score"] = 620
+	demo["level"] = 27
+	demo["xp"] = 2450
+	demo["xp_to_next"] = 3000
+	demo["xp_progress"] = 2450.0 / 3000.0
+	demo["xp_remaining"] = 550
+	demo["rank_title_key"] = PlayerRanks.title_for_level(27)
+	demo["games_played"] = 1248
+	demo["wins"] = 849
+	demo["losses"] = 399
+	demo["win_rate_percent"] = 68.0
+	demo["correct_answers"] = 6120
+	demo["questions_answered"] = 6652
+	demo["accuracy_percent"] = 92.0
+	demo["current_win_streak"] = 7
+	demo["best_win_streak"] = 17
+	demo["best_score"] = 980
 	demo["categories"] = [
-		_make_category_row("sport", locale, 8, 72.0, 2),
-		_make_category_row("cinema", locale, 6, 58.0, 3),
-		_make_category_row("history", locale, 4, 45.0, 1),
+		_make_category_row("sport", locale, 412, 84.0, 4),
+		_make_category_row("cinema", locale, 386, 71.0, 3),
+		_make_category_row("history", locale, 450, 78.0, 4),
 	]
 	demo["history"] = [
-		_make_history_row("cinema", locale, 540, true, 6, 7, 2),
-		_make_history_row("sport", locale, 410, false, 4, 7, 26),
+		_make_history_row("sport", locale, 820, true, 8, 6, 0, "Lucas", 24),
+		_make_history_row("cinema", locale, 510, false, 5, 7, 3, "Emma", -12),
+		_make_history_row("history", locale, 740, true, 7, 5, 8, "Noah", 18),
+		_make_history_row("sport", locale, 630, true, 6, 4, 26, "Léa", 9),
 	]
 	return demo
 
@@ -102,22 +125,59 @@ static func _build_categories(locale: String) -> Array:
 		var accuracy := 0.0 if total_q <= 0 else float(total_c) / float(total_q) * 100.0
 		var mastery := 0 if games <= 0 else clampi(int(games / 3) + int(accuracy / 30.0), 1, 4)
 		rows.append(_make_category_row(category_id, locale, games, accuracy, mastery))
+	rows.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		return float(a.get("accuracy_percent", 0.0)) > float(b.get("accuracy_percent", 0.0))
+	)
 	return rows
 
 
-static func _make_category_row(category_id: String, locale: String, games: int, accuracy: float, mastery: int) -> Dictionary:
+static func _make_category_row(
+	category_id: String,
+	locale: String,
+	games: int,
+	accuracy: float,
+	mastery: int
+) -> Dictionary:
 	return {
 		"id": category_id,
 		"name": _resolve_category_name(category_id, locale),
+		"icon": _category_icon(category_id),
 		"games_played": games,
 		"accuracy_percent": accuracy,
 		"mastery_level": mastery,
 		"mastery_label_key": "UI_MASTERY_%d" % mastery,
 		"mastery_progress": clampf(float(games) / 12.0, 0.12, 1.0),
+		"win_rate_percent": accuracy,
 	}
 
 
-static func _make_history_row(category_id: String, locale: String, score: int, won: bool, correct: int, total: int, age_hours: int) -> Dictionary:
+static func _category_icon(category_id: String) -> String:
+	match category_id:
+		"sport":
+			return "⚽"
+		"cinema":
+			return "🎬"
+		"history":
+			return "📜"
+		_:
+			return "🧠"
+
+
+static func _make_history_row(
+	category_id: String,
+	locale: String,
+	score: int,
+	won: bool,
+	correct: int,
+	total: int,
+	age_hours: int,
+	opponent: String = "",
+	points_delta: int = 0
+) -> Dictionary:
+	if opponent.is_empty():
+		opponent = HISTORY_OPPONENTS[absi(hash("%s-%s-%d" % [category_id, locale, score])) % HISTORY_OPPONENTS.size()]
+	if points_delta == 0:
+		points_delta = (correct * 4) if won else -maxi(total - correct, 1) * 3
 	return {
 		"category_id": category_id,
 		"category_name": _resolve_category_name(category_id, locale),
@@ -126,26 +186,35 @@ static func _make_history_row(category_id: String, locale: String, score: int, w
 		"correct_count": correct,
 		"total_count": total,
 		"age_hours": age_hours,
+		"opponent": opponent,
+		"points_delta": points_delta,
 	}
 
 
 static func _build_history(locale: String) -> Array:
 	var rows: Array = []
 	var now := int(Time.get_unix_time_from_system())
+	var index := 0
 	for raw in SaveManager.match_history:
 		if typeof(raw) != TYPE_DICTIONARY:
 			continue
 		var played_at := int(raw.get("played_at", now))
 		var age_hours := int(max(float(now - played_at) / 3600.0, 0.0))
+		var won := bool(raw.get("won", false))
+		var correct := int(raw.get("correct_count", 0))
+		var total := int(raw.get("total_count", 0))
 		rows.append(_make_history_row(
 			str(raw.get("category_id", "")),
 			locale,
 			int(raw.get("score", 0)),
-			bool(raw.get("won", false)),
-			int(raw.get("correct_count", 0)),
-			int(raw.get("total_count", 0)),
+			won,
+			correct,
+			total,
 			age_hours,
+			HISTORY_OPPONENTS[index % HISTORY_OPPONENTS.size()],
+			0
 		))
+		index += 1
 	return rows
 
 
@@ -169,6 +238,39 @@ static func _build_achievements(data: Dictionary) -> Array:
 			"unlocked": AchievementsCatalog.is_unlocked(str(achievement.get("id", "")), unlock_stats),
 		})
 	return rows
+
+
+static func _build_ranking(data: Dictionary, locale: String) -> Dictionary:
+	var board := LeaderboardSnapshot.build("all", locale)
+	var rank := int(board.get("player_rank", 0))
+	var points := int(data.get("best_score", 0))
+	if data.get("is_demo", false):
+		rank = 184
+		points = 2845
+	elif rank <= 0:
+		rank = maxi(1, 220 - int(data.get("level", 1)) * 3)
+		points = maxi(points, int(data.get("wins", 0)) * 12)
+	var weekly_delta := 23 if data.get("is_demo", false) else clampi(int(data.get("current_win_streak", 0)) * 3, -18, 42)
+	return {
+		"rank": rank,
+		"points": points,
+		"weekly_delta": weekly_delta,
+		"league_key": str(data.get("rank_title_key", "UI_RANK_ROOKIE")),
+	}
+
+
+static func _build_daily_goal(data: Dictionary) -> Dictionary:
+	var played_today := mini(int(data.get("current_win_streak", 0)) + 1, DAILY_GOAL_TARGET)
+	if data.get("is_demo", false):
+		played_today = 3
+	elif int(data.get("games_played", 0)) > 0:
+		played_today = mini(int(data.get("games_played", 0)) % (DAILY_GOAL_TARGET + 1), DAILY_GOAL_TARGET)
+	return {
+		"current": played_today,
+		"target": DAILY_GOAL_TARGET,
+		"remaining": maxi(DAILY_GOAL_TARGET - played_today, 0),
+		"progress": clampf(float(played_today) / float(DAILY_GOAL_TARGET), 0.0, 1.0),
+	}
 
 
 static func _count_categories_played_from_data(data: Dictionary) -> int:
